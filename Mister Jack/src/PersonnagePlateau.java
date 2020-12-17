@@ -1,6 +1,6 @@
 public class PersonnagePlateau extends MrJack {
     public int[] position;
-    public boolean visible;
+    private boolean visible;
     public String statut;
 
     public PersonnagePlateau(String name, int role, int nbSabliers, PersonnagePlateau coupable, int[] position, boolean visible, String statut) {
@@ -10,4 +10,7 @@ public class PersonnagePlateau extends MrJack {
         this.statut = statut;
     }
 
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
 }

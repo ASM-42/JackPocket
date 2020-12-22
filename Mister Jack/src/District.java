@@ -5,71 +5,122 @@ import java.util.List;
 import java.util.ArrayList;
 public class District {
     private String orientation; //"up" = personnages, "down" pas de personnage
-    private ArrayList<Integer> Position1; // 0 vide, 1 mur    0 accessible, 1 non accessible aux detectives
-    private ArrayList<Integer> Position2;
-    private ArrayList<Integer> Position3;
-    private ArrayList<Integer> Position4;
+    private ArrayList<Integer> Gauche; // 0 vide, 1 mur    0 accessible, 1 non accessible aux detectives
+    private ArrayList<Integer> Haut;
+    private ArrayList<Integer> Droite;
+    private ArrayList<Integer> Bas;
     private ArrayList<ArrayList<Integer>> cotés;
     private PersonnagePlateau personnage;
+    private int indice;
+
+    public District() {
+        this.orientation = "up";
+        this.Gauche = Gauche;
+        Gauche.add(1); Gauche.add(1);
+        this.Haut = Haut;
+        Haut.add(0); Haut.add(0);
+        this.Droite = Droite;
+        Droite.add(0); Droite.add(0);
+        this.Bas = Bas;
+        Bas.add(0); Bas.add(0);
+        this.cotés = cotés;
+        cotés.add(Gauche); cotés.add(Haut); cotés.add(Droite); cotés.add(Bas);
+
+    }
+
+    public District(String orientation, ArrayList<Integer> gauche, ArrayList<Integer> haut, ArrayList<Integer> droite,
+                    ArrayList<Integer> bas, ArrayList<ArrayList<Integer>> cotés, PersonnagePlateau personnage, int indice) {
+        this.orientation = orientation;
+        Gauche = gauche;
+        Haut = haut;
+        Droite = droite;
+        Bas = bas;
+        this.cotés = cotés;
+        this.personnage = personnage;
+        this.indice = indice;
+    }
 
     public void turn () {
         System.out.println("I'm going to switch");
         if (orientation == "up");
             orientation = "down";
             personnage.setVisible(false);
+            personnage.setStatut("innocent");
     }
 
+
+    /*
     public District(String orientation, ArrayList<ArrayList<Integer>> cotés,
-                    ArrayList<Integer> Position1, ArrayList<Integer> Position2, ArrayList<Integer> Position3,
-                    ArrayList<Integer> Position4) {
+                    ArrayList<Integer> Gauche, ArrayList<Integer> Haut, ArrayList<Integer> Droite,
+                    ArrayList<Integer> Bas) {
         this.orientation = "up";
-        this.Position1 = Position1;
-        Position1.add(1); Position1.add(1);
-        this.Position2 = Position2;
-        Position2.add(0); Position2.add(0);
-        this.Position3 = Position3;
-        Position3.add(0); Position3.add(0);
-        this.Position4 = Position4;
-        Position4.add(0); Position4.add(0);
+        this.Gauche = Gauche;
+        Gauche.add(1); Gauche.add(1);
+        this.Haut = Haut;
+        Haut.add(0); Haut.add(0);
+        this.Droite = Droite;
+        Droite.add(0); Droite.add(0);
+        this.Bas = Bas;
+        Bas.add(0); Bas.add(0);
         this.cotés = cotés;
-        cotés.add(Position1); cotés.add(Position2); cotés.add(Position3); cotés.add(Position4);
+        cotés.add(Gauche); cotés.add(Haut); cotés.add(Droite); cotés.add(Bas);
 
-    }
+    }*/
 
     public String getOrientation() {
-        return orientation; }
+        return orientation;
+    }
 
     public void setOrientation(String orientation) {
-        this.orientation = orientation; }
+        this.orientation = orientation;
+    }
 
-    public ArrayList<Integer> getPosition1() {
-        return Position1; }
+    public ArrayList<Integer> getGauche() {
+        return Gauche;
+    }
 
-    public void setPosition1(ArrayList<Integer> position1) {
-        Position1 = position1; }
+    public void setGauche(ArrayList<Integer> gauche) {
+        Gauche = gauche;
+    }
 
-    public ArrayList<Integer> getPosition2() {
-        return Position2; }
+    public ArrayList<Integer> getHaut() {
+        return Haut;
+    }
 
-    public void setPosition2(ArrayList<Integer> position2) {
-        Position2 = position2; }
+    public void setHaut(ArrayList<Integer> haut) {
+        Haut = haut;
+    }
 
-    public ArrayList<Integer> getPosition3() {
-        return Position3; }
+    public ArrayList<Integer> getDroite() {
+        return Droite;
+    }
 
-    public void setPosition3(ArrayList<Integer> position3) {
-        Position3 = position3; }
+    public void setDroite(ArrayList<Integer> droite) {
+        Droite = droite;
+    }
 
-    public ArrayList<Integer> getPosition4() {
-        return Position4; }
+    public ArrayList<Integer> getBas() {
+        return Bas;
+    }
 
-    public void setPosition4(ArrayList<Integer> position4) {
-        Position4 = position4; }
+    public void setBas(ArrayList<Integer> bas) {
+        Bas = bas;
+    }
 
     public ArrayList<ArrayList<Integer>> getCotés() {
-        return cotés; }
+        return cotés;
+    }
+
+    public void setCotés(ArrayList<ArrayList<Integer>> cotés) {
+        this.cotés = cotés;
+    }
 
     public PersonnagePlateau getPersonnage() {
-        return personnage; }
+        return personnage;
+    }
+
+    public void setPersonnage(PersonnagePlateau personnage) {
+        this.personnage = personnage;
+    }
 
 }

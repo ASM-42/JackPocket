@@ -1,6 +1,6 @@
 public abstract class Player {
     private String name ;
-    private int role ;
+    private int role ; // 0 MrJack et 1 Detective
 
     public Player(String name, int role) {
         this.name = name;

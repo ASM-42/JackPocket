@@ -4,7 +4,7 @@ public class Enqueteur extends Player{
     public PersonnageDetective Tobby;
     public PersonnageDetective Sherlock;
 
-    public Detective(String name, int role, int nbSabliers) {
+    public Enqueteur(String name, int role, int nbSabliers) {
         super(name, role);
         this.nbSabliers = nbSabliers;
     }

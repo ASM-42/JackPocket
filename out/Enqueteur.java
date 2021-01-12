@@ -1,4 +1,4 @@
-public class Detective extends Player{
+public class Enqueteur extends Player{
     public int nbSabliers;
     public PersonnageDetective Waston;
     public PersonnageDetective Tobby;

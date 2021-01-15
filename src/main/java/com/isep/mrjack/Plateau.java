@@ -36,7 +36,11 @@ public class Plateau extends JPanel {
             if (i == 7) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/Madame.png"))); }
             if (i == 8) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/S_Goodley.png"))); }
 
-            district[i].addActionListener(MonJeu.createActionListener(district[i]));
+            if(i != 6) {
+                district[i].addActionListener(MrJackActionListener.createReturnDistrictAL(district[i]));
+            } else {
+                district[i].addActionListener(MrJackActionListener.createRotateDistrictAL(district[i]));
+            }
         }
         this.add(plateauPanel, BorderLayout.CENTER);
     }

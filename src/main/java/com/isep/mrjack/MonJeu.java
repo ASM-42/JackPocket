@@ -32,7 +32,7 @@ public class MonJeu extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            this.button.setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/3_Chem.png"));
+            this.button.setIcon(new ImageIcon(getClass().getResource("/images/district/3_Chem.png")));
         }
     }
 

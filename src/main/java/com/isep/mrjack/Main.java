@@ -1,7 +1,8 @@
+package com.isep.mrjack;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.TooManyListenersException;
 
 public class Main {
 
@@ -20,7 +21,8 @@ public class Main {
         interaction.initInteraction();
 
 
-        Player player1 = new Player("name", 0) {};Player player2 = new Player("name", 0) {};
+        Player player1 = new Player("name", 0) {};
+        Player player2 = new Player("name", 0) {};
         String reponse1;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Entrez le nom du premier joueur:");
@@ -28,14 +30,14 @@ public class Main {
         System.out.println("Entrez le nom du second joueur:");
         reponse1 = scanner.next();player2.setName(reponse1);
         System.out.println
-                ("Joueur 1 souhaitez vous jouer MrJack ou Detective ?");
+                ("Joueur 1 souhaitez vous jouer com.isep.mrjack.MrJack ou Detective ?");
         reponse1 = scanner.next();
-        if (reponse1 == "MrJack") {
+        if (reponse1 == "com.isep.mrjack.MrJack") {
             player1.setRole(0);player2.setRole(1);
-            System.out.println(player1.getName() + "vous jouez MrJack" + player2.getName() + "vous jouez le Detetctive");
+            System.out.println(player1.getName() + "vous jouez com.isep.mrjack.MrJack" + player2.getName() + "vous jouez le Detetctive");
         }else {
             player1.setRole(1);player2.setRole(0);
-            System.out.println(player2.getName() + "vous jouez MrJack" + player1.getName() + "vous jouez le Detetctive");}
+            System.out.println(player2.getName() + "vous jouez com.isep.mrjack.MrJack" + player1.getName() + "vous jouez le Detetctive");}
 
 
 
@@ -61,7 +63,7 @@ public class Main {
         pioche.add(SgtGoodley);
         pioche.add(MissStealthy);
 
-//Creéation et Initialisation des jetons Actions
+//Creéation et com.isep.mrjack.Initialisation des jetons Actions
         JetonsAction jeton1 = new JetonsAction("Sherlock", "Carte Alibi");
         JetonsAction jeton2 = new JetonsAction("Watson", "Tobby");
         JetonsAction jeton3 = new JetonsAction("Rotation", "Joker");

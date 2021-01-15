@@ -1,10 +1,9 @@
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+package com.isep.mrjack;
 
-public class Plateau extends JPanel implements ActionListener {
+import javax.swing.*;
+import java.awt.*;
+
+public class Plateau extends JPanel {
 
 
     public Plateau() {
@@ -36,13 +35,7 @@ public class Plateau extends JPanel implements ActionListener {
             if (i == 7) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/Madame.png")); }
             if (i == 8) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/S_Goodley.png")); }
 
-            int finalI = i;
-            district[i].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    district[finalI].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/3_Chem.png"));
-                }
-            });
+            district[i].addActionListener(MonJeu.createActionListener(district[i]));
         }
         this.add(plateauPanel, BorderLayout.CENTER);
     }
@@ -159,10 +152,6 @@ public class Plateau extends JPanel implements ActionListener {
     }
 */
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 
 
 

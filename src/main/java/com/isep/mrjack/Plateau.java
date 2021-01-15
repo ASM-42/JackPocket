@@ -25,15 +25,16 @@ public class Plateau extends JPanel {
         for (int i = 0; i < district.length; i++) {
             district[i] = new JButton("");
             plateauPanel.add(district[i]);
-            if (i == 0) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/W_Gull.png")); }
-            if (i == 1) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/J_Bert.png")); }
-            if (i == 2) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/M_Stealthy.png")); }
-            if (i == 3) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/J_Smith.png")); }
-            if (i == 4) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/J_Pizzer.png")); }
-            if (i == 5) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/I_Lestrada.png")); }
-            if (i == 6) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/J_lane.png")); }
-            if (i == 7) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/Madame.png")); }
-            if (i == 8) { district[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesDistrict/S_Goodley.png")); }
+
+            if (i == 0) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/W_Gull.png"))); }
+            if (i == 1) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Bert.png"))); }
+            if (i == 2) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/M_Stealthy.png"))); }
+            if (i == 3) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Smith.png"))); }
+            if (i == 4) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Pizzer.png"))); }
+            if (i == 5) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/I_Lestrada.png"))); }
+            if (i == 6) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_lane.png"))); }
+            if (i == 7) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/Madame.png"))); }
+            if (i == 8) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/S_Goodley.png"))); }
 
             district[i].addActionListener(MonJeu.createActionListener(district[i]));
         }
@@ -51,14 +52,14 @@ public class Plateau extends JPanel {
         JButton[] jetTemps = new JButton[8];                      //liste de 8 boutons qui correspondent aux 8 jetonsTemps
         for (int i = 0; i < jetTemps.length; i++) {
             jetTemps[i] = new JButton("");
-            if (i == 0) { jetTemps[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetTemps/1.png")); }
-            if (i == 1) { jetTemps[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetTemps/2.png")); }
-            if (i == 2) { jetTemps[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetTemps/3.png")); }
-            if (i == 3) { jetTemps[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetTemps/4.png")); }
-            if (i == 4) { jetTemps[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetTemps/5.png")); }
-            if (i == 5) { jetTemps[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetTemps/6.png")); }
-            if (i == 6) { jetTemps[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetTemps/7.png")); }
-            if (i == 7) { jetTemps[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetTemps/8.png")); }
+            if (i == 0) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/1.png"))); }
+            if (i == 1) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/2.png"))); }
+            if (i == 2) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/3.png"))); }
+            if (i == 3) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/4.png"))); }
+            if (i == 4) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/5.png"))); }
+            if (i == 5) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/6.png"))); }
+            if (i == 6) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/7.png"))); }
+            if (i == 7) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/8.png"))); }
             surfaceGauche.add(jetTemps[i]);
         }
 
@@ -67,7 +68,7 @@ public class Plateau extends JPanel {
         JButton[] detectiveVide = new JButton[3];
         for (int i = 0; i < detectiveVide.length; i++) {
             detectiveVide[i] = new JButton("");
-            if (i == 0) { detectiveVide[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetDetec/Holmes.png")); }
+            if (i == 0) { detectiveVide[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Holmes.png"))); }
             detectivePanel1.add(detectiveVide[i]);
         }
 
@@ -100,7 +101,7 @@ public class Plateau extends JPanel {
         for (int i = 0; i < detectiveVide3.length; i++) {
             detectiveVide3[i] = new JButton("");
             if (i == 0) {
-                detectiveVide3[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetDetec/Watson.png"));
+                detectiveVide3[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Watson.png")));
             }
             detectivePanel3.add(detectiveVide3[i]);
         }
@@ -110,10 +111,10 @@ public class Plateau extends JPanel {
         JButton[] jetAction = new JButton[4];
         for (int i = 0; i < jetAction.length; i++) {
             jetAction[i] = new JButton("");
-            if (i == 0) { jetAction[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetAction/Alibi.png")); }
-            if (i == 1) { jetAction[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetAction/Echange.png")); }
-            if (i == 2) { jetAction[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetAction/Joker.png")); }
-            if (i == 3) { jetAction[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetAction/Rotation.png")); }
+            if (i == 0) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Alibi.png"))); }
+            if (i == 1) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Echange.png"))); }
+            if (i == 2) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Joker.png"))); }
+            if (i == 3) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png"))); }
             surfaceDroite.add(jetAction[i]);
         }
 
@@ -139,49 +140,13 @@ public class Plateau extends JPanel {
         for (int i = 0; i < detectiveVide4.length; i++) {
             detectiveVide4[i] = new JButton("");
             if (i == 2) {
-                detectiveVide4[i].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetDetec/Tobby.png"));
+                detectiveVide4[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Tobby.png")));
             }
             detectivePanel4.add(detectiveVide4[i]);
         }
         this.add(detectivePanel4, BorderLayout.PAGE_END);
     }
 
- /*   public void deplacementTobby (int place, JPanel lePanel, ImageIcon imageIcon) {
-
-        detectiveVide4[place].setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/imagesJetDetec/Tobby.png"));
-    }
-*/
-
-
-
-
-/*
-        // *** POUR FAIRE UNE ACTION SUR UN DISTRICT ***
-        for (int i = 0; i < district.length; i++) {
-        district[].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                district.setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/3_Chem.png"));
-            }
-        }); }
-
-
-        public void actionPerformed(ActionEvent e {
-            setIcon(new ImageIcon("/Users/soso/IdeaProjects/MisterJackPocket/src/3_Chem.png");
-
-        }
-
-        }
-    }
-
-    public void populateCenter(JButton[] buttons) {
-        for (JButton bu : buttons) {
-            center.add(bu);
-        }
-    }
-
-
-*/
 
 }
 

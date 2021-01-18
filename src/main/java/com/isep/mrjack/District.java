@@ -8,9 +8,10 @@ public class District extends Object {
     private ArrayList<Integer> Haut;
     private ArrayList<Integer> Droite;
     private ArrayList<Integer> Bas;
-    private ArrayList<ArrayList<Integer>> cotés;
+    private ArrayList<ArrayList<Integer>> cotes;
     private PersonnagePlateau personnage;
     private int indice;
+    private int angle;
 
     public District() {
         this.orientation = "up";
@@ -22,19 +23,19 @@ public class District extends Object {
         Droite.add(0); Droite.add(0);
         this.Bas =  new ArrayList<>();
         Bas.add(0); Bas.add(0);
-        this.cotés =  new ArrayList<>();
-        cotés.add(Gauche); cotés.add(Haut); cotés.add(Droite); cotés.add(Bas);
+        this.cotes =  new ArrayList<>();
+        cotes.add(Gauche); cotes.add(Haut); cotes.add(Droite); cotes.add(Bas);
 
     }
 
     public District(String orientation, ArrayList<Integer> gauche, ArrayList<Integer> haut, ArrayList<Integer> droite,
-                    ArrayList<Integer> bas, ArrayList<ArrayList<Integer>> cotés, PersonnagePlateau personnage, int indice) {
+                    ArrayList<Integer> bas, ArrayList<ArrayList<Integer>> cotes, PersonnagePlateau personnage, int indice) {
         this.orientation = orientation;
         Gauche = gauche;
         Haut = haut;
         Droite = droite;
         Bas = bas;
-        this.cotés = cotés;
+        this.cotes = cotes;
         this.personnage = personnage;
         this.indice = indice;
     }
@@ -121,12 +122,12 @@ public class District extends Object {
         Bas = bas;
     }
 
-    public ArrayList<ArrayList<Integer>> getCotés() {
-        return cotés;
+    public ArrayList<ArrayList<Integer>> getCotes() {
+        return cotes;
     }
 
-    public void setCotés(ArrayList<ArrayList<Integer>> cotés) {
-        this.cotés = cotés;
+    public void setCotes(ArrayList<ArrayList<Integer>> cotes) {
+        this.cotes = cotes;
     }
 
     public PersonnagePlateau getPersonnage() {

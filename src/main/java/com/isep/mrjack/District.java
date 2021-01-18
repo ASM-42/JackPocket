@@ -14,15 +14,15 @@ public class District extends Object {
 
     public District() {
         this.orientation = "up";
-        this.Gauche = Gauche;
+        this.Gauche = new ArrayList<>();
         Gauche.add(1); Gauche.add(1);
-        this.Haut = Haut;
+        this.Haut =  new ArrayList<>();
         Haut.add(0); Haut.add(0);
-        this.Droite = Droite;
+        this.Droite =  new ArrayList<>();
         Droite.add(0); Droite.add(0);
-        this.Bas = Bas;
+        this.Bas =  new ArrayList<>();
         Bas.add(0); Bas.add(0);
-        this.cotés = cotés;
+        this.cotés =  new ArrayList<>();
         cotés.add(Gauche); cotés.add(Haut); cotés.add(Droite); cotés.add(Bas);
 
     }
@@ -40,7 +40,6 @@ public class District extends Object {
     }
 
     public void turn () {
-        System.out.println("I'm going to switch");
         if (orientation == "up");
             orientation = "down";
             personnage.setVisible(false);

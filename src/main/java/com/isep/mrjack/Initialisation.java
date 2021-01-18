@@ -5,15 +5,35 @@ import java.util.Arrays;
 
 public class Initialisation {
 
+    //Détectives
+    public ArrayList<PersonnagePlateau> SuspectsVisibles(Enqueteur player){
+        ArrayList<PersonnagePlateau> suspects = new ArrayList<>(player.getSherlock().getSuspectVisibles());
+        for (int w=0; w<player.Waston.getSuspectVisibles().size(); w++){
+            suspects.add(player.Waston.getSuspectVisibles().get(w));
+        }
+        for (int t=0; t<player.Toby.getSuspectVisibles().size(); t++){
+            suspects.add(player.Toby.getSuspectVisibles().get(t));
+        }
+        for (int i=0; i<suspects.size(); i++){
+            for(int j=0; j<suspects.size(); j++){
+                if (suspects.get(i) == suspects.get(j)){
+                    suspects.remove(j);
+                }}
+        }
+        return suspects;
+    }
+
+
+
     //Création des Districts et du com.isep.mrjack.Plateau de Jeu
-     District D1 = new District(); District D2 = new District(); District D3 = new District();
+    District D1 = new District(); District D2 = new District(); District D3 = new District();
     District D4 = new District(); District D5 = new District(); District D6 = new District();
     District D7 = new District(); District D8 = new District(); District D9 = new District();
-    ArrayList<District> ligne1 = (ArrayList<District>) Arrays.asList(D1, D2, D3);
-    ArrayList<District> ligne2 = (ArrayList<District>) Arrays.asList(D4, D5, D6);
-    ArrayList<District> ligne3 = (ArrayList<District>) Arrays.asList(D7, D8, D9);
+    ArrayList<District> ligne1 = new ArrayList<District>(Arrays.asList(D1, D2, D3));
+    ArrayList<District> ligne2 = new ArrayList<District>(Arrays.asList(D4, D5, D6));
+    ArrayList<District> ligne3 = new ArrayList<District>(Arrays.asList(D7, D8, D9));
     public ArrayList<ArrayList<District>> plateauJeu =
-            (ArrayList<ArrayList<District>>) Arrays.asList(ligne1, ligne2, ligne3);
+            new ArrayList<ArrayList<District>>(Arrays.asList(ligne1, ligne2, ligne3));
 
     public District findPersonnage (PersonnagePlateau personnage){
         District d = D1;
@@ -36,20 +56,35 @@ public class Initialisation {
     PersonnagePlateau SgtGoodley = new PersonnagePlateau(0);
     PersonnagePlateau MissStealthy = new PersonnagePlateau(1);
     PersonnagePlateau[] pioche = {Madame, JohnPizer, JeremyBert, InspLestrade, WilliamGull, JosephLane, JohnSmith, SgtGoodley, MissStealthy};
+    PersonnagePlateau[] personnages = {Madame, JohnPizer, JeremyBert, InspLestrade, WilliamGull, JosephLane, JohnSmith, SgtGoodley, MissStealthy};
 
-    public void removeElement(PersonnagePlateau[] arr, int removedIdx) {
+    public PersonnagePlateau[] getPersonnages() {
+        return personnages;
+    }
+
+    public ArrayList<PersonnagePlateau> innocents(ArrayList<PersonnagePlateau> suspects){
+        ArrayList<PersonnagePlateau> innocents = new ArrayList<>();
+        for (int x=0; x< personnages.length; x++){
+            if(suspects.contains(personnages[x]) == false){
+                innocents.add(personnages[x]);
+            }
+        }
+        return innocents;
+    }
+
+    public static void removeElement(PersonnagePlateau[] arr, int removedIdx) {
         System.arraycopy(arr, removedIdx + 1, arr, removedIdx, arr.length - 1 - removedIdx);
     }
 
     //Création et com.isep.mrjack.Initialisation des jetons Actions
     JetonsAction jeton1 = new JetonsAction("Sherlock", "Carte Alibi");
-    JetonsAction jeton2 = new JetonsAction("Watson", "Tobby");
+    JetonsAction jeton2 = new JetonsAction("Watson", "Toby");
     JetonsAction jeton3 = new JetonsAction("Rotation", "Joker");
     JetonsAction jeton4 = new JetonsAction("Rotation", "Echange");
 
 
     //Création Jetons Temps
-    int [] jetonT1 = {1, 1};
+    int[] jetonT1 = {1, 1};
     int[] jetonT2 = {2, 0};
     int[] jetonT3 = {3, 1};
     int[] jetonT4 = {4, 0};

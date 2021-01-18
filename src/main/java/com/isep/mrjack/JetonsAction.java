@@ -9,7 +9,7 @@ public class JetonsAction extends Initialisation {
 
 
     PersonnageDetective Watson;
-    PersonnageDetective Tobby;
+    PersonnageDetective Toby;
     PersonnageDetective Sherlock;
 
     public JetonsAction(String typeAction, String typeAction2) {
@@ -50,17 +50,17 @@ public class JetonsAction extends Initialisation {
         }
     }
 
-    public void bougerTobby () {
+    public void bougerToby () {
         String reponse1;
         Scanner scanner = new Scanner (System.in);
         System.out.println
                 ("Voulez vous déplacer le détective d'un seul espace (tapez 1) ou de deux espaces (tapez 2) ?");
         reponse1 = scanner.next();
         if (reponse1.equals(1)){
-            Tobby.MoveDetective1(Tobby.getPositionDetective());
+            Toby.MoveDetective1(Toby.getPositionDetective());
         }
         if (reponse1.equals(2)){
-            Tobby.MoveDetective2(Tobby.getPositionDetective());
+            Toby.MoveDetective2(Toby.getPositionDetective());
         }
     }
 
@@ -141,7 +141,6 @@ public class JetonsAction extends Initialisation {
         temp = d1; d1 = d2; d2 = d1;
     }
     public void Joker (Player player) {
-
         String reponse1;
         String reponse2;
         Scanner scanner = new Scanner (System.in);
@@ -153,8 +152,8 @@ public class JetonsAction extends Initialisation {
             Watson.MoveDetective1(Watson.getPositionDetective());
         if (reponse1.equals("Sherlock"))
             Sherlock.MoveDetective1(Sherlock.getPositionDetective());
-        if (reponse1.equals("Tobby"))
-            Tobby.MoveDetective1(Tobby.getPositionDetective());
+        if (reponse1.equals("Toby"))
+            Toby.MoveDetective1(Toby.getPositionDetective());
 
         if (player.getRole() == 0) //com.isep.mrjack.MrJack
             System.out.println ("Voulez vous déplacer un detective, si non tapez non si oui tapez le nom du detective à déplacer ?");
@@ -163,14 +162,44 @@ public class JetonsAction extends Initialisation {
             Watson.MoveDetective1(Watson.getPositionDetective());
         if (reponse1.equals("Sherlock"))
             Sherlock.MoveDetective1(Sherlock.getPositionDetective());
-        if (reponse1.equals("Tobby"))
-            Tobby.MoveDetective1(Tobby.getPositionDetective());
+        if (reponse1.equals("Toby"))
+            Toby.MoveDetective1(Toby.getPositionDetective());
 
     }
+
+    public void faireAction(String typeAction1, Player player){
+        if (typeAction1 == "Rotation"){
+            rotationDistrict();
+        }
+        if (typeAction1 == "Sherlock"){
+            bougerSherlock();
+        }
+        if (typeAction1 == "Watson"){
+            bougerWatson();
+        }
+        if (typeAction1 == "Toby"){
+            bougerToby();
+        }
+        if (typeAction1 == "Echange"){
+            echangeDistrict();
+        }
+        if (typeAction1 == "Joker"){
+            Joker(player);
+        }
+    }
+
 
     public String getTypeAction1() {
         return typeAction1;
     }
+
+    public void Action(int action, Player player) {
+        if (action == 1){
+            faireAction(typeAction1, player);
+        }
+        if (action == 2){
+            faireAction(typeAction2, player);
+        }}
 
     public void setTypeAction1(String typeAction1) {
         this.typeAction1 = typeAction1;
@@ -200,12 +229,12 @@ public class JetonsAction extends Initialisation {
         Watson = watson;
     }
 
-    public PersonnageDetective getTobby() {
-        return Tobby;
+    public PersonnageDetective getToby() {
+        return Toby;
     }
 
-    public void setTobby(PersonnageDetective tobby) {
-        Tobby = tobby;
+    public void setToby(PersonnageDetective toby) {
+        Toby = toby;
     }
 
     public PersonnageDetective getSherlock() {

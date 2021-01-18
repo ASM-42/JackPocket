@@ -6,9 +6,10 @@ public class PersonnageDetective extends Initialisation{
     private ArrayList<Object> positionDetective;
           //  (ArrayList<com.isep.mrjack.District>) Arrays.asList(D1, D1.getGauche());
                                         //[com.isep.mrjack.District, Gauche/Droite...]
-    private ArrayList<Object> suspectVisibles;
+    private ArrayList<PersonnagePlateau> suspectVisibles;
     private int nbSuspectVisibles = suspectVisibles.size() +1;
     public int nbSabliers;
+
 
     public void MoveDetective1 (ArrayList positionDetective){
         if (positionDetective.get(0) == D1){
@@ -120,7 +121,7 @@ public class PersonnageDetective extends Initialisation{
         }
     }
 
-    public ArrayList<Object> SuspectsVision(ArrayList<Object> positionDetective){
+    public ArrayList<PersonnagePlateau> SuspectsVision(ArrayList<Object> positionDetective){
         District Dx = (District) positionDetective.get(0);
         ArrayList<Integer> side = (ArrayList<Integer>) positionDetective.get(1);
         while (side.get(0) != 1){
@@ -129,31 +130,31 @@ public class PersonnageDetective extends Initialisation{
         return suspectVisibles;
     }
 
+    public void setPositionDetective(ArrayList<Object> positionDetective) {
+        this.positionDetective = positionDetective;
+    }
+
+    public ArrayList<PersonnagePlateau> getSuspectVisibles() {
+        return suspectVisibles;
+    }
+
+    public void setSuspectVisibles(ArrayList<PersonnagePlateau> suspectVisibles) {
+        this.suspectVisibles = suspectVisibles;
+    }
+
     public ArrayList<Object> getPositionDetective() {
         return positionDetective;
     }
 
-    public PersonnageDetective(/*String name, int role*/ int nbSabliers, ArrayList<Object> positionDetective,
-                                                         ArrayList<Object> suspectVisibles, int nbSuspectVisibles) {
+    public PersonnageDetective(/*String name, int role*/ int nbSabliers, ArrayList<Object> positionDetective, int nbSuspectVisibles) {
         //super(name, role);
         this.positionDetective = positionDetective;
-        this.suspectVisibles = suspectVisibles;
+        this.suspectVisibles = SuspectsVision(this.positionDetective);
         this.nbSuspectVisibles = suspectVisibles.size();
         this.nbSabliers = nbSabliers;
     }
 
 
-    public void setPositionDetective(ArrayList<Object> positionDetective) {
-        this.positionDetective = positionDetective;
-    }
-
-    public ArrayList<Object> getSuspectVisibles() {
-        return suspectVisibles;
-    }
-
-    public void setSuspectVisibles(ArrayList<Object> suspectVisibles) {
-        this.suspectVisibles = suspectVisibles;
-    }
 
     public int getNbSuspectVisibles() {
         return nbSuspectVisibles;

@@ -13,7 +13,7 @@ public class District extends Object {
     private int indice;
     private int angle;
 
-    public District() {
+    public District(PersonnagePlateau personnage) {
         this.orientation = "up";
         this.Gauche = new ArrayList<>();
         Gauche.add(1); Gauche.add(1);
@@ -25,6 +25,8 @@ public class District extends Object {
         Bas.add(0); Bas.add(0);
         this.cotes =  new ArrayList<>();
         cotes.add(Gauche); cotes.add(Haut); cotes.add(Droite); cotes.add(Bas);
+        this.personnage = personnage;
+        this.angle = 90;
 
     }
 

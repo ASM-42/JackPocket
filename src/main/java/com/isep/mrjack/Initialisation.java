@@ -25,25 +25,7 @@ public class Initialisation {
 
 
 
-    //Création des Districts et du com.isep.mrjack.Plateau de Jeu
-    District D1 = new District(); District D2 = new District(); District D3 = new District();
-    District D4 = new District(); District D5 = new District(); District D6 = new District();
-    District D7 = new District(); District D8 = new District(); District D9 = new District();
-    ArrayList<District> ligne1 = new ArrayList<District>(Arrays.asList(D1, D2, D3));
-    ArrayList<District> ligne2 = new ArrayList<District>(Arrays.asList(D4, D5, D6));
-    ArrayList<District> ligne3 = new ArrayList<District>(Arrays.asList(D7, D8, D9));
-    public ArrayList<ArrayList<District>> plateauJeu =
-            new ArrayList<ArrayList<District>>(Arrays.asList(ligne1, ligne2, ligne3));
 
-    public District findPersonnage (PersonnagePlateau personnage){
-        District d = D1;
-        for (int i=0; i<4; i++){
-            for (int j=0; j<4; i++){
-                if (plateauJeu.get(i).get(j).getPersonnage() == personnage){
-                    d = plateauJeu.get(i).get(j);
-        }   }   }
-        return d;
-    }
 
     //Création des cartes personnages et de la pioche
     PersonnagePlateau Madame = new PersonnagePlateau(2);
@@ -74,6 +56,28 @@ public class Initialisation {
 
     public static void removeElement(PersonnagePlateau[] arr, int removedIdx) {
         System.arraycopy(arr, removedIdx + 1, arr, removedIdx, arr.length - 1 - removedIdx);
+    }
+
+    //Création des Districts et du com.isep.mrjack.Plateau de Jeu
+    District D1 = new District(Madame); District D2 = new District(JeremyBert);
+    District D3 = new District(JohnPizer);District D4 = new District(InspLestrade);
+    District D5 = new District(WilliamGull); District D6 = new District(JosephLane);
+    District D7 = new District(JohnSmith); District D8 = new District(SgtGoodley);
+    District D9 = new District(MissStealthy);
+    ArrayList<District> ligne1 = new ArrayList<District>(Arrays.asList(D1, D2, D3));
+    ArrayList<District> ligne2 = new ArrayList<District>(Arrays.asList(D4, D5, D6));
+    ArrayList<District> ligne3 = new ArrayList<District>(Arrays.asList(D7, D8, D9));
+    public ArrayList<ArrayList<District>> plateauJeu =
+            new ArrayList<ArrayList<District>>(Arrays.asList(ligne1, ligne2, ligne3));
+
+    public District findPersonnage (PersonnagePlateau personnage){
+        District d = D1;
+        for (int i=0; i<4; i++){
+            for (int j=0; j<4; i++){
+                if (plateauJeu.get(i).get(j).getPersonnage() == personnage){
+                    d = plateauJeu.get(i).get(j);
+                }   }   }
+        return d;
     }
 
     //Création et com.isep.mrjack.Initialisation des jetons Actions

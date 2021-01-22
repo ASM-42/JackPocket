@@ -5,27 +5,22 @@ import java.util.Arrays;
 
 public class District extends Object {
     private String orientation; //"up" = personnages, "down" pas de personnage
-    private ArrayList<Object> Gauche = new ArrayList<Object>(Arrays.asList(1, 1, 'G')); // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
-    private ArrayList<Object> Haut;
-    private ArrayList<Object> Droite;
-    private ArrayList<Object> Bas;
-    private ArrayList<ArrayList<Object>> cotes;
+    private Object[] Gauche = {1, 1, 'G'}; // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
+    private Object[] Haut = {0, 1, 'H'};
+    private Object[] Droite = {0, 1, 'D'};
+    private Object[] Bas = {0, 1, 'B'};
+    private ArrayList<Object[]> cotes;
     private PersonnagePlateau personnage;
     private int indice;
     private int angle;
 
     public District(PersonnagePlateau personnage) {
         this.orientation = "up";
-        this.Haut =  new ArrayList<Object>(Arrays.asList(0, 1, 'H'));
-        this.Droite =  new ArrayList<Object>(Arrays.asList(0, 1, 'D'));
-        this.Bas =  new ArrayList<Object>(Arrays.asList(0, 1, 'B'));
-        this.cotes =  new ArrayList<>();
-        cotes.add(Gauche); cotes.add(Haut); cotes.add(Droite); cotes.add(Bas);
         this.personnage = personnage;
         this.angle = 90;
 
     }
-
+/*
     public District(String orientation, ArrayList<Object> gauche, ArrayList<Object> haut, ArrayList<Object> droite,
                     ArrayList<Object> bas, ArrayList<ArrayList<Object>> cotes, PersonnagePlateau personnage, int indice) {
         this.orientation = orientation;
@@ -37,7 +32,7 @@ public class District extends Object {
         this.personnage = personnage;
         this.indice = indice;
     }
-
+*/
     public void turn () {
         if (orientation == "up");
             orientation = "down";
@@ -45,7 +40,7 @@ public class District extends Object {
             personnage.setStatut("innocent");
     }
     public void swapQuartHoraire(){
-        ArrayList<Object> temp = Gauche;
+        Object[] temp = Gauche;
         Gauche = Bas;
         Bas = Droite;
         Droite = Haut;
@@ -53,7 +48,7 @@ public class District extends Object {
     }
 
     public void swapQuartAntihoraire(){
-        ArrayList<Object> temp = Gauche;
+        Object[] temp = Gauche;
         Gauche = Haut;
         Haut = Droite;
         Droite = Bas;
@@ -88,43 +83,43 @@ public class District extends Object {
         this.orientation = orientation;
     }
 
-    public ArrayList<Object> getGauche() {
+    public Object[] getGauche() {
         return Gauche;
     }
 
-    public void setGauche(ArrayList<Object> gauche) {
+    public void setGauche(Object[] gauche) {
         Gauche = gauche;
     }
 
-    public ArrayList<Object> getHaut() {
+    public Object[] getHaut() {
         return Haut;
     }
 
-    public void setHaut(ArrayList<Object> haut) {
+    public void setHaut(Object[] haut) {
         Haut = haut;
     }
 
-    public ArrayList<Object> getDroite() {
+    public Object[] getDroite() {
         return Droite;
     }
 
-    public void setDroite(ArrayList<Object> droite) {
+    public void setDroite(Object[] droite) {
         Droite = droite;
     }
 
-    public ArrayList<Object> getBas() {
+    public Object[] getBas() {
         return Bas;
     }
 
-    public void setBas(ArrayList<Object> bas) {
+    public void setBas(Object[] bas) {
         Bas = bas;
     }
 
-    public ArrayList<ArrayList<Object>> getCotes() {
+    public ArrayList<Object[]> getCotes() {
         return cotes;
     }
 
-    public void setCotes(ArrayList<ArrayList<Object>> cotes) {
+    public void setCotes(ArrayList<Object[]> cotes) {
         this.cotes = cotes;
     }
 
@@ -136,4 +131,11 @@ public class District extends Object {
         this.personnage = personnage;
     }
 
+    public void setIndice(int indice) {
+        this.indice = indice;
+    }
+
+    public void setAngle(int angle) {
+        this.angle = angle;
+    }
 }

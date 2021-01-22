@@ -2,6 +2,7 @@ package com.isep.mrjack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Initialisation {
 
@@ -59,11 +60,25 @@ public class Initialisation {
     }
 
     //Création des Districts et du com.isep.mrjack.Plateau de Jeu
-    District D1 = new District(Madame); District D2 = new District(JeremyBert);
+
+    District D1 = new District(Madame);
+    District D2 = new District(JeremyBert);
     District D3 = new District(JohnPizer);District D4 = new District(InspLestrade);
     District D5 = new District(WilliamGull); District D6 = new District(JosephLane);
     District D7 = new District(JohnSmith); District D8 = new District(SgtGoodley);
     District D9 = new District(MissStealthy);
+    ArrayList<District> All = new ArrayList<District>(Arrays.asList(D1, D2, D3, D4, D5, D6, D7, D8, D9));
+
+    public void CréationPlateau (){
+        ArrayList<District> Plateau = new ArrayList<>();
+        Random random = new Random();
+        for (int i=0; i<10; i++){
+            int indice = random.nextInt(All.size());
+            Plateau.add(All.get(indice));
+            All.get(indice).setIndice(i);
+            All.remove(indice);}
+    }
+
     ArrayList<District> ligne1 = new ArrayList<District>(Arrays.asList(D1, D2, D3));
     ArrayList<District> ligne2 = new ArrayList<District>(Arrays.asList(D4, D5, D6));
     ArrayList<District> ligne3 = new ArrayList<District>(Arrays.asList(D7, D8, D9));

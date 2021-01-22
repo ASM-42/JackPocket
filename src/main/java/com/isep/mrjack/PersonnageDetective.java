@@ -1,5 +1,7 @@
 package com.isep.mrjack;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class PersonnageDetective extends Initialisation{
@@ -9,6 +11,7 @@ public class PersonnageDetective extends Initialisation{
     private ArrayList<PersonnagePlateau> suspectVisibles;
     private int nbSuspectVisibles = suspectVisibles.size() +1;
     public int nbSabliers;
+    public ImageIcon image;
 
 
     public void MoveDetective1 (ArrayList positionDetective){

@@ -108,7 +108,7 @@ public class Play extends Initialisation {
                 out.println("Mister Jack n'est pas visible");
                 ArrayList<PersonnagePlateau> suspect = Jeu.SuspectsVisibles(joueurE);
                 for (int p=0; p<suspect.size(); p++){
-                    Jeu.findPersonnage(suspect.get(p)).turn();
+                   Jeu.findPersonnage(suspect.get(p)).turn();
                 }
                 joueurM.setNbSabliers(joueurM.getNbSabliers()+1);
             }

@@ -21,6 +21,18 @@ public final class MrJackActionListener {
     return new RotateDistrictActionListener(button);
   }
 
+  public static ActionListener createReturnJetonTempsAL(JButton button) {
+    return new ReturnJetonTempsActionListener(button);
+  }
+
+  public static ActionListener createPiocherAlibiAL(JButton button) {
+    return new PiocherAlibiActionListener(button);
+  }
+
+  public static ActionListener createMoveDtectiveAL(JButton button) {
+    return new MoveDetectiveActionListener(button);
+  }
+
 
   private static class ReturnDistrictActionListener implements ActionListener {
     JButton button;
@@ -34,6 +46,7 @@ public final class MrJackActionListener {
       this.button.setIcon(new ImageIcon(getClass().getResource("/images/district/3_Chem.png")));
     }
   }
+
 
   private static class RotateDistrictActionListener implements ActionListener {
     JButton button;
@@ -52,7 +65,8 @@ public final class MrJackActionListener {
         // graphics.drawImage;
       } catch (IOException ioException) {
         ioException.printStackTrace();
-      };
+      }
+      ;
 
     }
 
@@ -82,5 +96,54 @@ public final class MrJackActionListener {
     }
 
   }
+
+
+  private static class ReturnJetonTempsActionListener implements ActionListener {
+    JButton button;
+
+    public ReturnJetonTempsActionListener(JButton button) {
+      this.button = button;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      this.button.setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/Sablier.png")));
+    }
+  }
+
+
+  private static class PiocherAlibiActionListener implements ActionListener {
+    JButton button;
+
+    private String[] images = {};
+
+    public PiocherAlibiActionListener(JButton button) {
+      this.button = button;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      int n = (int) Math.floor(Math.random() * 300);
+      String image = images[n];
+      this.button.setIcon(new ImageIcon(getClass().getResource("/images/alibi/" + image)));
+    }
+  }
+
+
+  private static class MoveDetectiveActionListener implements ActionListener {
+    JButton button;
+
+    public MoveDetectiveActionListener(JButton button) {
+      this.button = button;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      this.button.setIcon(null);
+      button.setIcon(null);
+    }
+  }
+
+///
 
 }

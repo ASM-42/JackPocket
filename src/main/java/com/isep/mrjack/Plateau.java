@@ -128,8 +128,6 @@ public class Plateau extends JPanel {
         droitePanel.add(surfaceDroite);
         droitePanel.add(piochePanel);
         this.add(droitePanel, BorderLayout.LINE_END);
-
-
     }
 
 

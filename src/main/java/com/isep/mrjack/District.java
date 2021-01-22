@@ -1,35 +1,33 @@
 package com.isep.mrjack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class District extends Object {
     private String orientation; //"up" = personnages, "down" pas de personnage
-    private ArrayList<Integer> Gauche; // 0 vide, 1 mur    0 accessible, 1 non accessible aux detectives
-    private ArrayList<Integer> Haut;
-    private ArrayList<Integer> Droite;
-    private ArrayList<Integer> Bas;
-    private ArrayList<ArrayList<Integer>> cotes;
+    private ArrayList<Object> Gauche = new ArrayList<Object>(Arrays.asList(1, 1, 'G')); // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
+    private ArrayList<Object> Haut;
+    private ArrayList<Object> Droite;
+    private ArrayList<Object> Bas;
+    private ArrayList<ArrayList<Object>> cotes;
     private PersonnagePlateau personnage;
     private int indice;
     private int angle;
 
-    public District() {
+    public District(PersonnagePlateau personnage) {
         this.orientation = "up";
-        this.Gauche = new ArrayList<>();
-        Gauche.add(1); Gauche.add(1);
-        this.Haut =  new ArrayList<>();
-        Haut.add(0); Haut.add(0);
-        this.Droite =  new ArrayList<>();
-        Droite.add(0); Droite.add(0);
-        this.Bas =  new ArrayList<>();
-        Bas.add(0); Bas.add(0);
+        this.Haut =  new ArrayList<Object>(Arrays.asList(0, 1, 'H'));
+        this.Droite =  new ArrayList<Object>(Arrays.asList(0, 1, 'D'));
+        this.Bas =  new ArrayList<Object>(Arrays.asList(0, 1, 'B'));
         this.cotes =  new ArrayList<>();
         cotes.add(Gauche); cotes.add(Haut); cotes.add(Droite); cotes.add(Bas);
+        this.personnage = personnage;
+        this.angle = 90;
 
     }
 
-    public District(String orientation, ArrayList<Integer> gauche, ArrayList<Integer> haut, ArrayList<Integer> droite,
-                    ArrayList<Integer> bas, ArrayList<ArrayList<Integer>> cotes, PersonnagePlateau personnage, int indice) {
+    public District(String orientation, ArrayList<Object> gauche, ArrayList<Object> haut, ArrayList<Object> droite,
+                    ArrayList<Object> bas, ArrayList<ArrayList<Object>> cotes, PersonnagePlateau personnage, int indice) {
         this.orientation = orientation;
         Gauche = gauche;
         Haut = haut;
@@ -47,7 +45,7 @@ public class District extends Object {
             personnage.setStatut("innocent");
     }
     public void swapQuartHoraire(){
-        ArrayList<Integer> temp = Gauche;
+        ArrayList<Object> temp = Gauche;
         Gauche = Bas;
         Bas = Droite;
         Droite = Haut;
@@ -55,7 +53,7 @@ public class District extends Object {
     }
 
     public void swapQuartAntihoraire(){
-        ArrayList<Integer> temp = Gauche;
+        ArrayList<Object> temp = Gauche;
         Gauche = Haut;
         Haut = Droite;
         Droite = Bas;
@@ -90,43 +88,43 @@ public class District extends Object {
         this.orientation = orientation;
     }
 
-    public ArrayList<Integer> getGauche() {
+    public ArrayList<Object> getGauche() {
         return Gauche;
     }
 
-    public void setGauche(ArrayList<Integer> gauche) {
+    public void setGauche(ArrayList<Object> gauche) {
         Gauche = gauche;
     }
 
-    public ArrayList<Integer> getHaut() {
+    public ArrayList<Object> getHaut() {
         return Haut;
     }
 
-    public void setHaut(ArrayList<Integer> haut) {
+    public void setHaut(ArrayList<Object> haut) {
         Haut = haut;
     }
 
-    public ArrayList<Integer> getDroite() {
+    public ArrayList<Object> getDroite() {
         return Droite;
     }
 
-    public void setDroite(ArrayList<Integer> droite) {
+    public void setDroite(ArrayList<Object> droite) {
         Droite = droite;
     }
 
-    public ArrayList<Integer> getBas() {
+    public ArrayList<Object> getBas() {
         return Bas;
     }
 
-    public void setBas(ArrayList<Integer> bas) {
+    public void setBas(ArrayList<Object> bas) {
         Bas = bas;
     }
 
-    public ArrayList<ArrayList<Integer>> getCotes() {
+    public ArrayList<ArrayList<Object>> getCotes() {
         return cotes;
     }
 
-    public void setCotes(ArrayList<ArrayList<Integer>> cotes) {
+    public void setCotes(ArrayList<ArrayList<Object>> cotes) {
         this.cotes = cotes;
     }
 

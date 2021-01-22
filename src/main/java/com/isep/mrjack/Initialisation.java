@@ -29,17 +29,17 @@ public class Initialisation {
 
 
     //Création des cartes personnages et de la pioche
-    PersonnagePlateau Madame = new PersonnagePlateau(2);
-    PersonnagePlateau JohnPizer = new PersonnagePlateau( 1);
-    PersonnagePlateau JeremyBert = new PersonnagePlateau(1);
-    PersonnagePlateau InspLestrade = new PersonnagePlateau( 0);
-    PersonnagePlateau WilliamGull = new PersonnagePlateau(1);
-    PersonnagePlateau JosephLane = new PersonnagePlateau(1);
-    PersonnagePlateau JohnSmith = new PersonnagePlateau(1);
-    PersonnagePlateau SgtGoodley = new PersonnagePlateau(0);
-    PersonnagePlateau MissStealthy = new PersonnagePlateau(1);
-    PersonnagePlateau[] pioche = {Madame, JohnPizer, JeremyBert, InspLestrade, WilliamGull, JosephLane, JohnSmith, SgtGoodley, MissStealthy};
-    PersonnagePlateau[] personnages = {Madame, JohnPizer, JeremyBert, InspLestrade, WilliamGull, JosephLane, JohnSmith, SgtGoodley, MissStealthy};
+    PersonnagePlateau Madame;
+    PersonnagePlateau JohnPizer;
+    PersonnagePlateau JeremyBert;
+    PersonnagePlateau InspLestrade;
+    PersonnagePlateau WilliamGull;
+    PersonnagePlateau JosephLane;
+    PersonnagePlateau JohnSmith;
+    PersonnagePlateau SgtGoodley;
+    PersonnagePlateau MissStealthy;
+    PersonnagePlateau[] pioche;
+    PersonnagePlateau[] personnages;
 
     public PersonnagePlateau[] getPersonnages() {
         return personnages;
@@ -61,18 +61,19 @@ public class Initialisation {
 
     //Création des Districts et du com.isep.mrjack.Plateau de Jeu
 
-    District D1 = new District(Madame, "/images/district/Madame.png");
-    District D2 = new District(JeremyBert, "/images/district/J_Bert.png");
-    District D3 = new District(JohnPizer, "/images/district/J_Pizzer.png");
-    District D4 = new District(InspLestrade, "/images/district/I_Lestrada.png");
-    District D5 = new District(WilliamGull, "/images/district/W_Gull.png");
-    District D6 = new District(JosephLane, "/images/district/J_Lane.png");
-    District D7 = new District(JohnSmith, "/images/district/J_Smith.png");
-    District D8 = new District(SgtGoodley, "/images/district/S_Goodley.png");
-    District D9 = new District(MissStealthy, "/images/district/M_Stealthy.png");
-    ArrayList<District> All = new ArrayList<District>(Arrays.asList(D1, D2, D3, D4, D5, D6, D7, D8, D9));
+    District D1;
+    District D2;
+    District D3;
+    District D4;
+    District D5;
+    District D6;
+    District D7;
+    District D8;
+    District D9;
+    ArrayList<District> All;
 
-    public void CréationPlateau (){
+
+    public void CreationPlateau (){
         ArrayList<District> Plateau = new ArrayList<>();
         Random random = new Random();
         for (int i=0; i<10; i++){
@@ -99,22 +100,22 @@ public class Initialisation {
     }
 
     //Création et com.isep.mrjack.Initialisation des jetons Actions
-    JetonsAction jeton1 = new JetonsAction("Sherlock", "Carte Alibi");
-    JetonsAction jeton2 = new JetonsAction("Watson", "Toby");
-    JetonsAction jeton3 = new JetonsAction("Rotation", "Joker");
-    JetonsAction jeton4 = new JetonsAction("Rotation", "Echange");
+    JetonsAction jeton1;
+    JetonsAction jeton2;
+    JetonsAction jeton3;
+    JetonsAction jeton4;
 
 
     //Création Jetons Temps
-    int[] jetonT1 = {1, 1};
-    int[] jetonT2 = {2, 0};
-    int[] jetonT3 = {3, 1};
-    int[] jetonT4 = {4, 0};
-    int[] jetonT5 = {5, 1};
-    int[] jetonT6 = {6, 0};
-    int[] jetonT7 = {7, 1};
-    int[] jetonT8 = {8, 0};
-    int[][] jetonsTemps = {jetonT1, jetonT2, jetonT3, jetonT4, jetonT5, jetonT6, jetonT7, jetonT8};
+    int[] jetonT1;
+    int[] jetonT2;
+    int[] jetonT3;
+    int[] jetonT4;
+    int[] jetonT5;
+    int[] jetonT6;
+    int[] jetonT7;
+    int[] jetonT8;
+    int[][] jetonsTemps;
 
     public int[] getJetonsTemps(int tour) {
         return jetonsTemps[tour];
@@ -401,5 +402,44 @@ public class Initialisation {
     }
 
     public Initialisation() {
+        Madame = new PersonnagePlateau(2);
+        JohnPizer = new PersonnagePlateau( 1);
+        JeremyBert = new PersonnagePlateau(1);
+        InspLestrade = new PersonnagePlateau( 0);
+        WilliamGull = new PersonnagePlateau(1);
+        JosephLane = new PersonnagePlateau(1);
+        JohnSmith = new PersonnagePlateau(1);
+        SgtGoodley = new PersonnagePlateau(0);
+        MissStealthy = new PersonnagePlateau(1);
+        pioche = new PersonnagePlateau[]{Madame, JohnPizer, JeremyBert, InspLestrade, WilliamGull, JosephLane, JohnSmith, SgtGoodley, MissStealthy};
+        personnages = new PersonnagePlateau[]{Madame, JohnPizer, JeremyBert, InspLestrade, WilliamGull, JosephLane, JohnSmith, SgtGoodley, MissStealthy};
+
+        D1 = new District(Madame, "/images/district/Madame.png");
+        D2 = new District(JeremyBert, "/images/district/J_Bert.png");
+        D3 = new District(JohnPizer, "/images/district/J_Pizzer.png");
+        D4 = new District(InspLestrade, "/images/district/I_Lestrada.png");
+        D5 = new District(WilliamGull, "/images/district/W_Gull.png");
+        D6 = new District(JosephLane, "/images/district/J_Lane.png");
+        D7 = new District(JohnSmith, "/images/district/J_Smith.png");
+        D8 = new District(SgtGoodley, "/images/district/S_Goodley.png");
+        D9 = new District(MissStealthy, "/images/district/M_Stealthy.png");
+        All = new ArrayList<District>(Arrays.asList(D1, D2, D3, D4, D5, D6, D7, D8, D9));
+
+
+        jeton1 = new JetonsAction("Sherlock", "Carte Alibi", this);
+        jeton2 = new JetonsAction("Watson", "Toby", this);
+        jeton3 = new JetonsAction("Rotation", "Joker", this);
+        jeton4 = new JetonsAction("Rotation", "Echange", this);
+
+        jetonT1 = new int[]{1, 1};
+        jetonT2 = new int[]{2, 0};
+        jetonT3 = new int[]{3, 1};
+        jetonT4 = new int[]{4, 0};
+        jetonT5 = new int[]{5, 1};
+        jetonT6 = new int[]{6, 0};
+        jetonT7 = new int[]{7, 1};
+        jetonT8 = new int[]{8, 0};
+        jetonsTemps = new int[][]{jetonT1, jetonT2, jetonT3, jetonT4, jetonT5, jetonT6, jetonT7, jetonT8};
+
     }
 }

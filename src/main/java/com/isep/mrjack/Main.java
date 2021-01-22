@@ -64,10 +64,10 @@ public class Main {
         pioche.add(MissStealthy);
 
 //Creéation et com.isep.mrjack.Initialisation des jetons Actions
-        JetonsAction jeton1 = new JetonsAction("Sherlock", "Carte Alibi");
-        JetonsAction jeton2 = new JetonsAction("Watson", "Tobby");
-        JetonsAction jeton3 = new JetonsAction("Rotation", "Joker");
-        JetonsAction jeton4 = new JetonsAction("Rotation", "Echange");
+//        JetonsAction jeton1 = new JetonsAction("Sherlock", "Carte Alibi");
+//        JetonsAction jeton2 = new JetonsAction("Watson", "Tobby");
+//        JetonsAction jeton3 = new JetonsAction("Rotation", "Joker");
+//        JetonsAction jeton4 = new JetonsAction("Rotation", "Echange");
 
 
     }

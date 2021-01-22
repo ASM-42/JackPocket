@@ -1,10 +1,8 @@
 package com.isep.mrjack;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static java.lang.System.out;
 
@@ -13,6 +11,7 @@ public class Play {
 
     public static void main(String[] args){
         Initialisation Jeu = new Initialisation();
+        out.printf("Size of pioche: %d\n", Jeu.pioche.size());
         String action;
         MrJack joueurM;
         Enqueteur joueurE;
@@ -39,8 +38,9 @@ public class Play {
             player1.setRole(1); joueurE = player1.setRoleEnqueteur(player2);
             out.println(player2.getName() + " vous jouez com.isep.mrjack.MrJack" + player1.getName() + " vous jouez le Detetctive");}
         //Quel personnage va jouer com.isep.mrjack.MrJack?
-        Random random1 = new Random(); int x = random1.nextInt(Jeu.getPioche().length);
-        joueurM.setCoupable(Jeu.getPioche()[x]);
+        ThreadLocalRandom rnd = ThreadLocalRandom.current();
+        int x = rnd.nextInt(Jeu.pioche.size());
+        joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(x)));
         //removeElement(Jeu.getPioche(), x);
         //Première étape
         for (int tour = 0; tour<9; tour++){
@@ -115,7 +115,7 @@ public class Play {
             else{
                 out.println("Mister Jack est visible");
                 ArrayList<PersonnagePlateau> suspects = Jeu.SuspectsVisibles(joueurE);
-                ArrayList<PersonnagePlateau> innocents = Jeu.innocents(suspects);
+                List<PersonnagePlateau> innocents = Jeu.innocents(suspects);
                 for (int i=0; i<innocents.size(); i++){
                     Jeu.findPersonnage(innocents.get(i)).turn();
                 }

@@ -47,6 +47,8 @@ public class District extends Object {
         Bas = Droite;
         Droite = Haut;
         Haut = temp;
+        if (angle == 260){ angle = 0;}
+        else{angle += 90;}
     }
 
     public void swapQuartAntihoraire(){
@@ -55,6 +57,10 @@ public class District extends Object {
         Haut = Droite;
         Droite = Bas;
         Bas = temp;
+        if (angle == 0){ angle = 260;}
+        if (angle == 260){ angle = 180;}
+        if (angle == 180){ angle = 90;}
+        if (angle == 90){ angle = 0;}
     }
 
 

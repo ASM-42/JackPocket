@@ -29,11 +29,13 @@ public final class MrJackActionListener {
     return new PiocherAlibiActionListener(button);
   }
 
-  public static ActionListener createMoveDtectiveAL(JButton button, JPanel panel) {
+  public static ActionListener createMoveDetectiveAL(JButton button, JPanel panel) {
     return new MoveDetectiveActionListener(button, panel);
   }
 
-
+  public static ActionListener createEchangeDistrictAL(JButton button) {
+    return new EchangeDistrictActionListener(button);
+  }
 
 
   private static class ReturnDistrictActionListener implements ActionListener {
@@ -148,6 +150,23 @@ public final class MrJackActionListener {
       //faire ici le setIcon(null)
       bouton.setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Tobby.png")));
       panel.add(bouton);
+    }
+  }
+
+
+
+  private static class EchangeDistrictActionListener implements ActionListener {
+    JButton button;
+
+    public EchangeDistrictActionListener(JButton button) {
+      this.button = button;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+      this.button.setIcon(new ImageIcon(getClass().getResource("")));
+
     }
   }
 

@@ -1,5 +1,6 @@
 package com.isep.mrjack;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -13,12 +14,13 @@ public class District extends Object {
     private PersonnagePlateau personnage;
     private int indice;
     private int angle;
+    public String image;
 
-    public District(PersonnagePlateau personnage) {
+    public District(PersonnagePlateau personnage, String image) {
         this.orientation = "up";
         this.personnage = personnage;
         this.angle = 90;
-
+        this.image = image;
     }
 /*
     public District(String orientation, ArrayList<Object> gauche, ArrayList<Object> haut, ArrayList<Object> droite,

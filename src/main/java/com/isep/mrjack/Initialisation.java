@@ -61,12 +61,15 @@ public class Initialisation {
 
     //Création des Districts et du com.isep.mrjack.Plateau de Jeu
 
-    District D1 = new District(Madame);
-    District D2 = new District(JeremyBert);
-    District D3 = new District(JohnPizer);District D4 = new District(InspLestrade);
-    District D5 = new District(WilliamGull); District D6 = new District(JosephLane);
-    District D7 = new District(JohnSmith); District D8 = new District(SgtGoodley);
-    District D9 = new District(MissStealthy);
+    District D1 = new District(Madame, "/images/district/Madame.png");
+    District D2 = new District(JeremyBert, "/images/district/J_Bert.png");
+    District D3 = new District(JohnPizer, "/images/district/J_Pizzer.png");
+    District D4 = new District(InspLestrade, "/images/district/I_Lestrada.png");
+    District D5 = new District(WilliamGull, "/images/district/W_Gull.png");
+    District D6 = new District(JosephLane, "/images/district/J_Lane.png");
+    District D7 = new District(JohnSmith, "/images/district/J_Smith.png");
+    District D8 = new District(SgtGoodley, "/images/district/S_Goodley.png");
+    District D9 = new District(MissStealthy, "/images/district/M_Stealthy.png");
     ArrayList<District> All = new ArrayList<District>(Arrays.asList(D1, D2, D3, D4, D5, D6, D7, D8, D9));
 
     public void CréationPlateau (){

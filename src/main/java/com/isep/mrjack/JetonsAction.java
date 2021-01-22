@@ -5,14 +5,12 @@ import java.util.Random;
 public class JetonsAction extends Initialisation {
     public String typeAction1;
     public String typeAction2;
-    public String [] jetons;
-
 
     PersonnageDetective Watson;
     PersonnageDetective Toby;
     PersonnageDetective Sherlock;
 
-    public JetonsAction(String typeAction, String typeAction2) {
+    public JetonsAction(String typeAction1, String typeAction2) {
         this.typeAction1 = typeAction1;
         this.typeAction2 = typeAction2;
     }
@@ -211,14 +209,6 @@ public class JetonsAction extends Initialisation {
 
     public void setTypeAction2(String typeAction2) {
         this.typeAction2 = typeAction2;
-    }
-
-    public String[] getJetons() {
-        return jetons;
-    }
-
-    public void setJetons(String[] jetons) {
-        this.jetons = jetons;
     }
 
     public PersonnageDetective getWatson() {

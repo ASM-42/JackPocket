@@ -25,9 +25,15 @@ public class Plateau extends JPanel {
         for (int i = 0; i < district.length; i++) {
             district[i] = new JButton("");
             plateauPanel.add(district[i]);
+           // ImageIcon icon = new ImageIcon(new ImageIcon("tonImage.jpg").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 
-            if (i == 0) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/W_Gull.png"))); }
-            if (i == 1) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Bert.png"))); }
+            if (i == 0) {
+                //district[i].setBounds(0,0,10,10);
+                district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/W_Gull.png")));
+            }
+            if (i == 1) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Bert.png")));
+               //district[i].setSize(new Dimension(20,20));
+            }
             if (i == 2) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/M_Stealthy.png"))); }
             if (i == 3) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Smith.png"))); }
             if (i == 4) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Pizzer.png"))); }
@@ -38,6 +44,7 @@ public class Plateau extends JPanel {
 
             district[i].addActionListener(MrJackActionListener.createReturnDistrictAL(district[i]));
         }
+
         this.add(plateauPanel, BorderLayout.CENTER);
     }
 
@@ -135,6 +142,7 @@ public class Plateau extends JPanel {
     JPanel detectivePanel4 = new JPanel(new GridLayout(1, 3, 0, 0));
     private void panelBas() {
         JButton[] detectiveVide4 = new JButton[3];
+
         for (int i = 0; i < detectiveVide4.length; i++) {
             detectiveVide4[i] = new JButton("");
             if (i == 2) {
@@ -147,8 +155,4 @@ public class Plateau extends JPanel {
 
 
 }
-
-
-
-
 

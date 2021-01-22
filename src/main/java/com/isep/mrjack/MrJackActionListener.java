@@ -29,9 +29,11 @@ public final class MrJackActionListener {
     return new PiocherAlibiActionListener(button);
   }
 
-  public static ActionListener createMoveDtectiveAL(JButton button) {
-    return new MoveDetectiveActionListener(button);
+  public static ActionListener createMoveDtectiveAL(JButton button, JPanel panel) {
+    return new MoveDetectiveActionListener(button, panel);
   }
+
+
 
 
   private static class ReturnDistrictActionListener implements ActionListener {
@@ -112,17 +114,20 @@ public final class MrJackActionListener {
   }
 
 
+
+
   private static class PiocherAlibiActionListener implements ActionListener {
     JButton button;
 
-    private String[] images = {};
-
-    public PiocherAlibiActionListener(JButton button) {
-      this.button = button;
-    }
+    public PiocherAlibiActionListener(JButton button) { this.button = button;}
 
     @Override
     public void actionPerformed(ActionEvent e) {
+      String []images = {
+              "/images/cartes_alibi/InspLestrade-alibi.png", "/images/cartes_alibi/JeremyBert-alibi.png", "/images/cartes_alibi/JohnPizer-alibi.png",
+              "/images/cartes_alibi/JohnPizer-alibi.png", "/images/cartes_alibi/JosephLane-alibi.png", "/images/cartes_alibi/Madame-alibi.png",
+              "/images/cartes_alibi/MissStealthy-alibi.png", "/images/cartes_alibi/SgtGoodley-alibi.png", "/images/cartes_alibi/WilliamGull-alibi.png"};
+
       int n = (int) Math.floor(Math.random() * 300);
       String image = images[n];
       this.button.setIcon(new ImageIcon(getClass().getResource("/images/alibi/" + image)));
@@ -130,19 +135,21 @@ public final class MrJackActionListener {
   }
 
 
-  private static class MoveDetectiveActionListener implements ActionListener {
-    JButton button;
 
-    public MoveDetectiveActionListener(JButton button) {
-      this.button = button;
-    }
+
+  private static class MoveDetectiveActionListener implements ActionListener {
+    JButton bouton;
+    JPanel panel;
+
+    public MoveDetectiveActionListener(JButton bouton, JPanel panel) { this.bouton = bouton;}
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      this.button.setIcon(null);
-      button.setIcon(null);
+      //faire ici le setIcon(null)
+      bouton.setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Tobby.png")));
+      panel.add(bouton);
     }
   }
 
-///
+
 }

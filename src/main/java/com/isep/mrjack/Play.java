@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class Play extends Initialisation {
+public class Play {
     int tourActuel;
 
     public static void main(String[] args){
@@ -41,7 +41,7 @@ public class Play extends Initialisation {
         //Quel personnage va jouer com.isep.mrjack.MrJack?
         Random random1 = new Random(); int x = random1.nextInt(Jeu.getPioche().length);
         joueurM.setCoupable(Jeu.getPioche()[x]);
-        removeElement(Jeu.getPioche(), x);
+        //removeElement(Jeu.getPioche(), x);
         //Première étape
         for (int tour = 0; tour<9; tour++){
             Random random2 = new Random();

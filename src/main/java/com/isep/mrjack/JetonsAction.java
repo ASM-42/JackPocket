@@ -14,7 +14,7 @@ public class JetonsAction extends Initialisation {
         this.typeAction1 = typeAction1;
         this.typeAction2 = typeAction2;
     }
-///
+
     public void piocherAlibi (Player joueur){
         Random random = new Random();
         MrJack joueurM = new MrJack(joueur.getName());

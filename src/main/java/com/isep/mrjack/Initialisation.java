@@ -399,4 +399,7 @@ public class Initialisation {
     public void setJetonT8(int[] jetonT8) {
         this.jetonT8 = jetonT8;
     }
+
+    public Initialisation() {
+    }
 }

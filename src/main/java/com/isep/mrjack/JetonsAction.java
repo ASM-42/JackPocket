@@ -23,17 +23,15 @@ public class JetonsAction {
     }
 
     public void piocherAlibi (Player joueur){
-        Random random = new Random();
         MrJack joueurM = new MrJack(joueur.getName());
-        int x = random.nextInt(jeu.pioche.length);
-        PersonnagePlateau carte = jeu.pioche[x];
+        PersonnagePlateau carte = jeu.personnages.get(jeu.pioche.get(0));
         if (joueur.getRole() == 0){
             piocherAlibiMrJack(joueurM, carte); }
         else {
             carte.setStatut("innocent");
-            jeu.findPersonnage(jeu.pioche[x]).turn();
+            jeu.findPersonnage(carte).turn();
         }
-        jeu.removeElement(jeu.pioche, x);
+        jeu.pioche.remove(0);
     }
 
     public void piocherAlibiMrJack(MrJack joueurM, PersonnagePlateau personnagePlateau){
@@ -85,7 +83,6 @@ public class JetonsAction {
 
     public void rotationDistrict () {
         String district;
-        District d = jeu.D1;
         String sens;
         String tour;
         Scanner scanner1 = new Scanner(System.in);
@@ -100,9 +97,7 @@ public class JetonsAction {
         System.out.println
                 ("Voulez - vous le déplacer d'un quart de tour ou d'un demi tour ?");
         tour = scanner3.next();
-        if (district == "D1") {d = jeu.D1;}if (district == "D2") {d = jeu.D2;}if (district == "D3") {d = jeu.D3;}
-        if (district == "D4") {d = jeu.D4;}if (district == "D5") {d = jeu.D5;}if (district == "D6") {d = jeu.D6;}
-        if (district == "D7") {d = jeu.D7;}if (district == "D8") {d = jeu.D8;}if (district == "D9") {d = jeu.D9;}
+        District d = jeu.districts.get(district);
         if (sens == "horaire") {
             if (tour == "quart") {
                 d.swapQuartHoraire();
@@ -125,9 +120,7 @@ public class JetonsAction {
     public void echangeDistrict(){
         String district1;
         String district2;
-        District d1 = jeu.D1;
-        District d2 = jeu.D2;
-        District temp = d1;
+
         Scanner scanner1 = new Scanner(System.in);
         System.out.println
                 ("Quel est le premier district que souhaitez-vous déplacer? (ex : D1, D2...");
@@ -136,14 +129,11 @@ public class JetonsAction {
         System.out.println
                 ("Quel est le second district que souhaitez-vous déplacer? (ex : D1, D2...");
         district2 = scanner2.next();
-        if (district1 == "D1") {d1 = jeu.D1;}if (district1 == "D2") {d1 = jeu.D2;}if (district1 == "D3") {d1 = jeu.D3;}
-        if (district1 == "D4") {d1 = jeu.D4;}if (district1 == "D5") {d1 = jeu.D5;}if (district1 == "D6") {d1 = jeu.D6;}
-        if (district1 == "D7") {d1 = jeu.D7;}if (district1 == "D8") {d1 = jeu.D8;}if (district1 == "D9") {d1 = jeu.D9;}
-
-        if (district2 == "D1") {d2 = jeu.D1;}if (district2 == "D2") {d2 = jeu.D2;}if (district2 == "D3") {d2 = jeu.D3;}
-        if (district2 == "D4") {d2 = jeu.D4;}if (district2 == "D5") {d2 = jeu.D5;}if (district2 == "D6") {d2 = jeu.D6;}
-        if (district2 == "D7") {d2 = jeu.D7;}if (district2 == "D8") {d2 = jeu.D8;}if (district2 == "D9") {d2 = jeu.D9;}
-        temp = d1; d1 = d2; d2 = d1;
+        District d1 = jeu.districts.get(district1);
+        District d2 = jeu.districts.get(district2);
+        District temp = d1;
+        jeu.districts.put(district1, d2);
+        jeu.districts.put(district2, temp);
     }
     public void Joker (Player player) {
         String reponse1;

@@ -6,17 +6,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PersonnageDetective {
-    private ArrayList<Object> positionDetective;
     Initialisation jeu;
-          //  (ArrayList<com.isep.mrjack.District>) Arrays.asList(D1, D1.getGauche());
-                                        //[com.isep.mrjack.District, Gauche/Droite...]
+    Plateau plateau;
+    Enqueteur e;
+    private ArrayList<Object> positionDetective;
+    //  (ArrayList<com.isep.mrjack.District>) Arrays.asList(D1, D1.getGauche());
+    //[com.isep.mrjack.District, Gauche/Droite...]
     private ArrayList<PersonnagePlateau> suspectVisibles;
     private int nbSuspectVisibles = suspectVisibles.size() +1;
     public int nbSabliers;
-    public ImageIcon image;
+    public String image;
 
 
-    public void MoveDetective1 (ArrayList<Object> positionDetective, Plateau plateau){
+    public void MoveDetective1 (PersonnageDetective detective){
         District[] district = jeu.districts.values().toArray(new District[9]);
         District d = jeu.districts.get(positionDetective.get(0));
         ArrayList<String> side = (ArrayList<String>) positionDetective.get(1);
@@ -97,7 +99,7 @@ public class PersonnageDetective {
         }
     }
 
-    public void MoveDetective2 (ArrayList<Object> positionDetective, Plateau plateau){
+    public void MoveDetective2 (PersonnageDetective detective){
         District[] district = jeu.districts.values().toArray(new District[9]);
         District d = jeu.districts.get(positionDetective.get(0));
         ArrayList<String> side = (ArrayList<String>) positionDetective.get(1);
@@ -177,7 +179,6 @@ public class PersonnageDetective {
             }
         }
     }
-
 
     public ArrayList<PersonnagePlateau> SuspectsVision(ArrayList<Object> positionDetective){
         District Dx = (District) positionDetective.get(0);

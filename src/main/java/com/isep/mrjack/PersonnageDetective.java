@@ -3,124 +3,180 @@ package com.isep.mrjack;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class PersonnageDetective extends Initialisation{
+public class PersonnageDetective {
+    Initialisation jeu;
+    Plateau plateau;
+    Enqueteur e;
     private ArrayList<Object> positionDetective;
-          //  (ArrayList<com.isep.mrjack.District>) Arrays.asList(D1, D1.getGauche());
-                                        //[com.isep.mrjack.District, Gauche/Droite...]
+    //  (ArrayList<com.isep.mrjack.District>) Arrays.asList(D1, D1.getGauche());
+    //[com.isep.mrjack.District, Gauche/Droite...]
     private ArrayList<PersonnagePlateau> suspectVisibles;
     private int nbSuspectVisibles = suspectVisibles.size() +1;
     public int nbSabliers;
-    public ImageIcon image;
+    public String image;
 
 
-    public void MoveDetective1 (ArrayList positionDetective){
-        if (positionDetective.get(0) == D1){
-            if (positionDetective.get(1) == D1.getGauche())
-                positionDetective.set(1, D1.getHaut());
-            if (positionDetective.get(1) == D1.getHaut()){
-                positionDetective.set(0, D2);
-                positionDetective.set(1, D2.getHaut());}
+    public void MoveDetective1 (PersonnageDetective detective){
+        District[] district = jeu.districts.values().toArray(new District[9]);
+        District d = jeu.districts.get(positionDetective.get(0));
+        ArrayList<String> side = (ArrayList<String>) positionDetective.get(1);
+        //JButton place = new JButton();
+
+        //Si le detective est à gauche
+        if (side.get(2).equals('G')){
+            if (d == district[0]){
+                plateau.detectiveVide1[0].setIcon(null);
+                positionDetective.set(1, d.getHaut());
+                plateau.detectiveVide2[0].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+                //plateau.detectivePanel1.add(place);
             }
-
-        else if (positionDetective.get(0) == D2){
-            positionDetective.set(0, D3);
-            positionDetective.set(1, D3.getHaut());
-        }
-
-        else if (positionDetective.get(0) == D3){
-            if (positionDetective.get(1) == D3.getHaut())
-                positionDetective.set(1, D3.getDroite());
-            if (positionDetective.get(1) == D3.getDroite()){
-                positionDetective.set(0, D6);
-                positionDetective.set(1, D6.getDroite());}
-        }
-
-        else if (positionDetective.get(0) == D4){
-            positionDetective.set(0, D1);
-            positionDetective.set(1, D1.getGauche());}
-
-        else if (positionDetective.get(0) == D6){
-            positionDetective.set(0, D9);
-            positionDetective.set(1, D9.getDroite());
-        }
-
-        else if (positionDetective.get(0) == D7){
-            if (positionDetective.get(1) == D7.getGauche()){
-                positionDetective.set(0, D4);
-                positionDetective.set(1, D4.getGauche()); }
-            if (positionDetective.get(1) == D7.getBas())
-                positionDetective.set(0, D7.getGauche());
+            if (d == district[3]){
+                plateau.detectiveVide1[1].setIcon(null);
+                positionDetective.set(0, jeu.districts.get(0));
+                plateau.detectiveVide1[0].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
             }
-
-        else if (positionDetective.get(0) == D8){
-            positionDetective.set(0, D7);
-            positionDetective.set(1, D7.getBas());
+            if (d == district[6]){
+                plateau.detectiveVide1[2].setIcon(null);
+                positionDetective.set(0, jeu.districts.get(3));
+                plateau.detectiveVide1[1].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
         }
-
-        else if (positionDetective.get(0) == D9){
-            if (positionDetective.get(1) == D9.getDroite())
-                positionDetective.set(1, D9.getBas());
-            if (positionDetective.get(1) == D9.getBas()){
-                positionDetective.set(0, D8);
-                positionDetective.set(1, D8.getBas());}
+        //Si le detective est en haut
+        if (side.get(2).equals('H')){
+            if (d == district[0]){
+                plateau.detectiveVide2[0].setIcon(null);
+                positionDetective.set(0, jeu.districts.get(1));
+                plateau.detectiveVide2[1].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[1]){
+                plateau.detectiveVide2[1].setIcon(null);
+                positionDetective.set(0, jeu.districts.get(2));
+                plateau.detectiveVide2[2].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[2]){
+                plateau.detectiveVide2[2].setIcon(null);
+                positionDetective.set(1, d.getDroite());
+                plateau.detectiveVide3[0].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+        }
+        //Si le detective est à droite
+        if (side.get(2).equals('D')){
+            if (d == district[2]){
+                plateau.detectiveVide3[0].setIcon(null);
+                positionDetective.set(0, jeu.districts.get(1));
+                plateau.detectiveVide3[1].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[5]){
+                plateau.detectiveVide3[1].setIcon(null);
+                positionDetective.set(0, jeu.districts.get(2));
+                plateau.detectiveVide3[2].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[8]){
+                plateau.detectiveVide3[2].setIcon(null);
+                positionDetective.set(1, d.getDroite());
+                plateau.detectiveVide4[0].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+        }
+        //Si le detective est en bas
+        if (side.get(2).equals('B')){
+            if (d == district[8]){
+                plateau.detectiveVide4[2].setIcon(null);
+                positionDetective.set(0, jeu.districts.get(7));
+                plateau.detectiveVide4[1].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[7]){
+                plateau.detectiveVide4[1].setIcon(null);
+                positionDetective.set(0, jeu.districts.get(6));
+                plateau.detectiveVide4[0].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[6]){
+                plateau.detectiveVide4[0].setIcon(null);
+                positionDetective.set(1, d.getGauche());
+                plateau.detectiveVide1[2].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
         }
     }
 
-    public void MoveDetective2 (ArrayList<Object> positionDetective){
-        if (positionDetective.get(0) == D1){
-            if (positionDetective.get(1) == D1.getGauche()){
-                positionDetective.set(0, D2);
-                positionDetective.set(1, D2.getHaut());}
-            if (positionDetective.get(1) == D1.getHaut()){
-                positionDetective.set(0, D3);
-                positionDetective.set(1, D3.getHaut());}
+    public void MoveDetective2 (PersonnageDetective detective){
+        District[] district = jeu.districts.values().toArray(new District[9]);
+        District d = jeu.districts.get(positionDetective.get(0));
+        ArrayList<String> side = (ArrayList<String>) positionDetective.get(1);
+        //JButton place = new JButton();
+
+        //Si le detective est à gauche
+        if (side.get(2).equals('G')){
+            if (d == district[0]){
+                plateau.detectiveVide1[0].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(1), jeu.districts.get(1).getHaut())));
+                plateau.detectiveVide2[1].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+                //plateau.detectivePanel1.add(place);
+            }
+            if (d == district[3]){
+                plateau.detectiveVide1[1].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(0), jeu.districts.get(0).getHaut())));
+                plateau.detectiveVide2[0].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[6]){
+                plateau.detectiveVide1[2].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(0), jeu.districts.get(0).getGauche())));
+                plateau.detectiveVide1[0].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
         }
-
-        else if (positionDetective.get(0) == D2){
-            positionDetective.set(0, D3);
-            positionDetective.set(1, D3.getDroite());
+        //Si le detective est en haut
+        if (side.get(2).equals('H')){
+            if (d == district[0]){
+                plateau.detectiveVide2[0].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getHaut())));
+                plateau.detectiveVide2[2].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[1]){
+                plateau.detectiveVide2[1].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())));
+                plateau.detectiveVide3[0].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[2]){
+                plateau.detectiveVide2[2].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(5), jeu.districts.get(5).getDroite())));
+                plateau.detectiveVide3[1].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
         }
-
-        else if (positionDetective.get(0) == D3){
-            if (positionDetective.get(1) == D3.getHaut()){
-                positionDetective.set(0, D6);
-                positionDetective.set(1, D6.getDroite());}
-            if (positionDetective.get(1) == D3.getDroite()){
-                positionDetective.set(0, D9);
-                positionDetective.set(1, D9.getDroite());}
+        //Si le detective est à droite
+        if (side.get(2).equals('D')){
+            if (d == district[2]){
+                plateau.detectiveVide3[0].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(8), jeu.districts.get(8).getDroite())));
+                plateau.detectiveVide3[2].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[5]){
+                plateau.detectiveVide3[1].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(8), jeu.districts.get(8).getBas())));
+                plateau.detectiveVide4[2].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[8]){
+                plateau.detectiveVide3[2].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(7), jeu.districts.get(7).getBas())));
+                plateau.detectiveVide4[1].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
         }
-
-        else if (positionDetective.get(0) == D4){
-            positionDetective.set(0, D1);
-            positionDetective.set(1, D1.getHaut());}
-
-        else if (positionDetective.get(0) == D6){
-            positionDetective.set(0, D9);
-            positionDetective.set(1, D9.getBas());
-        }
-
-        else if (positionDetective.get(0) == D7){
-            if (positionDetective.get(1) == D7.getGauche()){
-                positionDetective.set(0, D1);
-                positionDetective.set(1, D1.getGauche()); }
-            if (positionDetective.get(1) == D7.getBas()){
-                positionDetective.set(0, D4);
-                positionDetective.set(1, D4.getGauche()); }
-        }
-
-        else if (positionDetective.get(0) == D8){
-            positionDetective.set(0, D7);
-            positionDetective.set(1, D7.getGauche());
-        }
-
-        else if (positionDetective.get(0) == D9){
-            if (positionDetective.get(1) == D9.getDroite()){
-                positionDetective.set(0, D8);
-                positionDetective.set(1, D8.getBas());}
-            if (positionDetective.get(1) == D9.getBas()){
-                positionDetective.set(0, D7);
-                positionDetective.set(1, D7.getBas());}
+        //Si le detective est en bas
+        if (side.get(2).equals('B')){
+            if (d == district[8]){
+                plateau.detectiveVide4[2].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(6), jeu.districts.get(6).getBas())));
+                plateau.detectiveVide4[0].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[7]){
+                plateau.detectiveVide4[1].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(6), jeu.districts.get(6).getGauche())));
+                plateau.detectiveVide1[2].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
+            if (d == district[6]){
+                plateau.detectiveVide4[0].setIcon(null);
+                setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(3), jeu.districts.get(3).getGauche())));
+                plateau.detectiveVide1[1].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
+            }
         }
     }
 

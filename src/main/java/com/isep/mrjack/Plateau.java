@@ -2,6 +2,7 @@ package com.isep.mrjack;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
 
 public class Plateau extends JPanel {
 
@@ -25,14 +26,14 @@ public class Plateau extends JPanel {
         for (int i = 0; i < district.length; i++) {
             district[i] = new JButton("");
             plateauPanel.add(district[i]);
-           // ImageIcon icon = new ImageIcon(new ImageIcon("tonImage.jpg").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+            //ImageIcon icon = new ImageIcon(new ImageIcon("tonImage.jpg").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 
             if (i == 0) {
-                //district[i].setBounds(0,0,10,10);
-                district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/W_Gull.png")));
+                district[i].setBounds(0,0,10,10);
+                district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Bert.png")));
             }
             if (i == 1) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Bert.png")));
-               //district[i].setSize(new Dimension(20,20));
+                //district[i].setSize(new Dimension(20,20));
             }
             if (i == 2) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/M_Stealthy.png"))); }
             if (i == 3) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Smith.png"))); }
@@ -51,9 +52,10 @@ public class Plateau extends JPanel {
 
 
     // *** CONSTRUIT L'AREA DU GAUCHE ***
+    // *** CONSTRUIT L'AREA EN BAS ***
+    JPanel detectivePanel1 = new JPanel(new GridLayout(1, 3, 0, 0));
+    JButton[] detectiveVide1 = new JButton[3];
     private void panelGauche() {
-        JPanel gauchePanel = new JPanel(new GridLayout());
-
         //panel pour les boutons jetonsTemps
         JPanel surfaceGauche = new JPanel(new GridLayout(8, 1, 0, 0));
         JButton[] jetTemps = new JButton[8];                      //liste de 8 boutons qui correspondent aux 8 jetonsTemps
@@ -70,45 +72,44 @@ public class Plateau extends JPanel {
             surfaceGauche.add(jetTemps[i]);
         }
 
-        //panel pour les boutons jetDetective
-        JPanel detectivePanel1 = new JPanel(new GridLayout(3, 1, 0, 0));
-        JButton[] detectiveVide = new JButton[3];
-        for (int i = 0; i < detectiveVide.length; i++) {
-            detectiveVide[i] = new JButton("");
-            if (i == 0) { detectiveVide[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Holmes.png"))); }
-            detectivePanel1.add(detectiveVide[i]);
-        }
+        //Detective
 
-        //rajouter les 2 panels créé au gauchePanel
-        gauchePanel.add(surfaceGauche);
-        gauchePanel.add(detectivePanel1);
-        this.add(gauchePanel, BorderLayout.LINE_START);
+
+        for (int i = 0; i < detectiveVide1.length; i++) {
+            detectiveVide1[i] = new JButton("");
+            if (i == 2) {
+                detectiveVide1[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Tobby.png")));
+            }
+            detectivePanel1.add(detectiveVide1[i]);
+        }
+        this.add(detectivePanel1, BorderLayout.LINE_START);
+        this.add(surfaceGauche);
     }
 
-
     // *** CONSTRUIT L'AREA EN HAUT ***
+    JPanel detectivePanel2 = new JPanel(new GridLayout(1, 3, 0, 0));
+    JButton[] detectiveVide2 = new JButton[3];
     private void panelHaut() {
-        JPanel detectivePanel2 = new JPanel(new GridLayout(1, 3, 0, 0));
-        JButton[] detectiveVide2 = new JButton[3];
+
         for (int i = 0; i < detectiveVide2.length; i++) {
             detectiveVide2[i] = new JButton("");
+            if (i == 2) {
+                detectiveVide2[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Tobby.png")));
+            }
             detectivePanel2.add(detectiveVide2[i]);
         }
         this.add(detectivePanel2, BorderLayout.PAGE_START);
     }
 
-
     // *** CONSTRUIT L'AREA À DROITE ***
+    JPanel detectivePanel3 = new JPanel(new GridLayout(1, 3, 0, 0));
+    JButton[] detectiveVide3 = new JButton[3];
     private void panelDroite() {
-        JPanel droitePanel = new JPanel(new GridLayout());
 
-        //panel pour les boutons jetDetective
-        JPanel detectivePanel3 = new JPanel(new GridLayout(3, 1, 0, 0));
-        JButton[] detectiveVide3 = new JButton[3];
         for (int i = 0; i < detectiveVide3.length; i++) {
             detectiveVide3[i] = new JButton("");
-            if (i == 0) {
-                detectiveVide3[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Watson.png")));
+            if (i == 2) {
+                detectiveVide3[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Tobby.png")));
             }
             detectivePanel3.add(detectiveVide3[i]);
         }
@@ -130,18 +131,16 @@ public class Plateau extends JPanel {
         JButton Alibi = new JButton("Pioche un Alibi");
         piochePanel.add(Alibi);
 
-        //rajouter les 3 panels créés au droitePanel
-        droitePanel.add(detectivePanel3);
-        droitePanel.add(surfaceDroite);
-        droitePanel.add(piochePanel);
-        this.add(droitePanel, BorderLayout.LINE_END);
-    }
 
+        this.add(detectivePanel3, BorderLayout.LINE_END);
+        this.add(surfaceDroite);
+        this.add(piochePanel);
+    }
 
     // *** CONSTRUIT L'AREA EN BAS ***
     JPanel detectivePanel4 = new JPanel(new GridLayout(1, 3, 0, 0));
+    JButton[] detectiveVide4 = new JButton[3];
     private void panelBas() {
-        JButton[] detectiveVide4 = new JButton[3];
 
         for (int i = 0; i < detectiveVide4.length; i++) {
             detectiveVide4[i] = new JButton("");
@@ -151,8 +150,7 @@ public class Plateau extends JPanel {
             detectivePanel4.add(detectiveVide4[i]);
         }
         this.add(detectivePanel4, BorderLayout.PAGE_END);
+
     }
-
-
 }
 

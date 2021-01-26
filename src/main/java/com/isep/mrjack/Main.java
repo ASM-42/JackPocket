@@ -12,15 +12,15 @@ public class Main {
         jeu.setSize(new Dimension(1080, 650)); //(largeur, hauteur)
         jeu.initJeu();
         jeu.setVisible(true);
-
+/*
         MonInteraction interaction = new MonInteraction();
         interaction.setSize(new Dimension(400, 1000));
         interaction.setVisible(true);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         interaction.setLocation(3*dim.width/4,1);
         interaction.initInteraction();
-
-
+*/
+/*
         Player player1 = new Player("name", 0) {};
         Player player2 = new Player("name", 0) {};
         String reponse1;
@@ -38,7 +38,7 @@ public class Main {
         }else {
             player1.setRole(1);player2.setRole(0);
             System.out.println(player2.getName() + "vous jouez com.isep.mrjack.MrJack" + player1.getName() + "vous jouez le Detetctive");}
-
+*/
 
 
 

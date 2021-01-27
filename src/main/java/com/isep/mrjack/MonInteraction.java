@@ -21,7 +21,7 @@ public class MonInteraction extends JFrame
 
     public MonInteraction()
     {
-        setTitle("Interaction");
+        setTitle("Jeu");
         setVisible(true);
         setSize(800, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

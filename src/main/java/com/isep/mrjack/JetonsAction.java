@@ -6,15 +6,21 @@ public class JetonsAction {
     Initialisation jeu;
     public String typeAction1;
     public String typeAction2;
+    public String image1;
+    public String image2;
+    public String[] action1 = new String[]{typeAction1, image1};
+    public String[] action2 = new String[]{typeAction1, image2};
 
     PersonnageDetective Watson;
     PersonnageDetective Toby;
     PersonnageDetective Sherlock;
 
-    public JetonsAction(String typeAction1, String typeAction2, Initialisation jeu) {
+    public JetonsAction(String[] action1, String[] action2, Initialisation jeu) {
         this.jeu = jeu;
-        this.typeAction1 = typeAction1;
-        this.typeAction2 = typeAction2;
+        this.action1 = action1;
+        this.action2 = action2;
+        this.typeAction1 = action1[0]; this.image1 = action1[1];
+        this.typeAction2 = action2[0]; this.image2 = action2[1];
     }
 
     public void piocherAlibi (Player joueur){
@@ -183,6 +189,12 @@ public class JetonsAction {
         return typeAction1;
     }
 
+    public String[] quelleAction(int r){
+        if (r==1){
+            return action1;
+        }
+        return action2;
+    }
     public void Action(int action, Player player) {
         if (action == 1){
             faireAction(typeAction1, player);

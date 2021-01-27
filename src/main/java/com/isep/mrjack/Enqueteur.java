@@ -1,10 +1,17 @@
 package com.isep.mrjack;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Enqueteur extends Player {
     public int nbSabliers;
-    public PersonnageDetective Waston;
-    public PersonnageDetective Toby;
-    public PersonnageDetective Sherlock;
+    public Initialisation jeu;
+    public PersonnageDetective Waston
+            = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())), "/image/jet_detec/Waston");
+    public PersonnageDetective Toby
+            = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(7), jeu.districts.get(7).getBas())), "/image/jet_detec/Toby");;
+    public PersonnageDetective Sherlock
+            = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(0), jeu.districts.get(0).getGauche())), "/image/jet_detec/Holmes");;
 
     public Enqueteur(String name) {
         super(name);

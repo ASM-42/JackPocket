@@ -205,12 +205,12 @@ public class PersonnageDetective {
         return positionDetective;
     }
 
-    public PersonnageDetective(/*String name, int role*/ int nbSabliers, ArrayList<Object> positionDetective, int nbSuspectVisibles) {
+    public PersonnageDetective( ArrayList<Object> positionDetective, String image) {
         //super(name, role);
         this.positionDetective = positionDetective;
         this.suspectVisibles = SuspectsVision(this.positionDetective);
         this.nbSuspectVisibles = suspectVisibles.size();
-        this.nbSabliers = nbSabliers;
+        this.image = image;
     }
 
 

@@ -10,8 +10,14 @@ public class MonInteraction extends JFrame
     JPanel panel = new JPanel();
     JLabel label = new JLabel();
     JTextArea texte = new JTextArea();
+    String input;
+    String mod;
     JTextField zoneEcriture = new JTextField(30);
     JButton jb = new JButton("Enter");
+
+    public void modify(JTextArea text, String a){
+        text.setText(a);
+    }
 
     public MonInteraction()
     {
@@ -20,13 +26,13 @@ public class MonInteraction extends JFrame
         setSize(800, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         texte.setText("Bonjour et bienvenue dans Mister Jack Pocket \n");
-        texte.append("Qui êtes vous?");
         texte.setBounds(40,30,200,40);
         panel.add(texte);
         panel.add(zoneEcriture);
         zoneEcriture.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String input = zoneEcriture.getText();
+                modify(texte, mod);
             }});
         panel.add(jb);
         jb.addActionListener(new ActionListener()
@@ -34,6 +40,7 @@ public class MonInteraction extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 String input = zoneEcriture.getText();
+                modify(texte, mod);
             }
         });
         zoneEcriture.setBounds(10, 10, 10, 3);
@@ -42,10 +49,7 @@ public class MonInteraction extends JFrame
 
     }
 
-    public static void main(String[] args)
-    {
-        MonInteraction t = new MonInteraction();
-
+    public void setMod(String mod) {
+        this.mod = mod;
     }
-
 }

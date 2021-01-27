@@ -12,14 +12,15 @@ public class Main {
         jeu.setSize(new Dimension(1080, 650)); //(largeur, hauteur)
         jeu.initJeu();
         jeu.setVisible(true);
-/*
+
         MonInteraction interaction = new MonInteraction();
         interaction.setSize(new Dimension(400, 1000));
         interaction.setVisible(true);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        interaction.setLocation(3*dim.width/4,1);
-        interaction.initInteraction();
-*/
+        interaction.setLocation((3*dim.width/4)-40,1);
+
+
+
 /*
         Player player1 = new Player("name", 0) {};
         Player player2 = new Player("name", 0) {};

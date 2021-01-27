@@ -19,9 +19,17 @@ public class District extends Object {
     public District(PersonnagePlateau personnage, String image) {
         this.orientation = "up";
         this.personnage = personnage;
-        this.angle = 90;
+        this.angle = 0;
         this.image = image;
     }
+            /*
+    public void rotationImage (){
+        if (angle == 0){
+
+        }
+    }
+    */
+
 /*
     public District(String orientation, ArrayList<Object> gauche, ArrayList<Object> haut, ArrayList<Object> droite,
                     ArrayList<Object> bas, ArrayList<ArrayList<Object>> cotes, PersonnagePlateau personnage, int indice) {

@@ -1,7 +1,9 @@
 package com.isep.mrjack;
 
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static java.lang.System.out;
@@ -10,8 +12,25 @@ public class Play {
     int tourActuel;
 
     public static void main(String[] args){
+
+        //GRAPHIQUE
+        MonJeu jeu = new MonJeu();
+        jeu.setSize(new Dimension(1080, 650)); //(largeur, hauteur)
+        jeu.initJeu();
+        jeu.setVisible(true);
+
+        MonInteraction interaction = new MonInteraction();
+        interaction.setSize(new Dimension(400, 1000));
+        interaction.setVisible(true);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        interaction.setLocation((3*dim.width/4)-39,1);
+        interaction.texte.setText("Bonjour");
+
+
+
+
+
         Initialisation Jeu = new Initialisation();
-        out.printf("Size of pioche: %d\n", Jeu.pioche.size());
         String action;
         MrJack joueurM;
         Enqueteur joueurE;
@@ -20,24 +39,26 @@ public class Play {
         JetonsAction jA3; JetonsAction jA4;
         Player player1 = new Player("name", 0) {};
         Player player2 = new Player("name", 0) {};
-        Scanner scanner = new Scanner(System.in);
-            String reponse1;
-            out.println("Entrez le nom du premier joueur:");
-            reponse1 = scanner.next();player1.setName(reponse1);
-            out.println("Entrez le nom du second joueur:");
-            reponse1 = scanner.next();player2.setName(reponse1);
-            out.println
-                    ("Joueur 1 souhaitez vous jouer com.isep.mrjack.MrJack ou Detective ?");
-            reponse1 = scanner.next();
-        if (reponse1 == "com.isep.mrjack.MrJack") {
+
+
+        interaction.setMod("Entrez le nom du premier joueur:");
+        out.println("Je suis la");
+        interaction.zoneEcriture.setText("ex: Amandine");
+        player1.setName(interaction.input);
+        interaction.setMod("Entrez le nom du second joueur:");
+        player2.setName(interaction.input);
+        interaction.setMod
+           (player1.getName() + " souhaitez vous jouer MrJack ou Detective ?");
+        if (interaction.input == "MrJack") {
             player1.setRole(0); joueurM = player1.setRoleMrJack(player1);
             player2.setRole(1); joueurE = player2.setRoleEnqueteur(player2);
-                out.println(player1.getName() + " vous jouez com.isep.mrjack.MrJack" + player2.getName() + " vous jouez le Detetctive");
-        }else {
+            interaction.setMod(player1.getName() + " vous jouez MrJack " + player2.getName() + " vous jouez le Detetctive");
+        }
+        else {
             player2.setRole(0); joueurM = player2.setRoleMrJack(player1);
             player1.setRole(1); joueurE = player1.setRoleEnqueteur(player2);
-            out.println(player2.getName() + " vous jouez com.isep.mrjack.MrJack" + player1.getName() + " vous jouez le Detetctive");}
-        //Quel personnage va jouer com.isep.mrjack.MrJack?
+            interaction.setMod(player2.getName() + " vous jouez MrJack1 " + player1.getName() + " vous jouez le Detetctive");}
+        //Quel personnage va jouer MrJack?
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         int x = rnd.nextInt(Jeu.pioche.size());
         joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(x)));
@@ -49,9 +70,11 @@ public class Play {
             int action2 = random2.nextInt(2);
             int action3 = random2.nextInt(2);
             int action4 = random2.nextInt(2);
-        //L'enqueteur commence, tours impairs
+            //L'enqueteur commence, tours impairs*
+
+            /*
             if (Jeu.getJetonsTemps(tour)[1] == 1){
-                out.println
+                interaction.texte.setText
                         ("Enqueteur choisissez une action.");
                 action = scanner.next();
                 if (action == "jeton 1"){ Jeu.jeton1.Action(action1, joueurE);}
@@ -60,7 +83,7 @@ public class Play {
                 if (action == "jeton 4"){ Jeu.jeton4.Action(action4, joueurE);}
 
                 for(int j=0; j<3; j++) {
-                    out.println
+                    interaction.texte.setText
                             ("MrJack choisissez une action.");
                     action = scanner.next();
                     if (action == "jeton 1") {Jeu.jeton1.Action(action1, joueurM);}
@@ -68,7 +91,7 @@ public class Play {
                     if (action == "jeton 3") {Jeu.jeton3.Action(action3, joueurM);}
                     if (action == "jeton 4") {Jeu.jeton4.Action(action4, joueurE);}
                 }
-                out.println
+                interaction.texte.setText
                         ("Enqueteur choisissez une action.");
                 action = scanner.next();
                 if (action == "jeton 1"){ Jeu.jeton1.Action(action1, joueurE);}
@@ -78,7 +101,7 @@ public class Play {
             }
         //MrJack commence, tours pairs
             else{if (Jeu.getJetonsTemps(tour)[1] == 0){
-                out.println
+                interaction.texte.setText
                         ("Mrack choisissez une action.");
                 action = scanner.next();
                 if (action == "jeton 1"){ Jeu.jeton1.Action(1-action1, joueurM);}
@@ -87,7 +110,7 @@ public class Play {
                 if (action == "jeton 4"){ Jeu.jeton4.Action(1-action4, joueurM);}
 
                 for(int j=0; j<3; j++) {
-                    out.println
+                    interaction.texte.setText
                             ("Enqueteur choisissez une action.");
                     action = scanner.next();
                     if (action == "jeton 1") {Jeu.jeton1.Action(1-action1, joueurE);}
@@ -95,7 +118,7 @@ public class Play {
                     if (action == "jeton 3") {Jeu.jeton3.Action(1-action3, joueurE);}
                     if (action == "jeton 4") {Jeu.jeton4.Action(1-action4, joueurE);}
                 }
-                out.println
+                interaction.texte.setText
                         ("MrJack choisissez une action.");
                 action = scanner.next();
                 if (action == "jeton 1"){ Jeu.jeton1.Action(1-action1, joueurM);}
@@ -105,7 +128,7 @@ public class Play {
             }}
         //Appel a témoins
             if (joueurM.getCoupable().isVisible() == false){
-                out.println("Mister Jack n'est pas visible");
+                interaction.texte.setText("Mister Jack n'est pas visible");
                 ArrayList<PersonnagePlateau> suspect = Jeu.SuspectsVisibles(joueurE);
                 for (int p=0; p<suspect.size(); p++){
                    Jeu.findPersonnage(suspect.get(p)).turn();
@@ -113,7 +136,7 @@ public class Play {
                 joueurM.setNbSabliers(joueurM.getNbSabliers()+1);
             }
             else{
-                out.println("Mister Jack est visible");
+                interaction.texte.setText("Mister Jack est visible");
                 ArrayList<PersonnagePlateau> suspects = Jeu.SuspectsVisibles(joueurE);
                 List<PersonnagePlateau> innocents = Jeu.innocents(suspects);
                 for (int i=0; i<innocents.size(); i++){
@@ -127,9 +150,8 @@ public class Play {
             if (Jeu.innocents(Jeu.SuspectsVisibles(joueurE)).size() == 8){
                 out.printf(joueurE + "a gagné en jouant l'enqueteur");
                 break;
-            }
+            }*/
 
         }
         }
-
-    }
+        }

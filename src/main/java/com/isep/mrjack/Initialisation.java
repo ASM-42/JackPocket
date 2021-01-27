@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Initialisation {
 
+
   //Détectives
   public ArrayList<PersonnagePlateau> SuspectsVisibles(Enqueteur player) {
     ArrayList<PersonnagePlateau> suspects = new ArrayList<>(player.getSherlock().getSuspectVisibles());
@@ -72,6 +73,7 @@ public class Initialisation {
   JetonsAction jeton2;
   JetonsAction jeton3;
   JetonsAction jeton4;
+  JetonsAction[] jetonsActionTour;
 
 
   //Création Jetons Temps
@@ -207,10 +209,11 @@ public class Initialisation {
     }
 
 
-    jeton1 = new JetonsAction("Sherlock", "Carte Alibi", this);
-    jeton2 = new JetonsAction("Watson", "Toby", this);
-    jeton3 = new JetonsAction("Rotation", "Joker", this);
-    jeton4 = new JetonsAction("Rotation", "Echange", this);
+    jeton1 = new JetonsAction(new String[]{"Sherlock", "/images/jet_action/BougerSherlock.png"}, new String[]{"Carte Alibi", "/images/jet_action/PiochAlibi.png"}, this);
+    jeton2 = new JetonsAction(new String[]{"Watson", "/images/jet_action/BougerWatson.png"}, new String[]{"Toby", "/images/jet_action/BougerToby.png"}, this);
+    jeton3 = new JetonsAction(new String[]{"Rotation", "/images/jet_action/Rotation.png"}, new String[]{"Joker", "/images/jet_action/Joker.png"}, this);
+    jeton4 = new JetonsAction(new String[]{"Rotation", "/images/jet_action/Rotation.png"}, new String[]{"Echange", "/images/jet_action/Echange.png"}, this);
+    jetonsActionTour = new JetonsAction[] {jeton4, jeton3, jeton2, jeton1};
 
     jetonT1 = new int[]{1, 1};
     jetonT2 = new int[]{2, 0};

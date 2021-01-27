@@ -115,7 +115,7 @@ public class Plateau extends JPanel {
             }
             detectivePanel3.add(detectiveVide3[i]);
         }
-
+/*
         //panel pour les jetAction
         JPanel surfaceDroite = new JPanel(new GridLayout(4, 1, 0, 0));
         JButton[] jetAction = new JButton[4];
@@ -126,7 +126,7 @@ public class Plateau extends JPanel {
             if (i == 2) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Joker.png"))); }
             if (i == 3) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png"))); }
             surfaceDroite.add(jetAction[i]);
-        }
+        }*/
 
         //panel pour la pioche
         JPanel piochePanel = new JPanel(new GridLayout(3, 1, 0, 0));
@@ -135,7 +135,7 @@ public class Plateau extends JPanel {
 
         //rajouter les 3 panels créés au droitePanel
         droitePanel.add(detectivePanel3);
-        droitePanel.add(surfaceDroite);
+        //droitePanel.add(surfaceDroite);
         droitePanel.add(piochePanel);
         this.add(droitePanel, BorderLayout.LINE_END);
     }

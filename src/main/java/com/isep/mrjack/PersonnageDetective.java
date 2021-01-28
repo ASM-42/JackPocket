@@ -8,30 +8,32 @@ import java.util.Arrays;
 public class PersonnageDetective {
     Initialisation jeu;
     Plateau plateau;
-    Enqueteur e;
-    private ArrayList<Object> positionDetective;
+    private ArrayList<Object> positionDetective;// = new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite()));
     //  (ArrayList<com.isep.mrjack.District>) Arrays.asList(D1, D1.getGauche());
     //[com.isep.mrjack.District, Gauche/Droite...]
     private ArrayList<PersonnagePlateau> suspectVisibles;
-    private int nbSuspectVisibles = suspectVisibles.size() +1;
+    private int nbSuspectVisibles;
     public int nbSabliers;
     public String image;
 
 
-    public PersonnageDetective( ArrayList<Object> positionDetective, String image) {
+    public PersonnageDetective(ArrayList<Object> positionDetective,
+                                String image, Initialisation jeu) {
         //super(name, role);
         this.positionDetective = positionDetective;
-        this.suspectVisibles = SuspectsVision(this.positionDetective);
+        this.jeu = jeu;
+        this.suspectVisibles = SuspectsVision(positionDetective);
         this.nbSuspectVisibles = suspectVisibles.size();
         this.image = image;
     }
 
 
-    public void MoveDetective1 (PersonnageDetective detective){
+    public void MoveDetective1 (){
         District[] district = jeu.districts.values().toArray(new District[9]);
         District d = jeu.districts.get(positionDetective.get(0));
         ArrayList<String> side = (ArrayList<String>) positionDetective.get(1);
         //JButton place = new JButton();
+        System.out.println("here3");
 
         //Si le detective est à gauche
         if (side.get(2).equals('G')){

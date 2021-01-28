@@ -28,6 +28,15 @@ public class Initialisation {
   List<String> pioche = new LinkedList<>();
   Map<String, PersonnagePlateau> personnages = new HashMap<>();
 
+  public int index(String[] table, String e){
+    for(int i=0; i<table.length+1; i++){
+      if(table[i] == e){
+        return i;
+      }
+    }
+    return 1;
+  }
+
 
   public List<PersonnagePlateau> innocents(List<PersonnagePlateau> suspects) {
     List<PersonnagePlateau> innocents = new ArrayList<>();
@@ -97,14 +106,17 @@ public class Initialisation {
   int[][] jetonsTemps;
 
 
+  PersonnageDetective Waston;
+  PersonnageDetective Toby;
+  PersonnageDetective Sherlock;
 
   MrJack joueurM;
   Enqueteur joueurE;
 
+
   public int[] getJetonsTemps(int tour) {
     return jetonsTemps[tour];
   }
-
 
   public JetonsAction getJeton1() {
     return jeton1;
@@ -240,8 +252,16 @@ public class Initialisation {
     jetonsTemps = new int[][]{jetonT1, jetonT2, jetonT3, jetonT4, jetonT5, jetonT6, jetonT7, jetonT8};
 
     joueurM = new MrJack("nameM");
-    joueurM = new MrJack("nameM");
-    joueurE = new Enqueteur("nameE");
+
+
+
+    joueurE = new Enqueteur("nameE", this);
+
+
+    Waston = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(districts.get(2), districts.get(2).getDroite())), "/image/jet_detec/Waston", this);
+    Toby = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(districts.get(7), districts.get(7).getBas())), "/image/jet_detec/Toby", this);
+    Sherlock = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(districts.get(0), districts.get(0).getGauche())), "/image/jet_detec/Holmes", this);
+
 
   }
 }

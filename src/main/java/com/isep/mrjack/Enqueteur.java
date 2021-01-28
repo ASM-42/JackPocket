@@ -1,19 +1,21 @@
 package com.isep.mrjack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Enqueteur extends Player {
-    public Initialisation jeu;
-    public PersonnageDetective Sherlock
-            = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(jeu.districts.get(0), jeu.districts.get(0).getGauche())), "/image/jet_detec/Holmes.png");
-    public PersonnageDetective Waston
-            = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())), "/image/jet_detec/Waston.png");
-    public PersonnageDetective Toby
-            = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(jeu.districts.get(7), jeu.districts.get(7).getBas())), "/image/jet_detec/Toby.png");
+    public int nbSabliers;
+    public PersonnageDetective Waston;
+    public PersonnageDetective Toby;
+    public PersonnageDetective Sherlock;
 
-    public Enqueteur(Player player) {
-        super(player.getName());
+    public Enqueteur(String name) {
+        super(name);
+    }
+
+    public int getNbSabliers() {
+        return nbSabliers;
+    }
+
+    public void setNbSabliers(int nbSabliers) {
+        this.nbSabliers = nbSabliers;
     }
 
     public PersonnageDetective getWaston() {
@@ -39,6 +41,4 @@ public class Enqueteur extends Player {
     public void setSherlock(PersonnageDetective sherlock) {
         Sherlock = sherlock;
     }
-
-
 }

@@ -2,6 +2,8 @@ package com.isep.mrjack;
 
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -14,7 +16,14 @@ public class Play {
 
     public static void main(String[] args){
 
-
+        Initialisation Jeu = new Initialisation();
+        String action;
+        JetonsAction jA1 = Jeu.jeton1;
+        JetonsAction jA2 = Jeu.jeton2;
+        JetonsAction jA3; JetonsAction jA4;
+        Player player1 = new Player("name", 0) {};
+        Player player2 = new Player("name", 0) {};
+        String[] roles = new String[]{"MrJack", "Enqueteur"};
 
 
 
@@ -36,11 +45,6 @@ public class Play {
 
 
 
-
-
-        String[] roles = new String[]{"MrJack", "Enqueteur"};
-
-
         button1.setText("Lancer une partie");
         parent.add(button1);
         //parent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,20 +52,10 @@ public class Play {
         parent.pack();
         parent.setVisible(true);
 
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        button1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 parent.dispose();
-
-                Initialisation Jeu = new Initialisation();
-                String action;
-                MrJack joueurM = new MrJack("name");
-                JetonsAction jA1 = Jeu.jeton1;
-                JetonsAction jA2 = Jeu.jeton2;
-                JetonsAction jA3; JetonsAction jA4;
-                Player player1 = new Player("name", 0) {};
-                Player player2 = new Player("name", 0) {};
-                Enqueteur joueurE = new Enqueteur(player2);
 
                 String nomJoueur1 = JOptionPane.showInputDialog(
                         "Entrez le nom du premier joueur:", "Amandine");
@@ -69,7 +63,6 @@ public class Play {
                 String nomJoueur2 = JOptionPane.showInputDialog
                         ("Entrez le nom du second joueur:", "Solene");
                 player2.setName(nomJoueur2);
-                System.out.println(player2.getName());
 
 
                 String role = (String) JOptionPane.showInputDialog(null,
@@ -78,9 +71,7 @@ public class Play {
 
                 if (role == "MrJack") {
                     player1.setRole(0);
-                    joueurM = player1.setRoleMrJack(player1);
                     player2.setRole(1);
-                    joueurE = player2.setRoleEnqueteur(player2);
                     JOptionPane.showMessageDialog(null,
                             player1.getName() + " vous jouez MrJack, et "
                                     + player2.getName() + " vous jouez l'enqueteur",
@@ -97,29 +88,24 @@ public class Play {
                 }
 
                 JOptionPane.showMessageDialog(null,
-                        "Le jeu va commencer, nous attribuons à " + joueurM.getName() + "un personnage aléatoire",
+                        "Le jeu va commencer, nous attribuons à un personnage aléatoire à Mr Jack",
                         "Play",
                         JOptionPane.PLAIN_MESSAGE);
 
                 JOptionPane.showMessageDialog(null,
-                        "Seul(e)" + joueurM.getName() + " ne peux avoir accès à l'information suivante",
+                        "Seul MrJack ne peux avoir accès à l'information suivante",
                         "Play",
                         JOptionPane.PLAIN_MESSAGE);
-
 
                 //Quel personnage va jouer MrJack?
                 ThreadLocalRandom rnd = ThreadLocalRandom.current();
-                int x = rnd.nextInt(Jeu.pioche.size());
-                joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(x)));
+                int coupable = rnd.nextInt(Jeu.pioche.size());
 
                 JOptionPane.showMessageDialog(null,
-                        "Vous êtes " + Jeu.pioche.get(x),
+                        "Vous êtes " + Jeu.pioche.get(coupable),
                         "Mr Jack",
                         JOptionPane.PLAIN_MESSAGE);
-                Jeu.pioche.remove(x);
-
-
-
+                Jeu.pioche.remove(coupable);
 
                 MonJeu jeu = new MonJeu();
                 jeu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -127,24 +113,50 @@ public class Play {
                 jeu.initJeu();
                 jeu.setVisible(true);
 
-                //Première étape
-                for (int tour = 0; tour<9; tour++){
-                    Random random2 = new Random();
-                    int actionR1 = random2.nextInt(2);
-                    int actionR2 = random2.nextInt(2);
-                    int actionR3 = random2.nextInt(2);
-                    int actionR4 = random2.nextInt(2);
-                    String[][] jetonsTour =
-                            new String[][]{Jeu.jeton1.quelleAction(actionR1), Jeu.jeton2.quelleAction(actionR2),
-                                    Jeu.jeton4.quelleAction(actionR3),Jeu.jeton4.quelleAction(actionR4),};
+                JOptionPane.showMessageDialog(null,
+                        "Veuillez cliquer sur le premier jeton temps",
+                        "Mr Jack",
+                        JOptionPane.PLAIN_MESSAGE);
+
+            }
+        });
+        if (player1.getRole() == 0){ Jeu.joueurM = player1.setRoleMrJack(player1); Jeu.joueurE = player2.setRoleEnqueteur(player2);}
+        else{ Jeu.joueurM = player2.setRoleMrJack(player2); Jeu.joueurE = player1.setRoleEnqueteur(player1);}
+
+        //Quel personnage va jouer MrJack?
+        ThreadLocalRandom rnd = ThreadLocalRandom.current();
+        int coupable = rnd.nextInt(Jeu.pioche.size());
+        //joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(x)));
+
+        JOptionPane.showMessageDialog(null,
+                "Vous êtes " + Jeu.pioche.get(coupable),
+                "Mr Jack",
+                JOptionPane.PLAIN_MESSAGE);
+        Jeu.pioche.remove(coupable);
+
+        //Quel personnage va jouer MrJack?
+        ThreadLocalRandom rnd1 = ThreadLocalRandom.current();
+        int x = rnd1.nextInt(Jeu.pioche.size());
+        Jeu.joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(x)));
+        Jeu.pioche.remove(x);
+        //Première étape
+        for (int tour = 0; tour<9; tour++){
+            Random random2 = new Random();
+            int actionR1 = random2.nextInt(2);
+            int actionR2 = random2.nextInt(2);
+            int actionR3 = random2.nextInt(2);
+            int actionR4 = random2.nextInt(2);
+            /*String[][] jetonsTour =
+                    new String[][]{Jeu.jeton1.quelleAction(actionR1), Jeu.jeton2.quelleAction(actionR2),
+                            Jeu.jeton4.quelleAction(actionR3),Jeu.jeton4.quelleAction(actionR4),};
 
 
-                    String s = (String)JOptionPane.showInputDialog(null,
-                            "Quelle action souhaitez vous jouer",
-                            "Action Detective",
-                            JOptionPane.QUESTION_MESSAGE, null, jetonsTour, jetonsTour[0]);
-
-                    //L'enqueteur commence, tours impairs*
+            String s = (String)JOptionPane.showInputDialog(null,
+                    "Quelle action souhaitez vous jouer",
+                    "Action Detective",
+                    JOptionPane.QUESTION_MESSAGE, null, jetonsTour, jetonsTour[0]);
+*/
+            //L'enqueteur commence, tours impairs*
 
             /*
             if (Jeu.getJetonsTemps(tour)[1] == 1){
@@ -226,12 +238,6 @@ public class Play {
                 break;
             }*/
 
-                }
-
-            }
-        });
-
-
-
+        }
         }
         }

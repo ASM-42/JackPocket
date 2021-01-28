@@ -1,5 +1,6 @@
 package com.isep.mrjack;
 
+import javax.swing.*;
 import java.util.Scanner;
 import java.util.Random;
 public class JetonsAction {
@@ -11,9 +12,6 @@ public class JetonsAction {
     public String[] action1 = new String[]{typeAction1, typeAction2};
     public String[] action2 = new String[]{image1, image2};
 
-    PersonnageDetective Watson;
-    PersonnageDetective Toby;
-    PersonnageDetective Sherlock;
 
     public JetonsAction(String[] action1, String[] action2, Initialisation jeu) {
         this.jeu = jeu;
@@ -40,45 +38,48 @@ public class JetonsAction {
                 joueurM.getNbSabliers() + personnagePlateau.getSabliers());
     }
 
-    public void bougerSherlock () {
-        String reponse1;
-        Scanner scanner = new Scanner (System.in);
-        System.out.println
-                ("Voulez vous déplacer le détective d'un seul espace (tapez 1) ou de deux espaces (tapez 2) ?");
-        reponse1 = scanner.next();
-        if (reponse1.equals(1)){
-            Sherlock.MoveDetective1(Sherlock);
+    public void bougerSherlock (Enqueteur joueurE) {
+        String[] place = new String[]{"1", "2"};
+        String reponse1 = (String) JOptionPane.showInputDialog(null,
+                "De combien de case souhaitez vous déplacer Sherlock?",
+                "BougerToby",
+                JOptionPane.QUESTION_MESSAGE, null, place, "Choisissez parmis les choix ci-dessous");
+
+        if (reponse1.equals("1")){
+            joueurE.getSherlock().MoveDetective1(joueurE.getSherlock());
         }
-        if (reponse1.equals(2)){
-            Sherlock.MoveDetective2(Sherlock);
+        if (reponse1.equals("2")){
+            joueurE.getSherlock().MoveDetective2(joueurE.getSherlock());
         }
     }
 
-    public void bougerToby () {
-        String reponse1;
-        Scanner scanner = new Scanner (System.in);
-        System.out.println
-                ("Voulez vous déplacer le détective d'un seul espace (tapez 1) ou de deux espaces (tapez 2) ?");
-        reponse1 = scanner.next();
-        if (reponse1.equals(1)){
-            Toby.MoveDetective1(Toby);
+    public void bougerToby (Enqueteur joueurE) {
+        String[] place = new String[]{"1", "2"};
+        String reponse1 = (String) JOptionPane.showInputDialog(null,
+                "De combien de case souhaitez vous déplacer Toby?",
+                "BougerToby",
+                JOptionPane.QUESTION_MESSAGE, null, place, "Choisissez parmis les choix ci-dessous");
+
+        if (reponse1.equals("1")){
+            joueurE.getToby().MoveDetective1(joueurE.getToby());
         }
-        if (reponse1.equals(2)){
-            Toby.MoveDetective2(Toby);
+        if (reponse1.equals("2")){
+            joueurE.getToby().MoveDetective2(joueurE.getToby());
         }
     }
 
-    public void bougerWatson () {
-        String reponse1;
-        Scanner scanner = new Scanner (System.in);
-        System.out.println
-                ("Voulez vous déplacer le détective d'un seul espace (tapez 1) ou de deux espaces (tapez 2) ?");
-        reponse1 = scanner.next();
-        if (reponse1.equals(1)){
-            Watson.MoveDetective1(Watson);
+    public void bougerWatson (Enqueteur joueurE) {
+        String[] place = new String[]{"1", "2"};
+        String reponse1 = (String) JOptionPane.showInputDialog(null,
+                "De combien de case souhaitez vous déplacer Watson?",
+                "BougerToby",
+                JOptionPane.QUESTION_MESSAGE, null, place, "Choisissez parmis les choix ci-dessous");
+
+        if (reponse1.equals("1")){
+            joueurE.getWaston().MoveDetective1(joueurE.getWaston());
         }
-        if (reponse1.equals(2)){
-            Watson.MoveDetective2(Watson);
+        if (reponse1.equals("2")){
+            joueurE.getWaston().MoveDetective2(joueurE.getWaston());
         }
     }
 
@@ -140,12 +141,13 @@ public class JetonsAction {
         String reponse1;
         String reponse2;
         Scanner scanner = new Scanner (System.in);
-
+/*
         if (player.getRole() == 1) //Detective
+
             System.out.println ("Quel detective voulez vous déplacer ?");
         reponse1 = scanner.next();
         if (reponse1.equals("Watson"))
-            Watson.MoveDetective1(Watson);
+            player.getSherlock().MoveDetective1(joueurE.getSherlock());
         if (reponse1.equals("Sherlock"))
             Sherlock.MoveDetective1(Sherlock);
         if (reponse1.equals("Toby"))
@@ -160,13 +162,14 @@ public class JetonsAction {
             Sherlock.MoveDetective1(Sherlock);
         if (reponse1.equals("Toby"))
             Toby.MoveDetective1(Toby);
-
+*/
     }
 
-    public void faireAction(String typeAction1, Player player){
+        public void faireAction(String typeAction1, Player player){
         if (typeAction1 == "Rotation"){
             rotationDistrict();
         }
+        /*
         if (typeAction1 == "Sherlock"){
             bougerSherlock();
         }
@@ -175,7 +178,7 @@ public class JetonsAction {
         }
         if (typeAction1 == "Toby"){
             bougerToby();
-        }
+        }*/
         if (typeAction1 == "Echange"){
             echangeDistrict();
         }
@@ -224,27 +227,39 @@ public class JetonsAction {
         this.typeAction2 = typeAction2;
     }
 
-    public PersonnageDetective getWatson() {
-        return Watson;
+    public void setJeu(Initialisation jeu) {
+        this.jeu = jeu;
     }
 
-    public void setWatson(PersonnageDetective watson) {
-        Watson = watson;
+    public String getImage1() {
+        return image1;
     }
 
-    public PersonnageDetective getToby() {
-        return Toby;
+    public void setImage1(String image1) {
+        this.image1 = image1;
     }
 
-    public void setToby(PersonnageDetective toby) {
-        Toby = toby;
+    public String getImage2() {
+        return image2;
     }
 
-    public PersonnageDetective getSherlock() {
-        return Sherlock;
+    public void setImage2(String image2) {
+        this.image2 = image2;
     }
 
-    public void setSherlock(PersonnageDetective sherlock) {
-        Sherlock = sherlock;
+    public String[] getAction1() {
+        return action1;
+    }
+
+    public void setAction1(String[] action1) {
+        this.action1 = action1;
+    }
+
+    public String[] getAction2() {
+        return action2;
+    }
+
+    public void setAction2(String[] action2) {
+        this.action2 = action2;
     }
 }

@@ -5,12 +5,12 @@ import java.util.Arrays;
 
 public class Enqueteur extends Player {
     Initialisation jeu;
-    public PersonnageDetective Waston
-            = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())), "/image/jet_detec/Waston", jeu);
-    public PersonnageDetective Toby
-            = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())), "/image/jet_detec/Toby", jeu);
-    public PersonnageDetective Sherlock
-            = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())),"/image/jet_detec/Holmes", jeu);
+    public PersonnageDetective Waston;
+            //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())), "/image/jet_detec/Waston", jeu);
+    public PersonnageDetective Toby;
+            //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())), "/image/jet_detec/Toby", jeu);
+    public PersonnageDetective Sherlock;
+           // = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())),"/image/jet_detec/Holmes", jeu);
 
     public Enqueteur(String name, Initialisation jeu) {
         super(name);

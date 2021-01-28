@@ -37,9 +37,9 @@ public abstract class Player {
 
     public Enqueteur setRoleEnqueteur(Player player) {
         player.setRole(1);
-        Enqueteur joueurE = new Enqueteur(player);
+        Enqueteur joueurE = new Enqueteur(player.getName());
         return joueurE;
     }
 
 
- }
+}

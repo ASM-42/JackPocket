@@ -8,9 +8,18 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+
 
 public final class MrJackActionListener {
+
   private MrJackActionListener() {
+  }
+
+  public static ActionListener createJetonTPair(JButton button) {
+    return new JetonTempsPair(button);
   }
 
   public static ActionListener createReturnDistrictAL(JButton button) {
@@ -36,6 +45,83 @@ public final class MrJackActionListener {
   public static ActionListener createEchangeDistrictAL(JButton button) {
     return new EchangeDistrictActionListener(button);
   }
+
+
+
+  private static class JetonTempsPair implements ActionListener {
+    JButton button;
+
+    public JetonTempsPair(JButton button) {
+      this.button = button;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      Initialisation Jeu = new Initialisation();
+      Plateau plateau = new Plateau();
+      Random random2 = new Random();
+      int actionR1 = random2.nextInt(2);
+      int actionR2 = random2.nextInt(2);
+      int actionR3 = random2.nextInt(2);
+      int actionR4 = random2.nextInt(2);
+      ArrayList<String> jetonsTourActions =
+              new ArrayList<>(Arrays.asList(Jeu.jetonsActionTour[0].quelleAction(actionR1), Jeu.jetonsActionTour[1].quelleAction(actionR2),
+                      Jeu.jetonsActionTour[2].quelleAction(actionR3),Jeu.jetonsActionTour[3].quelleAction(actionR4)));
+      String[] jetonsTourImage =
+              new String[]{Jeu.jetonsActionTour[0].quelleActionImage(actionR1), Jeu.jetonsActionTour[1].quelleActionImage(actionR2),
+                      Jeu.jetonsActionTour[2].quelleActionImage(actionR3),Jeu.jetonsActionTour[3].quelleActionImage(actionR4),};
+
+      for (int i=0; i<Jeu.jetonsActionTour.length; i++){
+        plateau.jetAction[i].setIcon(new ImageIcon(getClass().getResource(jetonsTourImage[i])));
+        plateau.jetAction[i].setBackground(Color.GREEN);
+      }
+
+      String Action1E = (String)JOptionPane.showInputDialog(null,
+              "Enqueteur quelle action souhaitez vous jouer",
+              "Action Detective",
+              JOptionPane.QUESTION_MESSAGE, null, new ArrayList[]{jetonsTourActions}, "Choisissez parmis les choix ci-dessous");
+      int j1E = jetonsTourActions.indexOf(Action1E);
+      Jeu.jetonsActionTour[j1E].faireAction(Action1E, Jeu.joueurE);
+      Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j1E);
+      jetonsTourActions.remove(j1E);
+      plateau.jetAction[j1E].setBackground(Color.RED);
+
+
+      String Action2M= (String)JOptionPane.showInputDialog(null,
+              "MrJack quelle action souhaitez vous jouer",
+              "Action Detective",
+              JOptionPane.QUESTION_MESSAGE, null, new ArrayList[]{jetonsTourActions}, "Choisissez parmis les choix ci-dessous");
+      int j2M = jetonsTourActions.indexOf(Action2M);
+      Jeu.jetonsActionTour[j2M].faireAction(Action2M, Jeu.joueurM);
+      Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j2M);
+      jetonsTourActions.remove(j2M);
+      plateau.jetAction[j2M].setBackground(Color.RED);
+
+      String Action3M= (String)JOptionPane.showInputDialog(null,
+              "MrJack quelle action souhaitez vous jouer",
+              "Action Detective",
+              JOptionPane.QUESTION_MESSAGE, null, new ArrayList[]{jetonsTourActions}, "Choisissez parmis les choix ci-dessous");
+      int j3M = jetonsTourActions.indexOf(Action3M);
+      Jeu.jetonsActionTour[j3M].faireAction(Action3M, Jeu.joueurM);
+      Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j3M);
+      jetonsTourActions.remove(j3M);
+      plateau.jetAction[j3M].setBackground(Color.RED);
+
+      String Action4E= (String)JOptionPane.showInputDialog(null,
+              "Enqueteur quelle action souhaitez vous jouer",
+              "Action Detective",
+              JOptionPane.QUESTION_MESSAGE, null, new ArrayList[]{jetonsTourActions}, "Choisissez parmis les choix ci-dessous");
+      int j4E = jetonsTourActions.indexOf(Action4E);
+      Jeu.jetonsActionTour[j4E].faireAction(Action4E, Jeu.joueurE);
+      Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j4E);
+      jetonsTourActions.remove(j4E);
+      plateau.jetAction[j4E].setBackground(Color.RED);
+
+
+    }
+  }
+
+
 
 
   private static class ReturnDistrictActionListener implements ActionListener {
@@ -169,6 +255,10 @@ public final class MrJackActionListener {
 
     }
   }
+
+
+
+
 
 
 }

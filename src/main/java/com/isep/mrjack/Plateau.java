@@ -69,6 +69,7 @@ public class Plateau extends JPanel {
             if (i == 5) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/6.png"))); }
             if (i == 6) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/7.png"))); }
             if (i == 7) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/8.png"))); }
+            jetTemps[i].addActionListener(MrJackActionListener.createJetonTPair(jetTemps[i]));
             surfaceGauche.add(jetTemps[i]);
         }
 
@@ -103,6 +104,8 @@ public class Plateau extends JPanel {
     // *** CONSTRUIT L'AREA À DROITE ***
     JPanel detectivePanel3 = new JPanel(new GridLayout(3, 1, 0, 0));
     JButton[] detectiveVide3 = new JButton[3];
+    JPanel surfaceDroite = new JPanel(new GridLayout(4, 1, 0, 0));
+    JButton[] jetAction = new JButton[4];
     private void panelDroite() {
         JPanel droitePanel = new JPanel(new GridLayout());
 
@@ -115,18 +118,18 @@ public class Plateau extends JPanel {
             }
             detectivePanel3.add(detectiveVide3[i]);
         }
-/*
+
         //panel pour les jetAction
         JPanel surfaceDroite = new JPanel(new GridLayout(4, 1, 0, 0));
         JButton[] jetAction = new JButton[4];
         for (int i = 0; i < jetAction.length; i++) {
             jetAction[i] = new JButton("");
-            if (i == 0) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Alibi.png"))); }
+            if (i == 0) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/PiocheAlibi.png"))); }
             if (i == 1) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Echange.png"))); }
             if (i == 2) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Joker.png"))); }
             if (i == 3) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png"))); }
             surfaceDroite.add(jetAction[i]);
-        }*/
+        }
 
         //panel pour la pioche
         JPanel piochePanel = new JPanel(new GridLayout(3, 1, 0, 0));

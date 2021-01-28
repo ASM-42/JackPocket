@@ -39,9 +39,12 @@ public class Initialisation {
     return innocents;
   }
 
-  public static void removeElement(PersonnagePlateau[] arr, int removedIdx) {
+  public JetonsAction[] removeElement(JetonsAction[] arr, int removedIdx) {
     System.arraycopy(arr, removedIdx + 1, arr, removedIdx, arr.length - 1 - removedIdx);
+
+    return arr;
   }
+
 
   //Création des Districts et du com.isep.mrjack.Plateau de Jeu
 
@@ -86,6 +89,11 @@ public class Initialisation {
   int[] jetonT7;
   int[] jetonT8;
   int[][] jetonsTemps;
+
+
+
+  MrJack joueurM;
+  Enqueteur joueurE;
 
   public int[] getJetonsTemps(int tour) {
     return jetonsTemps[tour];
@@ -209,10 +217,10 @@ public class Initialisation {
     }
 
 
-    jeton1 = new JetonsAction(new String[]{"Sherlock", "/images/jet_action/BougerSherlock.png"}, new String[]{"Carte Alibi", "/images/jet_action/PiochAlibi.png"}, this);
-    jeton2 = new JetonsAction(new String[]{"Watson", "/images/jet_action/BougerWatson.png"}, new String[]{"Toby", "/images/jet_action/BougerToby.png"}, this);
-    jeton3 = new JetonsAction(new String[]{"Rotation", "/images/jet_action/Rotation.png"}, new String[]{"Joker", "/images/jet_action/Joker.png"}, this);
-    jeton4 = new JetonsAction(new String[]{"Rotation", "/images/jet_action/Rotation.png"}, new String[]{"Echange", "/images/jet_action/Echange.png"}, this);
+    jeton1 = new JetonsAction(new String[]{"Sherlock","Carte Alibi"}, new String[]{"/images/jet_action/BougerSherlock.png", "/images/jet_action/PiocheAlibi.png"}, this);
+    jeton2 = new JetonsAction(new String[]{"Watson", "Toby"}, new String[]{"/images/jet_action/BougerWatson.png", "/images/jet_action/BougerToby.png"}, this);
+    jeton3 = new JetonsAction(new String[]{"Rotation", "Joker"}, new String[]{"/images/jet_action/Rotation.png", "/images/jet_action/Joker.png"}, this);
+    jeton4 = new JetonsAction(new String[]{"Rotation", "Echange"}, new String[]{"/images/jet_action/Rotation.png", "/images/jet_action/Echange.png"}, this);
     jetonsActionTour = new JetonsAction[] {jeton4, jeton3, jeton2, jeton1};
 
     jetonT1 = new int[]{1, 1};
@@ -224,6 +232,10 @@ public class Initialisation {
     jetonT7 = new int[]{7, 1};
     jetonT8 = new int[]{8, 0};
     jetonsTemps = new int[][]{jetonT1, jetonT2, jetonT3, jetonT4, jetonT5, jetonT6, jetonT7, jetonT8};
+
+    joueurM = new MrJack("nameM");
+    joueurM = new MrJack("nameM");
+    joueurE = new Enqueteur("nameE");
 
   }
 }

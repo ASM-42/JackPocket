@@ -84,7 +84,7 @@ public final class MrJackActionListener {
               JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
 
       int j1E = Jeu.index(jetonsTourActions, Action1E);
-      Jeu.jetonsActionTour[j1E].faireAction(Action1E, Jeu.joueurE);
+      Jeu.jetonsActionTour[j1E].faireAction(Action1E, Jeu.joueurE, plateau);
       Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j1E);
       jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j1E);
       plateau.jetAction[j1E].setBackground(Color.RED);
@@ -96,7 +96,7 @@ public final class MrJackActionListener {
               "Action Detective",
               JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
       int j2M = Jeu.index(jetonsTourActions, Action2M);
-      Jeu.jetonsActionTour[j2M].faireAction(Action2M, Jeu.joueurM);
+      Jeu.jetonsActionTour[j2M].faireAction(Action2M, Jeu.joueurM, plateau);
       Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j2M);
       jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j2M);
       plateau.jetAction[j2M].setBackground(Color.RED);
@@ -109,7 +109,7 @@ public final class MrJackActionListener {
               "Action Detective",
               JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
       int j3M = Jeu.index(jetonsTourActions, Action3M);
-      Jeu.jetonsActionTour[j3M].faireAction(Action3M, Jeu.joueurM);
+      Jeu.jetonsActionTour[j3M].faireAction(Action3M, Jeu.joueurM, plateau);
       Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j3M);
       jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j3M);
       plateau.jetAction[j3M].setBackground(Color.RED);
@@ -121,7 +121,7 @@ public final class MrJackActionListener {
               JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
       int j4E = Jeu.index(jetonsTourActions, Action4E
       );
-      Jeu.jetonsActionTour[j4E].faireAction(Action4E, Jeu.joueurE);
+      Jeu.jetonsActionTour[j4E].faireAction(Action4E, Jeu.joueurE, plateau);
       Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j4E);
       jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j4E);
       plateau.jetAction[j4E].setBackground(Color.RED);

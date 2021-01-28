@@ -1,21 +1,24 @@
 package com.isep.mrjack;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Enqueteur extends Player {
-    public int nbSabliers;
-    public PersonnageDetective Waston;
-    public PersonnageDetective Toby;
-    public PersonnageDetective Sherlock;
+    Initialisation jeu;
+    public PersonnageDetective Waston
+            = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())), "/image/jet_detec/Waston", jeu);
+    public PersonnageDetective Toby
+            = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())), "/image/jet_detec/Toby", jeu);
+    public PersonnageDetective Sherlock
+            = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())),"/image/jet_detec/Holmes", jeu);
 
-    public Enqueteur(String name) {
+    public Enqueteur(String name, Initialisation jeu) {
         super(name);
-    }
+        this.jeu = jeu;
+        Waston.setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())));
+        Toby.setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(7), jeu.districts.get(7).getBas())));
+        Sherlock.setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(0), jeu.districts.get(0).getGauche())));
 
-    public int getNbSabliers() {
-        return nbSabliers;
-    }
-
-    public void setNbSabliers(int nbSabliers) {
-        this.nbSabliers = nbSabliers;
     }
 
     public PersonnageDetective getWaston() {

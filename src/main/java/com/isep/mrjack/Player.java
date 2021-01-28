@@ -3,7 +3,7 @@ package com.isep.mrjack;
 public abstract class Player {
     private String name ;
     private int role ; // 0 com.isep.mrjack.MrJack et 1 Detective
-    private Player jeu;
+    private Initialisation jeu;
 
     public Player(String name, int role) {
         this.name = name;
@@ -37,7 +37,7 @@ public abstract class Player {
 
     public Enqueteur setRoleEnqueteur(Player player) {
         player.setRole(1);
-        Enqueteur joueurE = new Enqueteur(player.getName());
+        Enqueteur joueurE = new Enqueteur(player.getName(), jeu);
         return joueurE;
     }
 

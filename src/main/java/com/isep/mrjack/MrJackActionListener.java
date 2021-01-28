@@ -75,44 +75,52 @@ public final class MrJackActionListener {
         plateau.jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource(jetonsTourImage[i])).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT)));
         plateau.jetAction[i].setBackground(Color.GREEN);
       }
+      //for (int i =0; i<jetonsTourActions.length; i++){ System.out.println(jetonsTourActions[i]);}
+
 
       String Action1E = (String)JOptionPane.showInputDialog(null,
               "Enqueteur quelle action souhaitez vous jouer",
               "Action Detective",
               JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
 
-      int j1E = Arrays.asList(jetonsTourActions).indexOf(Action1E);
+      int j1E = Jeu.index(jetonsTourActions, Action1E);
       Jeu.jetonsActionTour[j1E].faireAction(Action1E, Jeu.joueurE);
       Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j1E);
       jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j1E);
       plateau.jetAction[j1E].setBackground(Color.RED);
+      //for (int z =0; z<jetonsTourActions.length; z++){ System.out.println(jetonsTourActions[z]);}
 
 
       String Action2M= (String)JOptionPane.showInputDialog(null,
               "MrJack quelle action souhaitez vous jouer",
               "Action Detective",
               JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
-      int j2M = Arrays.asList(jetonsTourActions).indexOf(Action2M);
+      int j2M = Jeu.index(jetonsTourActions, Action2M);
       Jeu.jetonsActionTour[j2M].faireAction(Action2M, Jeu.joueurM);
       Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j2M);
       jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j2M);
       plateau.jetAction[j2M].setBackground(Color.RED);
+      //for (int k=0; k<jetonsTourActions.length; k++){ System.out.println(jetonsTourActions[k]);}
+
+
 
       String Action3M= (String)JOptionPane.showInputDialog(null,
               "MrJack quelle action souhaitez vous jouer",
               "Action Detective",
               JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
-      int j3M = Arrays.asList(jetonsTourActions).indexOf(Action3M);
+      int j3M = Jeu.index(jetonsTourActions, Action3M);
       Jeu.jetonsActionTour[j3M].faireAction(Action3M, Jeu.joueurM);
       Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j3M);
       jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j3M);
       plateau.jetAction[j3M].setBackground(Color.RED);
+      //for (int h =0; h<jetonsTourActions.length; h++){ System.out.println(jetonsTourActions[h]);}
 
       String Action4E= (String)JOptionPane.showInputDialog(null,
               "Enqueteur quelle action souhaitez vous jouer",
               "Action Detective",
               JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
-      int j4E = Arrays.asList(jetonsTourActions).indexOf(Action4E);
+      int j4E = Jeu.index(jetonsTourActions, Action4E
+      );
       Jeu.jetonsActionTour[j4E].faireAction(Action4E, Jeu.joueurE);
       Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j4E);
       jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j4E);

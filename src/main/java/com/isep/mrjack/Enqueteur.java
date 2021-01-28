@@ -4,21 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Enqueteur extends Player {
-    Initialisation jeu;
     public PersonnageDetective Waston;
-            //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())), "/image/jet_detec/Waston", jeu);
+            //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D3"), jeu.districts.get("D3").getBas())), "/images/jet_detec/Watson.png", jeu);
     public PersonnageDetective Toby;
-            //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())), "/image/jet_detec/Toby", jeu);
+            //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D8"), jeu.districts.get("D8").getBas())), "/images/jet_detec/Tobby.png", jeu);
     public PersonnageDetective Sherlock;
-           // = new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())),"/image/jet_detec/Holmes", jeu);
+            //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D1"), jeu.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png", jeu);
 
-    public Enqueteur(String name, Initialisation jeu) {
+    public Enqueteur(String name) {
         super(name);
-        this.jeu = jeu;
-        Waston.setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite())));
-        Toby.setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(7), jeu.districts.get(7).getBas())));
-        Sherlock.setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get(0), jeu.districts.get(0).getGauche())));
-
+        //this.jeu = jeu;
     }
 
     public PersonnageDetective getWaston() {

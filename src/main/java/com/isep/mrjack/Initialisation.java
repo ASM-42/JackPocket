@@ -106,10 +106,6 @@ public class Initialisation {
   int[][] jetonsTemps;
 
 
-  PersonnageDetective Waston;
-  PersonnageDetective Toby;
-  PersonnageDetective Sherlock;
-
   MrJack joueurM;
   Enqueteur joueurE;
 
@@ -255,12 +251,7 @@ public class Initialisation {
 
 
 
-    joueurE = new Enqueteur("nameE", this);
-
-
-    Waston = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(districts.get(2), districts.get(2).getDroite())), "/image/jet_detec/Waston", this);
-    Toby = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(districts.get(7), districts.get(7).getBas())), "/image/jet_detec/Toby", this);
-    Sherlock = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(districts.get(0), districts.get(0).getGauche())), "/image/jet_detec/Holmes", this);
+    joueurE = new Enqueteur("nameE");
 
 
   }

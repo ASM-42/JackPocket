@@ -45,6 +45,12 @@ public class Initialisation {
     return arr;
   }
 
+  public String[] removeElementString(String[] arr, int removedIdx) {
+    System.arraycopy(arr, removedIdx + 1, arr, removedIdx, arr.length - 1 - removedIdx);
+
+    return arr;
+  }
+
 
   //Création des Districts et du com.isep.mrjack.Plateau de Jeu
 
@@ -221,7 +227,7 @@ public class Initialisation {
     jeton2 = new JetonsAction(new String[]{"Watson", "Toby"}, new String[]{"/images/jet_action/BougerWatson.png", "/images/jet_action/BougerToby.png"}, this);
     jeton3 = new JetonsAction(new String[]{"Rotation", "Joker"}, new String[]{"/images/jet_action/Rotation.png", "/images/jet_action/Joker.png"}, this);
     jeton4 = new JetonsAction(new String[]{"Rotation", "Echange"}, new String[]{"/images/jet_action/Rotation.png", "/images/jet_action/Echange.png"}, this);
-    jetonsActionTour = new JetonsAction[] {jeton4, jeton3, jeton2, jeton1};
+    jetonsActionTour = new JetonsAction[] {jeton1, jeton2, jeton3, jeton4};
 
     jetonT1 = new int[]{1, 1};
     jetonT2 = new int[]{2, 0};

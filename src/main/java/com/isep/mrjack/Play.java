@@ -24,6 +24,8 @@ public class Play {
         Player player1 = new Player("name", 0) {};
         Player player2 = new Player("name", 0) {};
         String[] roles = new String[]{"MrJack", "Enqueteur"};
+        ThreadLocalRandom rnd = ThreadLocalRandom.current();
+        int coupable = rnd.nextInt(Jeu.pioche.size());
 
 
 
@@ -98,8 +100,6 @@ public class Play {
                         JOptionPane.PLAIN_MESSAGE);
 
                 //Quel personnage va jouer MrJack?
-                ThreadLocalRandom rnd = ThreadLocalRandom.current();
-                int coupable = rnd.nextInt(Jeu.pioche.size());
 
                 JOptionPane.showMessageDialog(null,
                         "Vous êtes " + Jeu.pioche.get(coupable),
@@ -122,23 +122,8 @@ public class Play {
         });
         if (player1.getRole() == 0){ Jeu.joueurM = player1.setRoleMrJack(player1); Jeu.joueurE = player2.setRoleEnqueteur(player2);}
         else{ Jeu.joueurM = player2.setRoleMrJack(player2); Jeu.joueurE = player1.setRoleEnqueteur(player1);}
+        Jeu.joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(coupable)));
 
-        //Quel personnage va jouer MrJack?
-        ThreadLocalRandom rnd = ThreadLocalRandom.current();
-        int coupable = rnd.nextInt(Jeu.pioche.size());
-        //joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(x)));
-
-        JOptionPane.showMessageDialog(null,
-                "Vous êtes " + Jeu.pioche.get(coupable),
-                "Mr Jack",
-                JOptionPane.PLAIN_MESSAGE);
-        Jeu.pioche.remove(coupable);
-
-        //Quel personnage va jouer MrJack?
-        ThreadLocalRandom rnd1 = ThreadLocalRandom.current();
-        int x = rnd1.nextInt(Jeu.pioche.size());
-        Jeu.joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(x)));
-        Jeu.pioche.remove(x);
         //Première étape
         for (int tour = 0; tour<9; tour++){
             Random random2 = new Random();

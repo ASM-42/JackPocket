@@ -70,6 +70,7 @@ public class Plateau extends JPanel {
             if (i == 6) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/7.png"))); }
             if (i == 7) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/8.png"))); }
             jetTemps[i].addActionListener(MrJackActionListener.createJetonTPair(jetTemps[i]));
+
             surfaceGauche.add(jetTemps[i]);
         }
 
@@ -120,14 +121,14 @@ public class Plateau extends JPanel {
         }
 
         //panel pour les jetAction
-        JPanel surfaceDroite = new JPanel(new GridLayout(4, 1, 0, 0));
-        JButton[] jetAction = new JButton[4];
+//        JPanel surfaceDroite = new JPanel(new GridLayout(4, 1, 0, 0));
+
         for (int i = 0; i < jetAction.length; i++) {
             jetAction[i] = new JButton("");
-            if (i == 0) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/PiocheAlibi.png"))); }
-            if (i == 1) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Echange.png"))); }
-            if (i == 2) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Joker.png"))); }
-            if (i == 3) { jetAction[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png"))); }
+            if (i == 0) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/PiocheAlibi.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT))); }
+            if (i == 1) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/BougerToby.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT))); }
+            if (i == 2) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Joker.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT))); }
+            if (i == 3) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT))); }
             surfaceDroite.add(jetAction[i]);
         }
 
@@ -138,7 +139,7 @@ public class Plateau extends JPanel {
 
         //rajouter les 3 panels créés au droitePanel
         droitePanel.add(detectivePanel3);
-        //droitePanel.add(surfaceDroite);
+        droitePanel.add(surfaceDroite);
         droitePanel.add(piochePanel);
         this.add(droitePanel, BorderLayout.LINE_END);
     }

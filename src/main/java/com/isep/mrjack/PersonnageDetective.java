@@ -18,6 +18,15 @@ public class PersonnageDetective {
     public String image;
 
 
+    public PersonnageDetective( ArrayList<Object> positionDetective, String image) {
+        //super(name, role);
+        this.positionDetective = positionDetective;
+        this.suspectVisibles = SuspectsVision(this.positionDetective);
+        this.nbSuspectVisibles = suspectVisibles.size();
+        this.image = image;
+    }
+
+
     public void MoveDetective1 (PersonnageDetective detective){
         District[] district = jeu.districts.values().toArray(new District[9]);
         District d = jeu.districts.get(positionDetective.get(0));
@@ -204,16 +213,6 @@ public class PersonnageDetective {
     public ArrayList<Object> getPositionDetective() {
         return positionDetective;
     }
-
-    public PersonnageDetective( ArrayList<Object> positionDetective, String image) {
-        //super(name, role);
-        this.positionDetective = positionDetective;
-        this.suspectVisibles = SuspectsVision(this.positionDetective);
-        this.nbSuspectVisibles = suspectVisibles.size();
-        this.image = image;
-    }
-
-
 
     public int getNbSuspectVisibles() {
         return nbSuspectVisibles;

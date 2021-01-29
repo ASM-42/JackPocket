@@ -159,6 +159,4 @@ public class Plateau extends JPanel {
         }
         this.add(detectivePanel4, BorderLayout.PAGE_END);
     }
-
-
 }

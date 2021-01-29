@@ -15,9 +15,4 @@ public class MonJeu extends JFrame {
     this.setContentPane(pan);
   }
 
-  public void rotateDistrict(JButton[] boutons) {
-    // Tourner de 90° la tile n
-
-  }
-
 }

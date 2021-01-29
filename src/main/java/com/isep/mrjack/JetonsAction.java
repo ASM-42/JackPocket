@@ -16,6 +16,7 @@ public class JetonsAction {
     public String[] action2 = new String[]{image1, image2};
 
 
+
     public JetonsAction(String[] action1, String[] action2, Initialisation jeu) {
         this.jeu = jeu;
         this.action1 = action1;
@@ -42,7 +43,7 @@ public class JetonsAction {
     }
 
     public void bougerSherlock (Player player, Plateau plateau) {
-        String[] place = new String[]{"Coco", "2"};
+        String[] place = new String[]{"1", "2"};
         String reponse1 = (String) JOptionPane.showInputDialog(null,
                 "De combien de case souhaitez vous déplacer Sherlock?",
                 "BougerToby",
@@ -58,7 +59,6 @@ public class JetonsAction {
 
     public void bougerToby (Player player, Plateau plateau) {
         String[] place = new String[]{"1", "2"};
-        System.out.println("here1");
         String reponse1 = (String) JOptionPane.showInputDialog(null,
                 "De combien de case souhaitez vous déplacer Toby?",
                 "BougerToby",
@@ -74,12 +74,10 @@ public class JetonsAction {
     }
 
     public void bougerWatson (Player player, Plateau plateau) {
-        System.out.println("Ayo");
-        Object[] options = {"Yes, please",
-                "No way!"};
+        Object[] options = {"1","2"};
         int reponse1 = JOptionPane.showOptionDialog(plateau,
-                "Would you like green eggs and ham?",
-                "A Silly Question",
+                "De combien de case souhaitez vous déplacer Watson?",
+                "BougerWatson",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null,     //do not use a custom Icon
@@ -95,35 +93,41 @@ public class JetonsAction {
 
     public void rotationDistrict () {
         String district;
-        String sens;
+        //String sens;
         String tour;
-        Scanner scanner1 = new Scanner(System.in);
-        System.out.println
-                ("Quel com.isep.mrjack.District souhaitez-vous déplacer? (ex : D1, D2...");
-        district = scanner1.next();
-        Scanner scanner2 = new Scanner(System.in);
-        System.out.println
-                ("Dans quel sens (horaire ou anti-horaire) souhaitez vous le deplacer ?");
-        sens = scanner2.next();
-        Scanner scanner3 = new Scanner(System.in);
-        System.out.println
-                ("Voulez - vous le déplacer d'un quart de tour ou d'un demi tour ?");
-        tour = scanner3.next();
-        District d = jeu.districts.get(district);
-        if (sens == "horaire") {
-            if (tour == "quart") {
+        Object[] options = {"D1","D2", "D3", "D4", "D4", "D5", "D6", "D7", "D8", "D9"};
+        String d1= (String) JOptionPane.showInputDialog(null,
+                 " Quel District souhaitez-vous déplacer?",
+                "Joueurs", JOptionPane. QUESTION_MESSAGE, null, options, options[0]);
+
+
+        Object[] options2 = {"Horaire", "Anti-Horaire"};
+        String sens = (String) JOptionPane.showInputDialog(null,
+                "Dans quel sens (horaire ou anti-horaire) souhaitez vous le deplacer ?",
+                "Rotation", JOptionPane. QUESTION_MESSAGE, null, options2, options2[0]);
+
+
+        Object[] options3 = {"Demi Tour", "Demi Tour"};
+        String choixSens = (String) JOptionPane.showInputDialog(null,
+                "Voulez - vous le déplacer d'un quart de tour ou d'un demi tour ?",
+                "Rotation", JOptionPane. QUESTION_MESSAGE, null, options3, options3[0]);
+
+
+        District d = jeu.districts.get(d1);
+        if (sens == "Horaire") {
+            if (choixSens == "Quart de Tour") {
                 d.swapQuartHoraire();
             }
-            if (tour == "demi") {
+            if (choixSens == "Demi Tour") {
                 d.swapQuartHoraire();
                 d.swapQuartHoraire();
             }
         }
-        if (sens == "antihoraire") {
-            if (tour == "quart") {
+        if (sens == "Anti-Horaire") {
+            if (choixSens == "Demi Tour") {
                 d.swapQuartAntihoraire();
             }
-            if (tour == "demi") {
+            if (choixSens == "Demi Tour") {
                 d.swapQuartAntihoraire();
                 d.swapQuartAntihoraire();
             }

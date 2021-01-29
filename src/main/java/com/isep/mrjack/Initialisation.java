@@ -25,6 +25,7 @@ public class Initialisation {
   }
 
 
+
   List<String> pioche = new LinkedList<>();
   Map<String, PersonnagePlateau> personnages = new HashMap<>();
 

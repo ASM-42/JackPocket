@@ -106,6 +106,7 @@ public class Initialisation {
     JetonsAction jeton4;
 
 
+
     //Création Jetons Temps
     int[] jetonT1;
     int[] jetonT2;
@@ -430,6 +431,7 @@ public class Initialisation {
         jeton2 = new JetonsAction("Watson", "Toby", this);
         jeton3 = new JetonsAction("Rotation", "Joker", this);
         jeton4 = new JetonsAction("Rotation", "Echange", this);
+
 
         jetonT1 = new int[]{1, 1};
         jetonT2 = new int[]{2, 0};

@@ -254,5 +254,18 @@ public class Initialisation {
     joueurE = new Enqueteur("nameE");
 
 
+    for (int d =0; d<3; d++){
+      if (d == 0){
+        PersonnageDetective Watson = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D3"), this.districts.get("D3").getBas())), "/images/jet_detec/Watson.png");
+      }
+      if (d == 1){
+        PersonnageDetective Toby = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D8"), this.districts.get("D8").getBas())), "/images/jet_detec/Tobby.png");
+      }
+      if (d == 2){
+        PersonnageDetective Sherlock = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D1"), this.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png");
+      }
+    }
+
+
   }
 }

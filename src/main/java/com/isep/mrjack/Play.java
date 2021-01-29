@@ -28,7 +28,6 @@ public class Play {
         int coupable = rnd.nextInt(Jeu.pioche.size());
 
 
-
         //GRAPHIQUE
 
 /*
@@ -60,10 +59,10 @@ public class Play {
                 parent.dispose();
 
                 String nomJoueur1 = JOptionPane.showInputDialog(
-                        "Entrez le nom du premier joueur:", "Amandine");
+                        "Entrez le nom du premier joueur:", "Joueur1");
                 player1.setName(nomJoueur1);
                 String nomJoueur2 = JOptionPane.showInputDialog
-                        ("Entrez le nom du second joueur:", "Solene");
+                        ("Entrez le nom du second joueur:", "Joueur2");
                 player2.setName(nomJoueur2);
 
 
@@ -131,6 +130,8 @@ public class Play {
             int actionR2 = random2.nextInt(2);
             int actionR3 = random2.nextInt(2);
             int actionR4 = random2.nextInt(2);
+
+
             /*String[][] jetonsTour =
                     new String[][]{Jeu.jeton1.quelleAction(actionR1), Jeu.jeton2.quelleAction(actionR2),
                             Jeu.jeton4.quelleAction(actionR3),Jeu.jeton4.quelleAction(actionR4),};

@@ -19,6 +19,7 @@ public final class MrJackActionListener {
   }
 
   public static ActionListener createJetonTPair(JButton button) {
+
     return new JetonTempsPair(button);
   }
 
@@ -50,6 +51,7 @@ public final class MrJackActionListener {
 
   private static class JetonTempsPair implements ActionListener {
     JButton button;
+
 
     public JetonTempsPair(JButton button) {
       this.button = button;

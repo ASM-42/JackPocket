@@ -10,6 +10,7 @@ public class JetonsAction {
     public String image2;
     public String[] action1 = new String[]{typeAction1, typeAction2};
     public String[] action2 = new String[]{image1, image2};
+    Plateau plateau;
 
     PersonnageDetective Watson;
     PersonnageDetective Toby;
@@ -47,10 +48,10 @@ public class JetonsAction {
                 ("Voulez vous déplacer le détective d'un seul espace (tapez 1) ou de deux espaces (tapez 2) ?");
         reponse1 = scanner.next();
         if (reponse1.equals(1)){
-            Sherlock.MoveDetective1(Sherlock.getPositionDetective());
+            Sherlock.MoveDetective1(Sherlock.getPositionDetective(), plateau);
         }
         if (reponse1.equals(2)){
-            Sherlock.MoveDetective2(Sherlock.getPositionDetective());
+            Sherlock.MoveDetective2(Sherlock.getPositionDetective(), plateau);
         }
     }
 
@@ -61,10 +62,10 @@ public class JetonsAction {
                 ("Voulez vous déplacer le détective d'un seul espace (tapez 1) ou de deux espaces (tapez 2) ?");
         reponse1 = scanner.next();
         if (reponse1.equals(1)){
-            Toby.MoveDetective1(Toby.getPositionDetective());
+            Toby.MoveDetective1(Toby.getPositionDetective(), plateau);
         }
         if (reponse1.equals(2)){
-            Toby.MoveDetective2(Toby.getPositionDetective());
+            Toby.MoveDetective2(Toby.getPositionDetective(), plateau);
         }
     }
 
@@ -75,10 +76,10 @@ public class JetonsAction {
                 ("Voulez vous déplacer le détective d'un seul espace (tapez 1) ou de deux espaces (tapez 2) ?");
         reponse1 = scanner.next();
         if (reponse1.equals(1)){
-            Watson.MoveDetective1(Watson.getPositionDetective());
+            Watson.MoveDetective1(Watson.getPositionDetective(), plateau);
         }
         if (reponse1.equals(2)){
-            Watson.MoveDetective2(Watson.getPositionDetective());
+            Watson.MoveDetective2(Watson.getPositionDetective(), plateau);
         }
     }
 
@@ -153,21 +154,21 @@ public class JetonsAction {
             System.out.println ("Quel detective voulez vous déplacer ?");
         reponse1 = scanner.next();
         if (reponse1.equals("Watson"))
-            Watson.MoveDetective1(Watson.getPositionDetective());
+            Watson.MoveDetective1(Watson.getPositionDetective(), plateau);
         if (reponse1.equals("Sherlock"))
-            Sherlock.MoveDetective1(Sherlock.getPositionDetective());
+            Sherlock.MoveDetective1(Sherlock.getPositionDetective(), plateau);
         if (reponse1.equals("Toby"))
-            Toby.MoveDetective1(Toby.getPositionDetective());
+            Toby.MoveDetective1(Toby.getPositionDetective(), plateau);
 
         if (player.getRole() == 0) //com.isep.mrjack.MrJack
             System.out.println ("Voulez vous déplacer un detective, si non tapez non si oui tapez le nom du detective à déplacer ?");
         reponse1 = scanner.next();
         if (reponse1.equals("Watson"))
-            Watson.MoveDetective1(Watson.getPositionDetective());
+            Watson.MoveDetective1(Watson.getPositionDetective(), plateau);
         if (reponse1.equals("Sherlock"))
-            Sherlock.MoveDetective1(Sherlock.getPositionDetective());
+            Sherlock.MoveDetective1(Sherlock.getPositionDetective(), plateau);
         if (reponse1.equals("Toby"))
-            Toby.MoveDetective1(Toby.getPositionDetective());
+            Toby.MoveDetective1(Toby.getPositionDetective(), plateau);
 
     }
 

@@ -1,8 +1,6 @@
 package com.isep.mrjack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class Initialisation {
 
@@ -71,6 +69,8 @@ public class Initialisation {
     District D8;
     District D9;
     ArrayList<District> All;
+
+    Map<String, District> districts = new HashMap<>();
 
 
     public void CreationPlateau (){
@@ -426,6 +426,15 @@ public class Initialisation {
         D9 = new District(MissStealthy, "/images/district/M_Stealthy.png");
         All = new ArrayList<District>(Arrays.asList(D1, D2, D3, D4, D5, D6, D7, D8, D9));
 
+
+
+        List<String> imagesPersonnages = List.of("Madame", "J_Bert", "J_Pizzer", "I_Lestrada", "W_Gull", "J_Lane", "J_Smith", "S_Goodley", "M_Stealthy");
+        List<String> nomsDistricts = List.of("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9");
+        for (int i = 0; i < imagesPersonnages.size(); i++) {
+            //String nomPerso = nomsPersonnages.get(i);
+            District d = new District(pioche[i], String.format("/images/district/%s.png", imagesPersonnages.get(i)));
+            this.districts.put(nomsDistricts.get(i), d);
+        }
 
         jeton1 = new JetonsAction("Sherlock", "Carte Alibi", this);
         jeton2 = new JetonsAction("Watson", "Toby", this);

@@ -20,7 +20,7 @@ public class PersonnageDetective {
     }
 
     public PersonnageDetective(ArrayList<Object> positionDetective,
-                               String image) {
+                               String image, Initialisation jeu) {
         //super(name, role);
         this.positionDetective = positionDetective;
         //setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D3"), jeu.districts.get("D3").getBas())));

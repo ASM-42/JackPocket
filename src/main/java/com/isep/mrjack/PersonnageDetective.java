@@ -23,10 +23,10 @@ public class PersonnageDetective {
                                String image) {
         //super(name, role);
         this.positionDetective = positionDetective;
-        setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D3"), jeu.districts.get("D3").getBas())));
+        //setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D3"), jeu.districts.get("D3").getBas())));
         this.jeu = jeu;
-        this.suspectVisibles = SuspectsVision(positionDetective);
-        this.nbSuspectVisibles = suspectVisibles.size();
+        //this.suspectVisibles = SuspectsVision(positionDetective);
+        //this.nbSuspectVisibles = suspectVisibles.size();
         this.image = image;
     }
 
@@ -192,16 +192,17 @@ public class PersonnageDetective {
         }
     }
 
-
+/*
     public ArrayList<PersonnagePlateau> SuspectsVision(ArrayList<Object> positionDetective){
         District Dx = (District) positionDetective.get(0);
-        ArrayList<Integer> side = (ArrayList<Integer>) positionDetective.get(1);
-        while (side.get(0) != 1){
+        ArrayList<Object> side = (ArrayList<Object>) positionDetective.get(1);
+        int mur = (Integer) side.get(0);
+        while (mur != 1){
             suspectVisibles.add(Dx.getPersonnage());
             nbSuspectVisibles += 1;}
         return suspectVisibles;
     }
-
+*/
     public void setPositionDetective(ArrayList<Object> positionDetective) {
         this.positionDetective = positionDetective;
     }

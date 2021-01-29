@@ -15,6 +15,8 @@ public class PersonnageDetective {
     public int nbSabliers;
     public String image;
 
+
+
     public String getImage() {
         return image;
     }

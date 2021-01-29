@@ -93,6 +93,8 @@ public class JetonsAction {
         }
     }
 
+
+
     public void rotationDistrict () {
         String district;
         String sens;

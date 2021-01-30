@@ -10,8 +10,7 @@ public class PersonnageDetective {
     private ArrayList<Object> positionDetective;// = new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite()));
     //  (ArrayList<com.isep.mrjack.District>) Arrays.asList(D1, D1.getGauche());
     //[com.isep.mrjack.District, Gauche/Droite...]
-    private ArrayList<PersonnagePlateau> suspectVisibles;
-    private int nbSuspectVisibles;
+    private ArrayList<PersonnagePlateau> suspectVisibles ;
     public int nbSabliers;
     public String image;
 
@@ -23,23 +22,20 @@ public class PersonnageDetective {
 
     public PersonnageDetective(ArrayList<Object> positionDetective,
                                String image, Initialisation jeu) {
-        //super(name, role);
         this.positionDetective = positionDetective;
-        //setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D3"), jeu.districts.get("D3").getBas())));
+        setPositionDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D3"), jeu.districts.get("D3").getBas())));
         this.jeu = jeu;
-        //this.suspectVisibles = SuspectsVision(positionDetective);
-        //this.nbSuspectVisibles = suspectVisibles.size();
         this.image = image;
     }
 
     public void MoveDetective1 (PersonnageDetective detective, Plateau plateau){
         District[] district = jeu.districts.values().toArray(new District[9]);
         District d = jeu.districts.get(positionDetective.get(0));
-        ArrayList<String> side = (ArrayList<String>) positionDetective.get(1);
+        Object[] side = (Object[]) positionDetective.get(1);
         //JButton place = new JButton();
 
         //Si le detective est à gauche
-        if (side.get(2).equals('G')){
+        if (side[2].equals('G')){
             if (d == district[0]){
                 plateau.detectiveVide1[0].setIcon(null);
                 positionDetective.set(1, d.getHaut());
@@ -58,7 +54,7 @@ public class PersonnageDetective {
             }
         }
         //Si le detective est en haut
-        if (side.get(2).equals('H')){
+        if (side[2].equals('H')){
             if (d == district[0]){
                 plateau.detectiveVide2[0].setIcon(null);
                 positionDetective.set(0, jeu.districts.get(1));
@@ -76,7 +72,7 @@ public class PersonnageDetective {
             }
         }
         //Si le detective est à droite
-        if (side.get(2).equals('D')){
+        if (side[2].equals('D')){
             if (d == district[2]){
                 plateau.detectiveVide3[0].setIcon(null);
                 positionDetective.set(0, jeu.districts.get(1));
@@ -94,7 +90,7 @@ public class PersonnageDetective {
             }
         }
         //Si le detective est en bas
-        if (side.get(2).equals('B')){
+        if (side[2].equals('B')){
             if (d == district[8]){
                 plateau.detectiveVide4[2].setIcon(null);
                 positionDetective.set(0, jeu.districts.get(7));
@@ -194,17 +190,15 @@ public class PersonnageDetective {
         }
     }
 
-/*
     public ArrayList<PersonnagePlateau> SuspectsVision(ArrayList<Object> positionDetective){
         District Dx = (District) positionDetective.get(0);
-        ArrayList<Object> side = (ArrayList<Object>) positionDetective.get(1);
-        int mur = (Integer) side.get(0);
+        Object[] side = (Object[]) positionDetective.get(1);
+        int mur = (Integer) side[0];
         while (mur != 1){
-            suspectVisibles.add(Dx.getPersonnage());
-            nbSuspectVisibles += 1;}
+            suspectVisibles.add(Dx.getPersonnage());}
         return suspectVisibles;
     }
-*/
+
     public void setPositionDetective(ArrayList<Object> positionDetective) {
         this.positionDetective = positionDetective;
     }
@@ -229,13 +223,6 @@ public class PersonnageDetective {
         return positionDetective;
     }
 
-    public int getNbSuspectVisibles() {
-        return nbSuspectVisibles;
-    }
-
-    public void setNbSuspectVisibles(int nbSuspectVisibles) {
-        this.nbSuspectVisibles = nbSuspectVisibles;
-    }
 
     public int getNbSabliers() {
         return nbSabliers;

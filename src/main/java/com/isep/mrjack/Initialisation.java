@@ -1,6 +1,9 @@
 package com.isep.mrjack;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class Initialisation {
 
@@ -30,7 +33,7 @@ public class Initialisation {
   Map<String, PersonnagePlateau> personnages = new HashMap<>();
 
   public int index(String[] table, String e){
-    for(int i=0; i<table.length+1; i++){
+    for(int i=0; i<table.length; i++){
       if(table[i] == e){
         return i;
       }
@@ -109,108 +112,15 @@ public class Initialisation {
 
   MrJack joueurM;
   Enqueteur joueurE;
+  PersonnageDetective Watson;
+  PersonnageDetective Toby;
+  PersonnageDetective Sherlock;
+  /*Plateau plateau;
 
-
-  public int[] getJetonsTemps(int tour) {
-    return jetonsTemps[tour];
+  public void initJeu() {
+    this.setContentPane(plateau);
   }
-
-  public JetonsAction getJeton1() {
-    return jeton1;
-  }
-
-  public void setJeton1(JetonsAction jeton1) {
-    this.jeton1 = jeton1;
-  }
-
-  public JetonsAction getJeton2() {
-    return jeton2;
-  }
-
-  public void setJeton2(JetonsAction jeton2) {
-    this.jeton2 = jeton2;
-  }
-
-  public JetonsAction getJeton3() {
-    return jeton3;
-  }
-
-  public void setJeton3(JetonsAction jeton3) {
-    this.jeton3 = jeton3;
-  }
-
-  public JetonsAction getJeton4() {
-    return jeton4;
-  }
-
-  public void setJeton4(JetonsAction jeton4) {
-    this.jeton4 = jeton4;
-  }
-
-  public int[] getJetonT1() {
-    return jetonT1;
-  }
-
-  public void setJetonT1(int[] jetonT1) {
-    this.jetonT1 = jetonT1;
-  }
-
-  public int[] getJetonT2() {
-    return jetonT2;
-  }
-
-  public void setJetonT2(int[] jetonT2) {
-    this.jetonT2 = jetonT2;
-  }
-
-  public int[] getJetonT3() {
-    return jetonT3;
-  }
-
-  public void setJetonT3(int[] jetonT3) {
-    this.jetonT3 = jetonT3;
-  }
-
-  public int[] getJetonT4() {
-    return jetonT4;
-  }
-
-  public void setJetonT4(int[] jetonT4) {
-    this.jetonT4 = jetonT4;
-  }
-
-  public int[] getJetonT5() {
-    return jetonT5;
-  }
-
-  public void setJetonT5(int[] jetonT5) {
-    this.jetonT5 = jetonT5;
-  }
-
-  public int[] getJetonT6() {
-    return jetonT6;
-  }
-
-  public void setJetonT6(int[] jetonT6) {
-    this.jetonT6 = jetonT6;
-  }
-
-  public int[] getJetonT7() {
-    return jetonT7;
-  }
-
-  public void setJetonT7(int[] jetonT7) {
-    this.jetonT7 = jetonT7;
-  }
-
-  public int[] getJetonT8() {
-    return jetonT8;
-  }
-
-  public void setJetonT8(int[] jetonT8) {
-    this.jetonT8 = jetonT8;
-  }
-
+*/
   public Initialisation() {
     List<String> nomsPersonnages = List.of("Madame", "JohnPizer", "JeremyBert", "InspLestrade", "WilliamGull", "JosephLane",
             "JohnSmith", "SgtGoodley", "MissStealthy");
@@ -252,20 +162,14 @@ public class Initialisation {
 
 
 
-    joueurE = new Enqueteur("nameE");
+        Watson = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D3"), this.districts.get("D3").getBas())), "/images/jet_detec/Watson.png", this);
+
+        Toby = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D8"), this.districts.get("D8").getBas())), "/images/jet_detec/Tobby.png", this);
+
+        Sherlock = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D1"), this.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png", this);
 
 
-    for (int d =0; d<3; d++){
-      if (d == 0){
-        PersonnageDetective Watson = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D3"), this.districts.get("D3").getBas())), "/images/jet_detec/Watson.png", this);
-      }
-      if (d == 1){
-        PersonnageDetective Toby = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D8"), this.districts.get("D8").getBas())), "/images/jet_detec/Tobby.png", this);
-      }
-      if (d == 2){
-        PersonnageDetective Sherlock = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D1"), this.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png", this);
-      }
-    }
+    joueurE = new Enqueteur("nameE", Watson, Toby, Sherlock);
 
 
   }

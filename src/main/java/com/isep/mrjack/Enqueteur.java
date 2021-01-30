@@ -11,8 +11,11 @@ public class Enqueteur extends Player {
     public PersonnageDetective Sherlock;
             //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D1"), jeu.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png", jeu);
 
-    public Enqueteur(String name) {
+    public Enqueteur(String name, PersonnageDetective Watson, PersonnageDetective Toby, PersonnageDetective Sherlock) {
         super(name);
+        this.Waston = Watson;
+        this.Toby = Toby;
+        this.Sherlock = Sherlock;
         //this.jeu = jeu;
     }
 

@@ -18,9 +18,9 @@ public final class MrJackActionListener {
   private MrJackActionListener() {
   }
 
-  public static ActionListener createJetonTPair(JButton button) {
+  public static ActionListener createJetonTPair(JButton button, Initialisation Jeu, Plateau plateau) {
 
-    return new JetonTempsPair(button);
+    return new JetonTempsPair(button, Jeu, plateau);
   }
 
   public static ActionListener createReturnDistrictAL(JButton button) {
@@ -51,16 +51,18 @@ public final class MrJackActionListener {
 
   private static class JetonTempsPair implements ActionListener {
     JButton button;
+    Initialisation Jeu;
+    Plateau plateau;
 
 
-    public JetonTempsPair(JButton button) {
+    public JetonTempsPair(JButton button, Initialisation Jeu, Plateau plateau) {
       this.button = button;
+      this.Jeu = Jeu;
+      this.plateau = plateau;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      Initialisation Jeu = new Initialisation();
-      Plateau plateau = new Plateau();
       Random random2 = new Random();
       int actionR1 = random2.nextInt(2);
       int actionR2 = random2.nextInt(2);

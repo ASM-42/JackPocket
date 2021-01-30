@@ -4,13 +4,6 @@ public class MrJack extends Player {
     public int nbSabliers;
     public PersonnagePlateau coupable ;
 
-
-    public MrJack(String name, int nbSabliers, PersonnagePlateau coupable) {
-        super(name);
-        this.nbSabliers = nbSabliers;
-        this.coupable = coupable;
-    }
-
     public MrJack(String name) {
         super(name);
     }

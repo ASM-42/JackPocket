@@ -6,6 +6,7 @@ import java.awt.*;
 public class Plateau extends JPanel {
 
 
+
     public Plateau() {
         super(new BorderLayout());
         this.panelMilieu();
@@ -15,6 +16,7 @@ public class Plateau extends JPanel {
         this.panelBas();
     }
 
+    Initialisation Jeu = new Initialisation();
 
     private void panelMilieu() {
 
@@ -69,7 +71,7 @@ public class Plateau extends JPanel {
             if (i == 5) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/6.png"))); }
             if (i == 6) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/7.png"))); }
             if (i == 7) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/8.png"))); }
-            jetTemps[i].addActionListener(MrJackActionListener.createJetonTPair(jetTemps[i]));
+            jetTemps[i].addActionListener(MrJackActionListener.createJetonTPair(jetTemps[i], Jeu, this));
 
             surfaceGauche.add(jetTemps[i]);
         }

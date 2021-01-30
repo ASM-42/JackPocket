@@ -7,7 +7,6 @@ import java.util.Scanner;
 import java.util.Random;
 public class JetonsAction {
     Initialisation jeu;
-    Plateau plateau;
     public String typeAction1;
     public String typeAction2;
     public String image1;
@@ -43,32 +42,37 @@ public class JetonsAction {
     }
 
     public void bougerSherlock (Player player, Plateau plateau) {
-        String[] place = new String[]{"1", "2"};
-        String reponse1 = (String) JOptionPane.showInputDialog(null,
+        Object[] options = {"1","2"};
+        int reponse1 = JOptionPane.showOptionDialog(plateau,
                 "De combien de case souhaitez vous déplacer Sherlock?",
-                "BougerToby",
-                JOptionPane.QUESTION_MESSAGE, null, place, "Choisissez parmis les choix ci-dessous");
-
-        if (reponse1.equals("Coco")){
+                "BougerWatson",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,     //do not use a custom Icon
+                options,  //the titles of buttons
+                options[0]); //default button title
+        if (reponse1 == 1){
             jeu.joueurE.getSherlock().MoveDetective1(jeu.joueurE.getSherlock(), plateau);
         }
-        if (reponse1.equals("2")){
+        if (reponse1 == 2){
             jeu.joueurE.getSherlock().MoveDetective2(jeu.joueurE.getSherlock().getPositionDetective(), plateau);
         }
     }
 
     public void bougerToby (Player player, Plateau plateau) {
-        String[] place = new String[]{"1", "2"};
-        String reponse1 = (String) JOptionPane.showInputDialog(null,
+        Object[] options = {"1","2"};
+        int reponse1 = JOptionPane.showOptionDialog(plateau,
                 "De combien de case souhaitez vous déplacer Toby?",
-                "BougerToby",
-                JOptionPane.QUESTION_MESSAGE, null, place, "Choisissez parmis les choix ci-dessous");
-        System.out.println("here2");
-
-        if (reponse1.equals("1")){
+                "BougerWatson",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,     //do not use a custom Icon
+                options,  //the titles of buttons
+                options[0]); //default button title
+        if (reponse1 == 1){
             jeu.joueurE.getToby().MoveDetective1(jeu.joueurE.getToby(), plateau);
         }
-        if (reponse1.equals("2")){
+        if (reponse1 == 2){
             jeu.joueurE.getToby().MoveDetective2(jeu.joueurE.getToby().getPositionDetective(), plateau);
         }
     }
@@ -94,9 +98,6 @@ public class JetonsAction {
 
 
     public void rotationDistrict () {
-        String district;
-        //String sens;
-        String tour;
         Object[] options = {"D1","D2", "D3", "D4", "D4", "D5", "D6", "D7", "D8", "D9"};
         String d1= (String) JOptionPane.showInputDialog(null,
                  " Quel District souhaitez-vous déplacer?",
@@ -117,41 +118,28 @@ public class JetonsAction {
 
         District d = jeu.districts.get(d1);
         if (sens == "Horaire") {
-            if (choixSens == "Quart de Tour") {
-                d.swapQuartHoraire();
-            }
+            if (choixSens == "Quart de Tour") { d.swapQuartHoraire(); }
             if (choixSens == "Demi Tour") {
-                d.swapQuartHoraire();
-                d.swapQuartHoraire();
-            }
+                d.swapQuartHoraire(); d.swapQuartHoraire();}
         }
         if (sens == "Anti-Horaire") {
-            if (choixSens == "Demi Tour") {
-                d.swapQuartAntihoraire();
-            }
-            if (choixSens == "Demi Tour") {
-                d.swapQuartAntihoraire();
-                d.swapQuartAntihoraire();
-            }
+            if (choixSens == "Demi Tour") { d.swapQuartAntihoraire(); }
+            if (choixSens == "Demi Tour") { d.swapQuartAntihoraire();d.swapQuartAntihoraire(); }
         }
     }
     public void echangeDistrict(){
-        String district1;
-        String district2;
+        Object[] options = {"D1","D2", "D3", "D4", "D4", "D5", "D6", "D7", "D8", "D9"};
+        String d1= (String) JOptionPane.showInputDialog(null,
+                " Quel District souhaitez-vous déplacer?",
+                "Joueurs", JOptionPane. QUESTION_MESSAGE, null, options, options[0]);
+        String d2= (String) JOptionPane.showInputDialog(null,
+                " Quel District souhaitez-vous déplacer?",
+                "Joueurs", JOptionPane. QUESTION_MESSAGE, null, options, options[0]);
+        District temp = jeu.districts.get(d1);
+        jeu.districts.replace(d1, jeu.districts.get(d2));
+        jeu.districts.replace(d2, temp);
 
-        Scanner scanner1 = new Scanner(System.in);
-        System.out.println
-                ("Quel est le premier district que souhaitez-vous déplacer? (ex : D1, D2...");
-        district1 = scanner1.next();
-        Scanner scanner2 = new Scanner(System.in);
-        System.out.println
-                ("Quel est le second district que souhaitez-vous déplacer? (ex : D1, D2...");
-        district2 = scanner2.next();
-        District d1 = jeu.districts.get(district1);
-        District d2 = jeu.districts.get(district2);
-        District temp = d1;
-        jeu.districts.put(district1, d2);
-        jeu.districts.put(district2, temp);
+
     }
     public void Joker (Player player) {
         String reponse1;
@@ -222,7 +210,7 @@ public class JetonsAction {
     }
 
 
-    public void Action(int action, Player player) {
+    public void Action(int action, Player player, Plateau plateau) {
         if (action == 1){
             faireAction(typeAction1, player, plateau);
         }

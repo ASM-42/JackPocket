@@ -16,7 +16,8 @@ public class Play {
 
     public static void main(String[] args){
 
-        Initialisation Jeu = new Initialisation();
+        Plateau plateau = new Plateau();
+        Initialisation Jeu = plateau.Jeu;
         String action;
         JetonsAction jA1 = Jeu.jeton1;
         JetonsAction jA2 = Jeu.jeton2;
@@ -27,18 +28,8 @@ public class Play {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         int coupable = rnd.nextInt(Jeu.pioche.size());
 
-
+out.println("Ayo");
         //GRAPHIQUE
-
-/*
-        MonInteraction interaction = new MonInteraction();
-        interaction.setSize(new Dimension(400, 1000));
-        interaction.setVisible(true);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        interaction.setLocation((3*dim.width/4)-39,1);
-        interaction.texte.setText("Bonjour");
-*/
-
         JFrame parent = new JFrame();
         parent.setAlwaysOnTop(true);
         //parent.setSize(400, 1000);
@@ -73,6 +64,8 @@ public class Play {
                 if (role == "MrJack") {
                     player1.setRole(0);
                     player2.setRole(1);
+                    Jeu.joueurM.setName(player1.getName());
+                    Jeu.joueurE.setName(player2.getName());
                     JOptionPane.showMessageDialog(null,
                             player1.getName() + " vous jouez MrJack, et "
                                     + player2.getName() + " vous jouez l'enqueteur",
@@ -81,12 +74,15 @@ public class Play {
                 }if (role == "Enqueteur"){
                     player2.setRole(0);
                     player1.setRole(1);
+                    Jeu.joueurM.setName(player2.getName());
+                    Jeu.joueurE.setName(player1.getName());
                     JOptionPane.showMessageDialog(null,
                             player2.getName() + " vous jouez MrJack, et "
                                     + player1.getName() + " vous jouez l'enqueteur",
                             "Joueurs",
                             JOptionPane.PLAIN_MESSAGE);
                 }
+
 
                 JOptionPane.showMessageDialog(null,
                         "Le jeu va commencer, nous attribuons à un personnage aléatoire à Mr Jack",
@@ -104,7 +100,7 @@ public class Play {
                         "Vous êtes " + Jeu.pioche.get(coupable),
                         "Mr Jack",
                         JOptionPane.PLAIN_MESSAGE);
-                Jeu.pioche.remove(coupable);
+                Jeu.joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(coupable)));
 
                 MonJeu jeu = new MonJeu();
                 jeu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -119,10 +115,9 @@ public class Play {
 
             }
         });
-        if (player1.getRole() == 0){ Jeu.joueurM = player1.setRoleMrJack(player1); Jeu.joueurE = player2.setRoleEnqueteur(player2);}
-        else{ Jeu.joueurM = player2.setRoleMrJack(player2); Jeu.joueurE = player1.setRoleEnqueteur(player1);}
-        Jeu.joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(coupable)));
 
+
+out.println("Hey");
         //Première étape
         for (int tour = 0; tour<9; tour++){
             Random random2 = new Random();

@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 public class District extends Object {
     private String orientation; //"up" = personnages, "down" pas de personnage
-    private Object[] Gauche = {1, 1, 'G'}; // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
-    private Object[] Haut = {0, 1, 'H'};
-    private Object[] Droite = {0, 1, 'D'};
-    private Object[] Bas = {0, 1, 'B'};
+    private Object[] Gauche = {0, true, 'G'}; // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
+    private Object[] Haut = {0, true, 'H'};
+    private Object[] Droite = {0, true, 'D'};
+    private Object[] Bas = {1, true, 'B'};
     private ArrayList<Object[]> cotes;
     private PersonnagePlateau personnage;
     private int indice;
@@ -23,14 +23,6 @@ public class District extends Object {
         this.image = image;
     }
             /*
-    public void rotationImage (){
-        if (angle == 0){
-
-        }
-    }
-    */
-
-/*
     public District(String orientation, ArrayList<Object> gauche, ArrayList<Object> haut, ArrayList<Object> droite,
                     ArrayList<Object> bas, ArrayList<ArrayList<Object>> cotes, PersonnagePlateau personnage, int indice) {
         this.orientation = orientation;
@@ -55,20 +47,25 @@ public class District extends Object {
         Bas = Droite;
         Droite = Haut;
         Haut = temp;
+        Haut[2]='H'; Gauche[2]='G'; Droite[2]='D'; Bas[2]='B';
         if (angle == 260){ angle = 0;}
         else{angle += 90;}
+        image = String.format("/images/district/%s.png", image+"_"+angle);
+
     }
 
     public void swapQuartAntihoraire(){
         Object[] temp = Gauche;
-        Gauche = Haut;
+        Gauche = Haut; Haut[2]='H';
         Haut = Droite;
         Droite = Bas;
         Bas = temp;
+        Haut[2]='H'; Gauche[2]='G'; Droite[2]='D'; Bas[2]='B';
         if (angle == 0){ angle = 260;}
         if (angle == 260){ angle = 180;}
         if (angle == 180){ angle = 90;}
         if (angle == 90){ angle = 0;}
+        image = String.format("/images/district/%s.png", image+"_"+String.valueOf(angle));
     }
 
 
@@ -147,8 +144,17 @@ public class District extends Object {
         this.personnage = personnage;
     }
 
-    public void setIndice(int indice) {
-        this.indice = indice;
+    public void setIndice(int i) {
+        if(i == 0){ Droite[1] = false; Bas[1] = false;}
+        if(i == 1){ Droite[1] = false; Bas[1] = false; Gauche[1] = false;}
+        if(i == 2){ Gauche[1] = false; Bas[1] = false;}
+        if(i == 3){ Droite[1] = false; Bas[1] = false; Haut[1] = false;}
+        if(i == 4){ Droite[1] = false; Bas[1] = false; Gauche[1] = false; Haut[1] = false;}
+        if(i == 5){ Gauche[1] = false; Bas[1] = false; Haut[1] = false;}
+        if(i == 6){ Droite[1] = false; Haut[1] = false;}
+        if(i == 7){ Droite[1] = false; Haut[1] = false; Gauche[1] = false;}
+        if(i == 8){ Gauche[1] = false; Haut[1] = false;}
+        this.indice = i;
     }
 
     public void setAngle(int angle) {

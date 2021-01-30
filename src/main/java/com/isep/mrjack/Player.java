@@ -33,13 +33,15 @@ public abstract class Player {
         //MrJack joueurM = (MrJack) player;
         MrJack joueurM = new MrJack(name);
         return joueurM;
-    }
+    }Ú
 
     public Enqueteur setRoleEnqueteur(Player player) {
         player.setRole(1);
         Enqueteur joueurE = (Enqueteur) player;
         return joueurE;
     }
+        uúuúd
+    
 */
 
 }

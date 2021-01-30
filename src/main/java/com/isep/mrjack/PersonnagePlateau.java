@@ -1,12 +1,17 @@
 package com.isep.mrjack;
 
+import javax.swing.*;
+
 public class PersonnagePlateau{
     public int[] position;
+    public String nomP;
+    public ImageIcon carte;
     private boolean visible;
     private int sabliers;
     public String statut; //coupable ou non
 
-    public PersonnagePlateau(int sabliers) {
+    public PersonnagePlateau(String nomP, int sabliers) {
+        this.nomP = nomP;
         this.sabliers = sabliers;
     }
 

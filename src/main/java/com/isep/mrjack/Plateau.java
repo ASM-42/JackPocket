@@ -27,23 +27,7 @@ public class Plateau extends JPanel {
         for (int i = 0; i < district.length; i++) {
             district[i] = new JButton("");
             plateauPanel.add(district[i]);
-            // ImageIcon icon = new ImageIcon(new ImageIcon("tonImage.jpg").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
-
-            if (i == 0) {
-                //district[i].setBounds(0,0,10,10);
-                district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/W_Gull.png")));
-            }
-            if (i == 1) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Bert.png")));
-                //district[i].setSize(new Dimension(20,20));
-            }
-            if (i == 2) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/M_Stealthy.png"))); }
-            if (i == 3) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Smith.png"))); }
-            if (i == 4) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_Pizzer.png"))); }
-            if (i == 5) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/I_Lestrada.png"))); }
-            if (i == 6) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/J_lane.png"))); }
-            if (i == 7) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/Madame.png"))); }
-            if (i == 8) { district[i].setIcon(new ImageIcon(getClass().getResource("/images/district/S_Goodley.png"))); }
-
+                district[i].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", Jeu.imagesPlateau.get(i)))));
             district[i].addActionListener(MrJackActionListener.createReturnDistrictAL(district[i]));
         }
 
@@ -98,6 +82,7 @@ public class Plateau extends JPanel {
 
         for (int i = 0; i < detectiveVide2.length; i++) {
             detectiveVide2[i] = new JButton("");
+            detectiveVide2[i].setPreferredSize(new Dimension(40, 40));
             detectivePanel2.add(detectiveVide2[i]);
         }
         this.add(detectivePanel2, BorderLayout.PAGE_START);
@@ -162,3 +147,4 @@ public class Plateau extends JPanel {
         this.add(detectivePanel4, BorderLayout.PAGE_END);
     }
 }
+

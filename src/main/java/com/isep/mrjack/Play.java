@@ -28,7 +28,7 @@ public class Play {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         int coupable = rnd.nextInt(Jeu.pioche.size());
 
-out.println("Ayo");
+
         //GRAPHIQUE
         JFrame parent = new JFrame();
         parent.setAlwaysOnTop(true);
@@ -117,7 +117,7 @@ out.println("Ayo");
         });
 
 
-out.println("Hey");
+
         //Première étape
         for (int tour = 0; tour<9; tour++){
             Random random2 = new Random();

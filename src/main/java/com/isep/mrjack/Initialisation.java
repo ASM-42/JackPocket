@@ -67,6 +67,7 @@ public class Initialisation {
 
   //Création des Districts et du com.isep.mrjack.Plateau de Jeu
 
+  List<String> imagesPlateau = new LinkedList<>();
   Map<String, District> districts = new HashMap<>();
 
 
@@ -122,22 +123,25 @@ public class Initialisation {
   }
 */
   public Initialisation() {
-    List<String> nomsPersonnages = List.of("Madame", "JohnPizer", "JeremyBert", "InspLestrade", "WilliamGull", "JosephLane",
-            "JohnSmith", "SgtGoodley", "MissStealthy");
+    List<String> nomsPersonnages = List.of("Madame", "John Pizer", "Jeremy Bert", "Inspecteur Lestrade", "William Gull", "Joseph Lane",
+            "John Smith", "Sergent Goodley", "Miss Stealthy");
     int[] sabliers = {2, 1, 1, 0, 1, 1, 1, 0, 1};
     for (int i = 0; i < sabliers.length; i++) {
-      PersonnagePlateau perso = new PersonnagePlateau(sabliers[i]);
+      PersonnagePlateau perso = new PersonnagePlateau(nomsPersonnages.get(i), sabliers[i]);
       pioche.add(nomsPersonnages.get(i));
       personnages.put(nomsPersonnages.get(i), perso);
     }
     Collections.shuffle(pioche);
-    System.out.printf("Size of pioche: %d\n", pioche.size());
 
-    List<String> imagesPersonnages = List.of("Madame", "J_Bert", "J_Pizzer", "I_Lestrada", "W_Gull", "J_Lane", "J_Smith", "S_Goodley", "M_Stealthy");
+    List<String> imagesD = List.of("Madame", "J_Bert", "J_Pizzer", "I_Lestrada", "W_Gull", "J_Lane", "J_Smith", "S_Goodley", "M_Stealthy");
     List<String> nomsDistricts = List.of("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9");
-    for (int i = 0; i < imagesPersonnages.size(); i++) {
+    for (int i = 0; i < imagesD.size(); i++) {
       String nomPerso = nomsPersonnages.get(i);
-      District d = new District(personnages.get(nomPerso), String.format("/images/district/%s.png", imagesPersonnages.get(i)));
+      imagesPlateau.add(imagesD.get(i));
+      District d = new District(personnages.get(nomPerso), imagesD.get(i));
+      d.setIndice(i);
+      if (i == 0){ d.swapQuartHoraire();}
+      if (i == 2){ d.swapQuartAntihoraire();}
       this.districts.put(nomsDistricts.get(i), d);
     }
 

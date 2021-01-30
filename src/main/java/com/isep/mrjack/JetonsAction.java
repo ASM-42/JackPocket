@@ -42,8 +42,8 @@ public class JetonsAction {
     }
 
     public void bougerSherlock (Player player, Plateau plateau) {
-        Object[] options = {"1","2"};
-        int reponse1 = JOptionPane.showOptionDialog(plateau,
+        Object[] options = {1,2};
+        int reponse1 = (int) JOptionPane.showOptionDialog(plateau,
                 "De combien de case souhaitez vous déplacer Sherlock?",
                 "BougerWatson",
                 JOptionPane.YES_NO_OPTION,
@@ -51,17 +51,17 @@ public class JetonsAction {
                 null,     //do not use a custom Icon
                 options,  //the titles of buttons
                 options[0]); //default button title
-        if (reponse1 == 1){
+        if (reponse1 == JOptionPane.YES_OPTION){
             jeu.joueurE.getSherlock().MoveDetective1(jeu.joueurE.getSherlock(), plateau);
         }
-        if (reponse1 == 2){
+        if (reponse1 == JOptionPane.NO_OPTION){
             jeu.joueurE.getSherlock().MoveDetective2(jeu.joueurE.getSherlock().getPositionDetective(), plateau);
         }
     }
 
     public void bougerToby (Player player, Plateau plateau) {
-        Object[] options = {"1","2"};
-        int reponse1 = JOptionPane.showOptionDialog(plateau,
+        Object[] options = {1, 2};
+        int reponse1 = (int) JOptionPane.showOptionDialog(plateau,
                 "De combien de case souhaitez vous déplacer Toby?",
                 "BougerWatson",
                 JOptionPane.YES_NO_OPTION,
@@ -69,17 +69,17 @@ public class JetonsAction {
                 null,     //do not use a custom Icon
                 options,  //the titles of buttons
                 options[0]); //default button title
-        if (reponse1 == 1){
+        if (reponse1 == JOptionPane.YES_OPTION){
             jeu.joueurE.getToby().MoveDetective1(jeu.joueurE.getToby(), plateau);
         }
-        if (reponse1 == 2){
+        if (reponse1 == JOptionPane.NO_OPTION){
             jeu.joueurE.getToby().MoveDetective2(jeu.joueurE.getToby().getPositionDetective(), plateau);
         }
     }
 
     public void bougerWatson (Player player, Plateau plateau) {
-        Object[] options = {"1","2"};
-        int reponse1 = JOptionPane.showOptionDialog(plateau,
+        Object[] options = {'1', '2'};
+        char reponse1 = (char) JOptionPane.showOptionDialog(plateau,
                 "De combien de case souhaitez vous déplacer Watson?",
                 "BougerWatson",
                 JOptionPane.YES_NO_OPTION,
@@ -87,10 +87,10 @@ public class JetonsAction {
                 null,     //do not use a custom Icon
                 options,  //the titles of buttons
                 options[0]); //default button title
-        if (reponse1 == 1){
+        if (reponse1 == JOptionPane.YES_OPTION){
             jeu.joueurE.getWaston().MoveDetective1(jeu.joueurE.getWaston(), plateau);
         }
-        if (reponse1 == 2){
+        if (reponse1 == JOptionPane.NO_OPTION){
             jeu.joueurE.getWaston().MoveDetective2(jeu.joueurE.getWaston().getPositionDetective(), plateau);
         }
     }
@@ -102,20 +102,14 @@ public class JetonsAction {
         String d1= (String) JOptionPane.showInputDialog(null,
                  " Quel District souhaitez-vous déplacer?",
                 "Joueurs", JOptionPane. QUESTION_MESSAGE, null, options, options[0]);
-
-
         Object[] options2 = {"Horaire", "Anti-Horaire"};
         String sens = (String) JOptionPane.showInputDialog(null,
                 "Dans quel sens (horaire ou anti-horaire) souhaitez vous le deplacer ?",
                 "Rotation", JOptionPane. QUESTION_MESSAGE, null, options2, options2[0]);
-
-
         Object[] options3 = {"Demi Tour", "Demi Tour"};
         String choixSens = (String) JOptionPane.showInputDialog(null,
                 "Voulez - vous le déplacer d'un quart de tour ou d'un demi tour ?",
                 "Rotation", JOptionPane. QUESTION_MESSAGE, null, options3, options3[0]);
-
-
         District d = jeu.districts.get(d1);
         if (sens == "Horaire") {
             if (choixSens == "Quart de Tour") { d.swapQuartHoraire(); }
@@ -138,6 +132,7 @@ public class JetonsAction {
         District temp = jeu.districts.get(d1);
         jeu.districts.replace(d1, jeu.districts.get(d2));
         jeu.districts.replace(d2, temp);
+
 
 
     }
@@ -166,6 +161,7 @@ public class JetonsAction {
             Sherlock.MoveDetective1(Sherlock);
         if (reponse1.equals("Toby"))
             Toby.MoveDetective1(Toby);
+
 */
     }
 

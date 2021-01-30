@@ -32,7 +32,7 @@ public class PersonnageDetective {
         District[] district = jeu.districts.values().toArray(new District[9]);
         District d = jeu.districts.get(positionDetective.get(0));
         Object[] side = (Object[]) positionDetective.get(1);
-        //JButton place = new JButton();
+        JButton place = new JButton();
 
         //Si le detective est à gauche
         if (side[2].equals('G')){
@@ -40,7 +40,7 @@ public class PersonnageDetective {
                 plateau.detectiveVide1[0].setIcon(null);
                 positionDetective.set(1, d.getHaut());
                 plateau.detectiveVide2[0].setIcon(new ImageIcon(getClass().getResource(String.valueOf(image))));
-                //plateau.detectivePanel1.add(place);
+                plateau.detectivePanel2.add(plateau.detectiveVide2[0]);
             }
             if (d == district[3]){
                 plateau.detectiveVide1[1].setIcon(null);

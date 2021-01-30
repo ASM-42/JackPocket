@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class District extends Object {
+public class District {
     private String orientation; //"up" = personnages, "down" pas de personnage
     private Object[] Gauche = {0, true, 'G'}; // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
     private Object[] Haut = {0, true, 'H'};
@@ -14,13 +14,15 @@ public class District extends Object {
     private PersonnagePlateau personnage;
     private int indice;
     private int angle;
-    public String image;
+    private String[] images;
+    public String imageActive;
 
-    public District(PersonnagePlateau personnage, String image) {
+    public District(PersonnagePlateau personnage, String[] images) {
         this.orientation = "up";
         this.personnage = personnage;
         this.angle = 0;
-        this.image = image;
+        this.images = images;
+        this.imageActive = this.images[0];
     }
             /*
     public District(String orientation, ArrayList<Object> gauche, ArrayList<Object> haut, ArrayList<Object> droite,
@@ -50,7 +52,7 @@ public class District extends Object {
         Haut[2]='H'; Gauche[2]='G'; Droite[2]='D'; Bas[2]='B';
         if (angle == 260){ angle = 0;}
         else{angle += 90;}
-        image = String.format("/images/district/%s.png", image+"_"+angle);
+        imageActive = String.format("/images/district/%s.png", imageActive+"_"+angle);
 
     }
 
@@ -65,7 +67,7 @@ public class District extends Object {
         if (angle == 260){ angle = 180;}
         if (angle == 180){ angle = 90;}
         if (angle == 90){ angle = 0;}
-        image = String.format("/images/district/%s.png", image+"_"+String.valueOf(angle));
+        imageActive = String.format("/images/district/%s.png", imageActive+"_"+String.valueOf(angle));
     }
 
 

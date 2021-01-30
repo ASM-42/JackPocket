@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Initialisation {
 
@@ -136,14 +137,17 @@ public class Initialisation {
     List<String> imagesD = List.of("Madame", "J_Bert", "J_Pizzer", "I_Lestrada", "W_Gull", "J_Lane", "J_Smith", "S_Goodley", "M_Stealthy");
     List<String> nomsDistricts = List.of("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9");
     for (int i = 0; i < imagesD.size(); i++) {
+      ThreadLocalRandom rnd = ThreadLocalRandom.current();
+      int x = rnd.nextInt(nomsDistricts.size());
       String nomPerso = nomsPersonnages.get(i);
       imagesPlateau.add(imagesD.get(i));
-      District d = new District(personnages.get(nomPerso), imagesD.get(i));
+      District d = new District(personnages.get(nomPerso), new String[]{imagesD.get(i), "/images/districts/3_Chem/png"});
       d.setIndice(i);
       if (i == 0){ d.swapQuartHoraire();}
       if (i == 2){ d.swapQuartAntihoraire();}
       this.districts.put(nomsDistricts.get(i), d);
     }
+    //Collections.shuffle(imagesPlateau);
 
 
     jeton1 = new JetonsAction(new String[]{"Sherlock","Carte Alibi"}, new String[]{"/images/jet_action/BougerSherlock.png", "/images/jet_action/PiocheAlibi.png"}, this);

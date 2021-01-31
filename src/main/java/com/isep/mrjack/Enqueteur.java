@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Enqueteur extends Player {
+    
+    //déclaration des attributs de ENQUETEUR
     public static final int role = 1;
     public PersonnageDetective Waston;
             //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D3"), jeu.districts.get("D3").getBas())), "/images/jet_detec/Watson.png", jeu);
@@ -12,6 +14,8 @@ public class Enqueteur extends Player {
     public PersonnageDetective Sherlock;
             //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D1"), jeu.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png", jeu);
 
+    
+    //constucteur de ENQUETEUR
     public Enqueteur(String name, PersonnageDetective Watson, PersonnageDetective Toby, PersonnageDetective Sherlock) {
         super(name);
         this.Waston = Watson;
@@ -21,6 +25,8 @@ public class Enqueteur extends Player {
         //this.jeu = jeu;
     }
 
+    
+    //GETTERS ET SETTERS DE DISTRICT
     public PersonnageDetective getWaston() {
         return Waston;
     }

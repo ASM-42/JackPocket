@@ -44,17 +44,17 @@ public class District {
         Droite = Haut;
         Haut = temp;
         Haut[2]='H'; Gauche[2]='G'; Droite[2]='D'; Bas[2]='B';
-        switch (this.angle){
+        switch (this.angle) {
             case 0:
-                this.angle = 270;
-                break;
-            case 270:
-                this.angle = 180;
-                break;
-            case 180:
                 this.angle = 90;
                 break;
             case 90:
+                this.angle = 180;
+                break;
+            case 180:
+                this.angle = 270;
+                break;
+            case 270:
                 this.angle = 0;
                 break;
         }
@@ -67,20 +67,20 @@ public class District {
         Droite = Bas;
         Bas = temp;
         Haut[2]='H'; Gauche[2]='G'; Droite[2]='D'; Bas[2]='B';
-        switch (this.angle){
-            case 0:
-                this.angle = 90;
-                break;
-            case 90:
-                this.angle = 180;
-                break;
-            case 180:
-                this.angle = 270;
-                break;
-            case 270:
-                this.angle = 0;
-                break;
-        }
+            switch (this.angle){
+                case 0:
+                    this.angle = 270;
+                    break;
+                case 270:
+                    this.angle = 180;
+                    break;
+                case 180:
+                    this.angle = 90;
+                    break;
+                case 90:
+                    this.angle = 0;
+                    break;
+            }
 
     }
 

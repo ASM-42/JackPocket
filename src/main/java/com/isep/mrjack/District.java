@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 
 public class District {
+    //déclaration des attributs de DISTRICT
     private String orientation; //"up" = personnages, "down" pas de personnage
     private Object[] Gauche = {false, true, 'G'}; // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
     private Object[] Haut = {false, true, 'H'};
@@ -17,6 +18,7 @@ public class District {
     private final String[] images;
     public String imageActive;
 
+     //constucteur de DISTRICT
     public District(PersonnagePlateau personnage, String[] images) {
         this.orientation = "up";
         this.personnage = personnage;
@@ -24,7 +26,10 @@ public class District {
         this.images = images;
         this.imageActive = this.images[0];
     }
-
+    
+    //PLUSIEURS MÉTHODES DE CLASSE
+    
+    //retourner un district
     public void turn (Plateau plateau) {
         if (this.orientation.equals("up")){
             orientation = "down";
@@ -34,6 +39,7 @@ public class District {
             plateau.district[this.indice].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", this.imageActive+"_"+this.angle))));
         }
     }
+    //tourner un district d'un quart de tour dans le sens horaire
     public void swapQuartHoraire(){
         boolean temp1 = (boolean) Gauche[0]; boolean temp2 = (boolean) Gauche[1];
         Gauche[0] = Haut[0]; Gauche[1] = Haut[1];
@@ -56,7 +62,7 @@ public class District {
                 break;
         }
     }
-
+    //tourner un district d'un quart de tour dans le sens anti-horaire 
     public void swapQuartAntihoraire(){
         boolean temp1 = (boolean) Gauche[0]; boolean temp2 = (boolean) Gauche[1];
         Gauche[0] = Bas [0]; Gauche[1] = Bas [1];
@@ -81,6 +87,7 @@ public class District {
 
     }
 
+     //GETTERS ET SETTERS DE DISTRICT
 
     public Object[] getGauche() {
         return Gauche;

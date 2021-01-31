@@ -10,6 +10,7 @@ public class MonJeu extends JFrame {
     super("Mon jeu");
   }
 
+  //instanciation du Plateau
   public void initJeu() {
     Plateau pan = new Plateau();
     this.setContentPane(pan);

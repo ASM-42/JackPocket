@@ -115,7 +115,7 @@ public final class MrJackActionListener {
       boutonAction[rc] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
       Jeu.SuspectsVisibles(plateau);
 
-      int rc2 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
+      int rc2 = JOptionPane.showOptionDialog(null, "MrJack quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
               this.button.getIcon(),
               boutonAction, boutonAction[0]);
@@ -149,7 +149,7 @@ public final class MrJackActionListener {
       boutonAction[rc2] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
       Jeu.SuspectsVisibles(plateau);
 
-      int rc3 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
+      int rc3 = JOptionPane.showOptionDialog(null, "MrJack quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
               this.button.getIcon(),
               boutonAction, boutonAction[0]);

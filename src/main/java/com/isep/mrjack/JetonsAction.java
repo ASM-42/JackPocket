@@ -28,7 +28,7 @@ public class JetonsAction {
         PersonnagePlateau carte = jeu.personnages.get(jeu.pioche.get(0));
         if (joueur.getRole() == 0) {
             JOptionPane.showMessageDialog(null,
-                    "Seul MrJack ne peux avoir accès à l'information suivante",
+                    "Seul MrJack n'a accès à l'information suivante",
                     "Alibi",
                     JOptionPane.PLAIN_MESSAGE);
             jeu.joueurM.setNbSabliers(
@@ -111,7 +111,7 @@ public class JetonsAction {
     public void rotationDistrict(Plateau plateau) {
         Object[] options = {"D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"};
         String d1 = (String) JOptionPane.showInputDialog(null,
-                " Quel District souhaitez-vous déplacer?",
+                " Quel District souhaitez-vous tourner?",
                 "Rotation", JOptionPane.QUESTION_MESSAGE,
                 new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),
                 options, options[0]);

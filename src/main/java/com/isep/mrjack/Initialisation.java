@@ -19,6 +19,9 @@ public class Initialisation {
 
   //Détectives
   public List<PersonnagePlateau> SuspectsVisibles( Plateau plateau) {
+    for (int i=0; i<9; i++){
+      plateau.district[i].setBackground(null);
+    }
     List<PersonnagePlateau> suspects =  Sherlock.SuspectsVision(this);
     for (int w = 0; w < Watson.SuspectsVision(this).size(); w++) {
       suspects.add(Watson.SuspectsVision(this).get(w));

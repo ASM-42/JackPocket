@@ -31,7 +31,6 @@ public class PersonnageDetective {
     public void MoveDetective1 (Plateau plateau){
         District d = jeu.districts.get(positionDetective.get(0));
         Object[] side = (Object[]) positionDetective.get(1);
-        System.out.println("Here");
 
         //Si le detective est à gauche
         if (side[2].equals('G')){

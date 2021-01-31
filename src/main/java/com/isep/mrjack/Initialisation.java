@@ -73,7 +73,6 @@ public class Initialisation {
 
   public String[] removeElementString(String[] arr, int removedIdx) {
     System.arraycopy(arr, removedIdx + 1, arr, removedIdx, arr.length - 1 - removedIdx);
-
     return arr;
   }
 

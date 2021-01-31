@@ -131,6 +131,7 @@ public class Plateau extends JPanel {
 
         for (int i = 0; i < detectiveVide4.length; i++) {
             detectiveVide4[i] = new JButton("");
+            detectiveVide4[i].setPreferredSize(new Dimension(40, 50));
             if (i == 1) {
                 detectiveVide4[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Tobby.png")));
             }

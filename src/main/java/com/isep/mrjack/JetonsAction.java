@@ -55,7 +55,7 @@ public class JetonsAction {
     }
 
 
-    public void bougerSherlock (Player player, Plateau plateau) {
+    public void bougerSherlock (Plateau plateau) {
         Object[] options = {1,2};
         int reponse1 = (int) JOptionPane.showOptionDialog(plateau,
                 "De combien de case souhaitez vous déplacer Sherlock?",
@@ -66,14 +66,14 @@ public class JetonsAction {
                 options,  //the titles of buttons
                 options[0]); //default button title
         if (reponse1 == JOptionPane.YES_OPTION){
-            jeu.joueurE.getSherlock().MoveDetective1(jeu.joueurE.getSherlock(), plateau);
+            jeu.joueurE.getSherlock().MoveDetective1(plateau);
         }
         if (reponse1 == JOptionPane.NO_OPTION){
-            jeu.joueurE.getSherlock().MoveDetective2(jeu.joueurE.getSherlock().getPositionDetective(), plateau);
+            jeu.joueurE.getSherlock().MoveDetective2(plateau);
         }
     }
 
-    public void bougerToby (Player player, Plateau plateau) {
+    public void bougerToby (Plateau plateau) {
         Object[] options = {1, 2};
         int reponse1 = (int) JOptionPane.showOptionDialog(plateau,
                 "De combien de case souhaitez vous déplacer Toby?",
@@ -84,14 +84,14 @@ public class JetonsAction {
                 options,  //the titles of buttons
                 options[0]); //default button title
         if (reponse1 == JOptionPane.YES_OPTION){
-            jeu.joueurE.getToby().MoveDetective1(jeu.joueurE.getToby(), plateau);
+            jeu.joueurE.getToby().MoveDetective1(plateau);
         }
         if (reponse1 == JOptionPane.NO_OPTION){
-            jeu.joueurE.getToby().MoveDetective2(jeu.joueurE.getToby().getPositionDetective(), plateau);
+            jeu.joueurE.getToby().MoveDetective2(plateau);
         }
     }
 
-    public void bougerWatson (Player player, Plateau plateau) {
+    public void bougerWatson (Plateau plateau) {
         Object[] options = {'1', '2'};
         char reponse1 = (char) JOptionPane.showOptionDialog(plateau,
                 "De combien de case souhaitez vous déplacer Watson?",
@@ -102,10 +102,10 @@ public class JetonsAction {
                 options,  //the titles of buttons
                 options[0]); //default button title
         if (reponse1 == JOptionPane.YES_OPTION){
-            jeu.joueurE.getWaston().MoveDetective1(jeu.joueurE.getWaston(), plateau);
+            jeu.joueurE.getWaston().MoveDetective1(plateau);
         }
         if (reponse1 == JOptionPane.NO_OPTION){
-            jeu.joueurE.getWaston().MoveDetective2(jeu.joueurE.getWaston().getPositionDetective(), plateau);
+            jeu.joueurE.getWaston().MoveDetective2(plateau);
         }
     }
 
@@ -163,31 +163,35 @@ public class JetonsAction {
         plateau.district[jeu.districts.get(d1).getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", jeu.districts.get(d1).imageActive+"_"+jeu.districts.get(d1).getAngle()))));
         plateau.district[jeu.districts.get(d2).getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", jeu.districts.get(d2).imageActive+"_"+jeu.districts.get(d2).getAngle()))));
     }
-    public void Joker (Player player) {
-
-/*
-        if (player.getRole() == 1) //Detective
-
-            System.out.println ("Quel detective voulez vous déplacer ?");
-        reponse1 = scanner.next();
-        if (reponse1.equals("Watson"))
-            player.getSherlock().MoveDetective1(joueurE.getSherlock());
-        if (reponse1.equals("Sherlock"))
-            Sherlock.MoveDetective1(Sherlock);
-        if (reponse1.equals("Toby"))
-            Toby.MoveDetective1(Toby);
-
-        if (player.getRole() == 0) //com.isep.mrjack.MrJack
-            System.out.println ("Voulez vous déplacer un detective, si non tapez non si oui tapez le nom du detective à déplacer ?");
-        reponse1 = scanner.next();
-        if (reponse1.equals("Watson"))
-            Watson.MoveDetective1(Watson);
-        if (reponse1.equals("Sherlock"))
-            Sherlock.MoveDetective1(Sherlock);
-        if (reponse1.equals("Toby"))
-            Toby.MoveDetective1(Toby);
-
-*/
+    public void Joker (Player player, Plateau plateau) {
+        if (player.getRole() == 1){ //Detective
+            String[] buttons = { "Sherlock", "Watson", "Toby" };
+            int rc = JOptionPane.showOptionDialog(null, "Quel détective souhaitez vous déplacer?",
+                    "Joker", JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[2]);
+            if (rc == 0){
+                jeu.joueurE.getSherlock().MoveDetective1(plateau);
+            }
+            if (rc == 1){
+                jeu.joueurE.getWaston().MoveDetective1(plateau);
+            }
+            if (rc == 2){
+                jeu.joueurE.getToby().MoveDetective1(plateau);
+            }
+        }
+        if (player.getRole() == 0){ //MrJack
+            String[] buttons = { "Sherlock", "Watson", "Toby", "Aucun" };
+            int rc = JOptionPane.showOptionDialog(null, "Quel détective souhaitez vous déplacer?",
+                    "Joker", JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[2]);
+            if (rc == 0){
+                jeu.joueurE.getSherlock().MoveDetective1(plateau);
+            }
+            if (rc == 1){
+                jeu.joueurE.getWaston().MoveDetective1(plateau);
+            }
+            if (rc == 2){
+                jeu.joueurE.getToby().MoveDetective1(plateau);
+            }
+        }
     }
 
         public void faireAction(String typeAction1, Player player, Plateau plateau){
@@ -195,19 +199,19 @@ public class JetonsAction {
             rotationDistrict(plateau);
         }
         if (typeAction1 == "Sherlock"){
-            bougerSherlock(player, plateau);
+            bougerSherlock(plateau);
         }
         if (typeAction1 == "Watson"){
-            bougerWatson(player, plateau);
+            bougerWatson(plateau);
         }
         if (typeAction1 == "Toby"){
-            bougerToby(player, plateau);
+            bougerToby(plateau);
         }
         if (typeAction1 == "Echange"){
             echangeDistrict(plateau);
         }
         if (typeAction1 == "Joker"){
-            Joker(player);
+            Joker(player, plateau);
         }
         if (typeAction1 == "Carte Alibi"){
             piocherAlibi(player, plateau);

@@ -76,7 +76,7 @@ public final class MrJackActionListener {
                       Jeu.jetonsActionTour[2].getAction2()[actionR3],Jeu.jetonsActionTour[3].getAction2()[actionR4]};
 
       for (int i=0; i<Jeu.jetonsActionTour.length; i++){
-        plateau.jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource(jetonsTourImage[i])).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT)));
+        plateau.jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource(jetonsTourImage[i])).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT)));
         plateau.jetAction[i].setBackground(Color.GREEN);
       }
       //for (int i =0; i<jetonsTourActions.length; i++){ System.out.println(jetonsTourActions[i]);}

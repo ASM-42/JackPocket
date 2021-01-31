@@ -25,11 +25,14 @@ public class District {
         this.imageActive = this.images[0];
     }
 
-    public void turn () {
-        if (orientation == "up");
+    public void turn (Plateau plateau) {
+        if (this.orientation == "up"){
             orientation = "down";
             personnage.setVisible(false);
             personnage.setStatut("innocent");
+            imageActive = images[1];
+            plateau.district[this.indice].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", this.imageActive+"_"+this.angle))));
+        }
     }
     public void swapQuartHoraire(){
         Object[] temp = Gauche;

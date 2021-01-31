@@ -55,7 +55,6 @@ public class Initialisation {
 
   public JetonsAction[] removeElement(JetonsAction[] arr, int removedIdx) {
     System.arraycopy(arr, removedIdx + 1, arr, removedIdx, arr.length - 1 - removedIdx);
-
     return arr;
   }
 
@@ -69,6 +68,8 @@ public class Initialisation {
   //Création des Districts et du com.isep.mrjack.Plateau de Jeu
 
   List<String> imagesPlateau = new LinkedList<>();
+  List<String> nomsDistricts;
+
   Map<String, District> districts = new HashMap<>();
 
 
@@ -86,8 +87,8 @@ public class Initialisation {
   public District findPersonnage(PersonnagePlateau personnage) {
       District d = null;
       for(District district: districts.values()) {
-          if (district.getPersonnage() == personnage)
-              d = district;
+          if (district.getPersonnage() == personnage){
+              d = district;}
       }
       return d;
   }
@@ -126,16 +127,18 @@ public class Initialisation {
   public Initialisation() {
     List<String> nomsPersonnages = List.of("Madame", "John Pizer", "Jeremy Bert", "Inspecteur Lestrade", "William Gull", "Joseph Lane",
             "John Smith", "Sergent Goodley", "Miss Stealthy");
+    List<String> imagesAlibi = List.of("Madame-alibi", "JohnPizer-alibi", "JeremyBert-alibi", "InspLestrade-alibi","WilliamGull-alibi","JosephLane-alibi",
+            "JohnSmith-alibi", "SgtGoodley-alibi", "MissStealthy-alibi");
     int[] sabliers = {2, 1, 1, 0, 1, 1, 1, 0, 1};
     for (int i = 0; i < sabliers.length; i++) {
-      PersonnagePlateau perso = new PersonnagePlateau(nomsPersonnages.get(i), sabliers[i]);
+      PersonnagePlateau perso = new PersonnagePlateau(nomsPersonnages.get(i), sabliers[i], imagesAlibi.get(i));
       pioche.add(nomsPersonnages.get(i));
       personnages.put(nomsPersonnages.get(i), perso);
     }
     Collections.shuffle(pioche);
 
     List<String> imagesD = List.of("Madame", "J_Bert", "J_Pizzer", "I_Lestrada", "W_Gull", "J_Lane", "J_Smith", "S_Goodley", "M_Stealthy");
-    List<String> nomsDistricts = List.of("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9");
+    nomsDistricts = List.of("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9");
     for (int i = 0; i < imagesD.size(); i++) {
       ThreadLocalRandom rnd = ThreadLocalRandom.current();
       int x = rnd.nextInt(nomsDistricts.size());
@@ -147,6 +150,7 @@ public class Initialisation {
       if (i == 2){ d.swapQuartAntihoraire();}
       this.districts.put(nomsDistricts.get(i), d);
     }
+    //Collections.shuffle(nomsDistricts);
     //Collections.shuffle(imagesPlateau);
 
 
@@ -170,11 +174,9 @@ public class Initialisation {
 
 
 
-        Watson = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D3"), this.districts.get("D3").getBas())), "/images/jet_detec/Watson.png", this);
-
-        Toby = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D8"), this.districts.get("D8").getBas())), "/images/jet_detec/Tobby.png", this);
-
-        Sherlock = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D1"), this.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png", this);
+    Watson = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D3"), this.districts.get("D3").getBas())), "/images/jet_detec/Watson.png", this);
+    Toby = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D8"), this.districts.get("D8").getBas())), "/images/jet_detec/Tobby.png", this);
+    Sherlock = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D1"), this.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png", this);
 
 
     joueurE = new Enqueteur("nameE", Watson, Toby, Sherlock);

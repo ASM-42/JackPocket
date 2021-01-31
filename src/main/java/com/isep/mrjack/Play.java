@@ -99,8 +99,11 @@ public class Play {
                 JOptionPane.showMessageDialog(null,
                         "Vous êtes " + Jeu.pioche.get(coupable),
                         "Mr Jack",
-                        JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.PLAIN_MESSAGE,
+                        new ImageIcon(new ImageIcon(getClass().getResource(String.format("/images/cartes_alibi/%s.png", Jeu.personnages.get(Jeu.pioche.get(coupable)).carte))).getImage().getScaledInstance(70,130, Image.SCALE_DEFAULT))
+                );
                 Jeu.joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(coupable)));
+                Jeu.pioche.remove(coupable);
 
                 MonJeu jeu = new MonJeu();
                 jeu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

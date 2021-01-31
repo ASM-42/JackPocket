@@ -1,6 +1,8 @@
 package com.isep.mrjack;
 
 import javax.swing.*;
+import java.awt.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -24,22 +26,34 @@ public class JetonsAction {
         this.typeAction2 = action1[1]; this.image2 = action2[1];
     }
 
-    public void piocherAlibi (Player joueur){
-        MrJack joueurM = (MrJack) joueur;
+    public void piocherAlibi (Player joueur, Plateau plateau){
         PersonnagePlateau carte = jeu.personnages.get(jeu.pioche.get(0));
         if (joueur.getRole() == 0){
-            piocherAlibiMrJack(joueurM, carte); }
+            JOptionPane.showMessageDialog(null,
+                    "Seul MrJack ne peux avoir accès à l'information suivante",
+                    "Alibi",
+                    JOptionPane.PLAIN_MESSAGE);
+            jeu.joueurM.setNbSabliers(
+                    jeu.joueurM.getNbSabliers() + carte.getSabliers());
+            //System.out.println(String.valueOf(jeu.personnages.get(0).getCarte()));
+            JOptionPane.showMessageDialog(null,
+                    "Le personnage est " + jeu.pioche.get(0)
+                            +".\n Vous avez maintenant "+jeu.joueurM.getNbSabliers()+" sabliers.",
+                    "Mr Jack",
+                    JOptionPane.PLAIN_MESSAGE,
+                    new ImageIcon(new ImageIcon(getClass().getResource(String.format("/images/cartes_alibi/%s.png", jeu.personnages.get(jeu.pioche.get(0)).carte))).getImage().getScaledInstance(70,130, Image.SCALE_DEFAULT)));
+        }
         else {
+            JOptionPane.showMessageDialog(null,
+                     jeu.pioche.get(0)+" est innocent. \n Mr Jack est privé de "+carte.getSabliers()+" sabliers.",
+                    "Mr Jack",
+                    JOptionPane.PLAIN_MESSAGE);
             carte.setStatut("innocent");
-            jeu.findPersonnage(carte).turn();
+            jeu.findPersonnage(carte).turn(plateau);
         }
         jeu.pioche.remove(0);
     }
 
-    public void piocherAlibiMrJack(MrJack joueurM, PersonnagePlateau personnagePlateau){
-        joueurM.setNbSabliers(
-                joueurM.getNbSabliers() + personnagePlateau.getSabliers());
-    }
 
     public void bougerSherlock (Player player, Plateau plateau) {
         Object[] options = {1,2};
@@ -132,20 +146,22 @@ public class JetonsAction {
             }
         }
     }
-    public void echangeDistrict(){
-        Object[] options = {"D1","D2", "D3", "D4", "D4", "D5", "D6", "D7", "D8", "D9"};
+    public void echangeDistrict(Plateau plateau){
+        String[] options = {"D1","D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"};
         String d1= (String) JOptionPane.showInputDialog(null,
                 " Quel District souhaitez-vous déplacer?",
                 "Joueurs", JOptionPane. QUESTION_MESSAGE, null, options, options[0]);
+        jeu.removeElementString(options, jeu.index(options, d1));
         String d2= (String) JOptionPane.showInputDialog(null,
                 " Quel District souhaitez-vous déplacer?",
                 "Joueurs", JOptionPane. QUESTION_MESSAGE, null, options, options[0]);
         District temp = jeu.districts.get(d1);
+        int indiceD1 = jeu.districts.get(d1).getIndice();
         jeu.districts.replace(d1, jeu.districts.get(d2));
         jeu.districts.replace(d2, temp);
-
-
-
+        jeu.districts.get(d2).setIndice(jeu.districts.get(d1).getIndice()); jeu.districts.get(d1).setIndice(indiceD1);
+        plateau.district[jeu.districts.get(d1).getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", jeu.districts.get(d1).imageActive+"_"+jeu.districts.get(d1).getAngle()))));
+        plateau.district[jeu.districts.get(d2).getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", jeu.districts.get(d2).imageActive+"_"+jeu.districts.get(d2).getAngle()))));
     }
     public void Joker (Player player) {
         String reponse1;
@@ -190,10 +206,13 @@ public class JetonsAction {
             bougerToby(player, plateau);
         }
         if (typeAction1 == "Echange"){
-            echangeDistrict();
+            echangeDistrict(plateau);
         }
         if (typeAction1 == "Joker"){
             Joker(player);
+        }
+        if (typeAction1 == "Carte Alibi"){
+            piocherAlibi(player, plateau);
         }
     }
 

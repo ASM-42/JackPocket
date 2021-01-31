@@ -27,8 +27,8 @@ public class Plateau extends JPanel {
         for (int i = 0; i < district.length; i++) {
             district[i] = new JButton("");
             plateauPanel.add(district[i]);
-
-            district[i].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", Jeu.imagesPlateau.get(i)))));
+            district[i].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", Jeu.districts.get(Jeu.nomsDistricts.get(i)).imageActive+"_"+Jeu.districts.get(Jeu.nomsDistricts.get(i)).getAngle()))));
+            //district[i].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", Jeu.imagesPlateau.get(i)))));
             district[i].addActionListener(MrJackActionListener.createReturnDistrictAL(district[i]));
         }
 
@@ -113,16 +113,17 @@ public class Plateau extends JPanel {
 
         for (int i = 0; i < jetAction.length; i++) {
             jetAction[i] = new JButton("");
-            if (i == 0) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/PiocheAlibi.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT))); }
-            if (i == 1) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/BougerToby.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT))); }
-            if (i == 2) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Joker.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT))); }
-            if (i == 3) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT))); }
+            if (i == 0) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/PiocheAlibi.png")).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT))); }
+            if (i == 1) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/BougerToby.png")).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT))); }
+            if (i == 2) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Joker.png")).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT))); }
+            if (i == 3) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png")).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT))); }
             surfaceDroite.add(jetAction[i]);
         }
 
         //panel pour la pioche
         JPanel piochePanel = new JPanel(new GridLayout(3, 1, 0, 0));
-        JButton Alibi = new JButton("Pioche un Alibi");
+        JButton Alibi = new JButton("Pioche Alibi");
+        //Alibi.setIcon( new ImageIcon(new ImageIcon("C:\\JackPocket\\src\\main\\resources\\images\\cartes_alibi\\alibi-carte.png").getImage().getScaledInstance(40,40,Image.SCALE_DEFAULT)));
         piochePanel.add(Alibi);
 
         //rajouter les 3 panels créés au droitePanel

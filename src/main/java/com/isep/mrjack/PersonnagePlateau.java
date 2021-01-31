@@ -5,15 +5,17 @@ import javax.swing.*;
 public class PersonnagePlateau{
     public int[] position;
     public String nomP;
-    public ImageIcon carte;
+    public String carte;
     private boolean visible;
     private int sabliers;
     public String statut; //coupable ou non
 
-    public PersonnagePlateau(String nomP, int sabliers) {
+    public PersonnagePlateau(String nomP, int sabliers, String imageAlibi) {
         this.nomP = nomP;
         this.sabliers = sabliers;
+        this.carte = imageAlibi;
     }
+
 
     public PersonnagePlateau(int nbSabliers, boolean visible, String statut){
         this.visible = visible;
@@ -50,5 +52,9 @@ public class PersonnagePlateau{
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public String getCarte() {
+        return carte;
     }
 }

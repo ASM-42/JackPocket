@@ -32,12 +32,14 @@ public class Play {
         //GRAPHIQUE
         JFrame parent = new JFrame();
         parent.setAlwaysOnTop(true);
-        //parent.setSize(400, 1000);
         JButton button1 = new JButton();
+        button1.setBackground(Color.white);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        parent.setLocation(dim.width/2-parent.getSize().width/2, dim.height/2-parent.getSize().height/2);
 
 
 
-        button1.setText("Lancer une partie");
+        button1.setText("<HTML>Bienvenue dans notre version (presque complète) du Jeu Mr Jack Pocket <P>"+"  Lancer une partie <P> <P> <P> Par Amandine, Solène et Safia");
         parent.add(button1);
         //parent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         parent.setContentPane(button1);
@@ -77,7 +79,7 @@ public class Play {
                     Jeu.joueurM.setName(player2.getName());
                     Jeu.joueurE.setName(player1.getName());
                     JOptionPane.showMessageDialog(null,
-                            player2.getName() + " vous jouez MrJack, et "
+                            Jeu.joueurM.getName() + " vous jouez MrJack, et "
                                     + player1.getName() + " vous jouez l'enqueteur",
                             "Joueurs",
                             JOptionPane.PLAIN_MESSAGE);

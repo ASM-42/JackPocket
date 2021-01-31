@@ -272,7 +272,7 @@ public final class MrJackActionListener {
       Jeu.SuspectsVisibles(plateau);
 
       int jpair2 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
-              "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
+              "Action Enqueteur", JOptionPane.PLAIN_MESSAGE, 0,
               plateau.jetTemps[1].getIcon(),
               boutonAction, boutonAction[0]);
 

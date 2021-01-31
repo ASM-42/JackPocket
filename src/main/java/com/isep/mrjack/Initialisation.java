@@ -27,12 +27,15 @@ public class Initialisation {
     for (int t = 0; t < Toby.suspectVisibles.size(); t++) {
       suspects.add(Toby.suspectVisibles.get(t));
     }
-    suspects = removeDuplicateElements(suspects);
+   // suspects = removeDuplicateElements(suspects);
     //if (suspects.size()>2){
       for (int i=0; i<suspects.size(); i++){
-        plateau.district[this.districts.get(findPersonnage(suspects.get(i))).getIndice()].setBackground(Color.GREEN);
+        plateau.district[findPersonnage(suspects.get(i)).getIndice()].setBackground(Color.GREEN);
       }
     //}
+    if (!!suspects.contains(this.joueurM.coupable)){
+      this.joueurM.coupable.setVisible(false);
+    }
     return suspects;
   }
 
@@ -197,7 +200,7 @@ public class Initialisation {
     jetonT8 = new int[]{8, 0};
     jetonsTemps = new int[][]{jetonT1, jetonT2, jetonT3, jetonT4, jetonT5, jetonT6, jetonT7, jetonT8};
 
-    joueurM = new MrJack("nameM");
+    joueurM = new MrJack("nameM", this.personnages.get(pioche.get(0)));
 
 
 

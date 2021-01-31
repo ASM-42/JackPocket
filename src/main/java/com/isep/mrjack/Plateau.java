@@ -110,10 +110,10 @@ public class Plateau extends JPanel {
 
         for (int i = 0; i < jetAction.length; i++) {
             jetAction[i] = new JButton("");
-            if (i == 0) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/PiocheAlibi.png")).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT))); }
-            if (i == 1) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/BougerToby.png")).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT))); }
-            if (i == 2) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Joker.png")).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT))); }
-            if (i == 3) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png")).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT))); }
+            if (i == 0) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/PiocheAlibi.png")).getImage().getScaledInstance(75,75, Image.SCALE_DEFAULT))); }
+            if (i == 1) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/BougerToby.png")).getImage().getScaledInstance(75,75, Image.SCALE_DEFAULT))); }
+            if (i == 2) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Joker.png")).getImage().getScaledInstance(75,75, Image.SCALE_DEFAULT))); }
+            if (i == 3) { jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png")).getImage().getScaledInstance(75,75, Image.SCALE_DEFAULT))); }
             surfaceDroite.add(jetAction[i]);
         }
 

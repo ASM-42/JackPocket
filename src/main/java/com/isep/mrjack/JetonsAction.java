@@ -39,13 +39,13 @@ public class JetonsAction {
                             + ".\n Vous avez maintenant " + jeu.joueurM.getNbSabliers() + " sabliers.",
                     "Mr Jack",
                     JOptionPane.PLAIN_MESSAGE,
-                    new ImageIcon(new ImageIcon(getClass().getResource(String.format("/images/cartes_alibi/%s.png", jeu.personnages.get(jeu.pioche.get(0)).carte))).getImage().getScaledInstance(70, 130, Image.SCALE_DEFAULT)));
+                    new ImageIcon(new ImageIcon(getClass().getResource(String.format("/images/cartes_alibi/%s.png", jeu.personnages.get(jeu.pioche.get(0)).carte))).getImage().getScaledInstance(150, 250, Image.SCALE_DEFAULT)));
         } else {
             JOptionPane.showMessageDialog(null,
                     jeu.pioche.get(0) + " est innocent. \n Mr Jack est privé de " + carte.getSabliers() + " sabliers.",
                     "Enqueteur",
                     JOptionPane.PLAIN_MESSAGE,
-                    new ImageIcon(new ImageIcon(getClass().getResource(String.format("/images/cartes_alibi/%s.png", jeu.personnages.get(jeu.pioche.get(0)).carte))).getImage().getScaledInstance(70, 130, Image.SCALE_DEFAULT)));
+                    new ImageIcon(new ImageIcon(getClass().getResource(String.format("/images/cartes_alibi/%s.png", jeu.personnages.get(jeu.pioche.get(0)).carte))).getImage().getScaledInstance(150, 250, Image.SCALE_DEFAULT)));
             carte.setStatut("innocent");
             jeu.findPersonnage(carte).turn(plateau);
         }

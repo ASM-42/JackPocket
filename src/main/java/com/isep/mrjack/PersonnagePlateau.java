@@ -6,7 +6,7 @@ public class PersonnagePlateau{
     public int[] position;
     public String nomP;
     public String carte;
-    private boolean visible;
+    private boolean visible = true;
     private int sabliers;
     public String statut = "innocent"; //coupable ou non
 

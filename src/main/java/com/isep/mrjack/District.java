@@ -60,6 +60,7 @@ public class District {
     }
 
     public void swapQuartAntihoraire(){
+
         Object[] temp = Gauche;
         Gauche = Haut; Haut[2]='H';
         Haut = Droite;

@@ -26,20 +26,19 @@ public class Play {
         Player player2 = new Player("name", 0) {};
         String[] roles = new String[]{"MrJack", "Enqueteur"};
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
-        int coupable = rnd.nextInt(Jeu.pioche.size());
+        //int coupable = rnd.nextInt(Jeu.pioche.size()-);
 
 
         //GRAPHIQUE
         JFrame parent = new JFrame();
         parent.setAlwaysOnTop(true);
         JButton button1 = new JButton();
-        button1.setBackground(Color.white);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         parent.setLocation(dim.width/2-parent.getSize().width/2, dim.height/2-parent.getSize().height/2);
 
 
 
-        button1.setText("<HTML>Bienvenue dans notre version (presque complète) du Jeu Mr Jack Pocket <P>"+"  Lancer une partie <P> <P> <P> Par Amandine, Solène et Safia");
+        button1.setText("<HTML>Bienvenue dans notre version (presque complète) du Jeu Mr Jack Pocket <P> <P>  Cliquez pour lancer une partie <P> <P> <P> Par Amandine, Solène et Safia");
         parent.add(button1);
         //parent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         parent.setContentPane(button1);
@@ -99,13 +98,12 @@ public class Play {
                 //Quel personnage va jouer MrJack?
 
                 JOptionPane.showMessageDialog(null,
-                        "Vous êtes " + Jeu.pioche.get(coupable),
+                        "Vous êtes " + Jeu.pioche.get(0),
                         "Mr Jack",
                         JOptionPane.PLAIN_MESSAGE,
-                        new ImageIcon(new ImageIcon(getClass().getResource(String.format("/images/cartes_alibi/%s.png", Jeu.personnages.get(Jeu.pioche.get(coupable)).carte))).getImage().getScaledInstance(70,130, Image.SCALE_DEFAULT))
+                        new ImageIcon(new ImageIcon(getClass().getResource(String.format("/images/cartes_alibi/%s.png", Jeu.personnages.get(Jeu.pioche.get(0)).carte))).getImage().getScaledInstance(150,250, Image.SCALE_DEFAULT))
                 );
-                Jeu.joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(coupable)));
-                Jeu.pioche.remove(coupable);
+
 
                 MonJeu jeu = new MonJeu();
                 jeu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -120,6 +118,8 @@ public class Play {
 
             }
         });
+
+        Jeu.pioche.remove(0);
         //MrJackActionListener
 
     }

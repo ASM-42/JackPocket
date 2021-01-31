@@ -2,10 +2,12 @@ package com.isep.mrjack;
 
 public class MrJack extends Player {
     public int nbSabliers;
-    public PersonnagePlateau coupable ;
+    public final PersonnagePlateau coupable ;
 
-    public MrJack(String name) {
+    public MrJack(String name, PersonnagePlateau coupable) {
         super(name);
+        this.coupable = coupable;
+        coupable.setStatut("guilty");
     }
 
     public int getNbSabliers() {
@@ -20,8 +22,4 @@ public class MrJack extends Player {
         return coupable;
     }
 
-    public void setCoupable(PersonnagePlateau coupable) {
-        this.coupable = coupable;
-        coupable.setStatut("guilty");
-    }
 }

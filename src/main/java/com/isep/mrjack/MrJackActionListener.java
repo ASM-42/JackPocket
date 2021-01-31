@@ -80,7 +80,7 @@ public final class MrJackActionListener {
         plateau.jetAction[i].setBackground(Color.GREEN);
         boutonAction[i] = new ImageIcon(new ImageIcon(getClass().getResource(imagesPourLeTour.get(i))).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
       }
-      //Jeu.SuspectsVisibles(plateau);
+      Jeu.SuspectsVisibles(plateau);
 
       int rc = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
@@ -113,7 +113,7 @@ public final class MrJackActionListener {
 
       plateau.jetAction[actionsPourLeTour.indexOf(Action1E)].setBackground(Color.RED);
       boutonAction[rc] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
-//      Jeu.SuspectsVisibles(plateau);
+      Jeu.SuspectsVisibles(plateau);
 
       int rc2 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
@@ -147,7 +147,7 @@ public final class MrJackActionListener {
 
       plateau.jetAction[actionsPourLeTour.indexOf(Action2M)].setBackground(Color.RED);
       boutonAction[rc2] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
-  //    Jeu.SuspectsVisibles(plateau);
+      Jeu.SuspectsVisibles(plateau);
 
       int rc3 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
@@ -181,7 +181,7 @@ public final class MrJackActionListener {
 
       plateau.jetAction[actionsPourLeTour.indexOf(Action3M)].setBackground(Color.RED);
       boutonAction[rc3] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
-    //  Jeu.SuspectsVisibles(plateau);
+      Jeu.SuspectsVisibles(plateau);
 
       int rc4 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
@@ -215,7 +215,7 @@ public final class MrJackActionListener {
 
       plateau.jetAction[actionsPourLeTour.indexOf(Action4M)].setBackground(Color.RED);
       boutonAction[rc4] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
-      //Jeu.SuspectsVisibles(plateau);
+      Jeu.SuspectsVisibles(plateau);
 
       Jeu.appelTemoins(plateau);
 
@@ -227,7 +227,7 @@ public final class MrJackActionListener {
       imagesPourLeTour = List.of(Jeu.jetonsActionTour[0].getAction2(1-actionR1), Jeu.jetonsActionTour[1].getAction2(1-actionR2),
               Jeu.jetonsActionTour[2].getAction2(1-actionR3), Jeu.jetonsActionTour[3].getAction2(1-actionR4));
       for (int i=0; i<actionsPourLeTour.size(); i++){
-        plateau.jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource(imagesPourLeTour.get(i))).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT)));
+        plateau.jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource(imagesPourLeTour.get(i))).getImage().getScaledInstance(75,75, Image.SCALE_DEFAULT)));
         plateau.jetAction[i].setBackground(Color.GREEN);
         boutonAction[i] = new ImageIcon(new ImageIcon(getClass().getResource(imagesPourLeTour.get(i))).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
       }

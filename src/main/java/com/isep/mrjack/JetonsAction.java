@@ -97,8 +97,8 @@ public class JetonsAction {
 
 
 
-    public void rotationDistrict () {
-        Object[] options = {"D1","D2", "D3", "D4", "D4", "D5", "D6", "D7", "D8", "D9"};
+    public void rotationDistrict (Plateau plateau) {
+        Object[] options = {"D1","D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"};
         String d1= (String) JOptionPane.showInputDialog(null,
                  " Quel District souhaitez-vous déplacer?",
                 "Joueurs", JOptionPane. QUESTION_MESSAGE, null, options, options[0]);
@@ -106,19 +106,30 @@ public class JetonsAction {
         String sens = (String) JOptionPane.showInputDialog(null,
                 "Dans quel sens (horaire ou anti-horaire) souhaitez vous le deplacer ?",
                 "Rotation", JOptionPane. QUESTION_MESSAGE, null, options2, options2[0]);
-        Object[] options3 = {"Demi Tour", "Demi Tour"};
+        Object[] options3 = {"Quart de Tour", "Demi Tour"};
         String choixSens = (String) JOptionPane.showInputDialog(null,
                 "Voulez - vous le déplacer d'un quart de tour ou d'un demi tour ?",
                 "Rotation", JOptionPane. QUESTION_MESSAGE, null, options3, options3[0]);
         District d = jeu.districts.get(d1);
         if (sens == "Horaire") {
-            if (choixSens == "Quart de Tour") { d.swapQuartHoraire(); }
+            if (choixSens == "Quart de Tour") {
+                d.swapQuartHoraire();
+                plateau.district[d.getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", d.imageActive+"_"+d.getAngle()))));
+            }
             if (choixSens == "Demi Tour") {
-                d.swapQuartHoraire(); d.swapQuartHoraire();}
+                d.swapQuartHoraire(); d.swapQuartHoraire();
+                plateau.district[d.getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", d.imageActive+"_"+d.getAngle()))));
+            }
         }
         if (sens == "Anti-Horaire") {
-            if (choixSens == "Demi Tour") { d.swapQuartAntihoraire(); }
-            if (choixSens == "Demi Tour") { d.swapQuartAntihoraire();d.swapQuartAntihoraire(); }
+            if (choixSens == "Quart de Tour") {
+                d.swapQuartAntihoraire();
+                plateau.district[d.getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", d.imageActive+"_"+d.getAngle()))));
+            }
+            if (choixSens == "Demi Tour") {
+                d.swapQuartAntihoraire();d.swapQuartAntihoraire();
+                plateau.district[d.getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", d.imageActive+"_"+d.getAngle()))));
+            }
         }
     }
     public void echangeDistrict(){
@@ -167,7 +178,7 @@ public class JetonsAction {
 
         public void faireAction(String typeAction1, Player player, Plateau plateau){
         if (typeAction1 == "Rotation"){
-            rotationDistrict();
+            rotationDistrict(plateau);
         }
         if (typeAction1 == "Sherlock"){
             bougerSherlock(player, plateau);

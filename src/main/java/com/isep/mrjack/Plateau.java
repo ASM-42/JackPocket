@@ -18,16 +18,17 @@ public class Plateau extends JPanel {
 
     Initialisation Jeu = new Initialisation();
 
+    JButton[] district = new JButton[9];
     private void panelMilieu() {
 
         // *** CONSTRUIT L'AREA DU MILIEU
         JPanel plateauPanel = new JPanel(new GridLayout(3, 3, 0, 0));
-
-        JButton[] district = new JButton[9];                      //liste de 9 boutons qui correspondent aux 9 district
+                              //liste de 9 boutons qui correspondent aux 9 district
         for (int i = 0; i < district.length; i++) {
             district[i] = new JButton("");
             plateauPanel.add(district[i]);
-                district[i].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", Jeu.imagesPlateau.get(i)))));
+
+            district[i].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", Jeu.imagesPlateau.get(i)))));
             district[i].addActionListener(MrJackActionListener.createReturnDistrictAL(district[i]));
         }
 

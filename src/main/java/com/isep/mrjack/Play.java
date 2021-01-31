@@ -13,6 +13,7 @@ import static java.lang.System.out;
 
 public class Play {
     int tourActuel;
+    //REFRACTOR TEST
 
     public static void main(String[] args){
 

@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.List;
 
 public class Initialisation {
+  //REFRACTOR TEST
 
 
   //Détectives

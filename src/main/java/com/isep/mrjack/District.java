@@ -3,7 +3,7 @@ package com.isep.mrjack;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+//REFRACTOR TEST
 public class District extends Object {
     private String orientation; //"up" = personnages, "down" pas de personnage
     private Object[] Gauche = {0, true, 'G'}; // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté

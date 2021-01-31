@@ -13,7 +13,6 @@ import static java.lang.System.out;
 
 public class Play {
     int tourActuel;
-    //REFRACTOR TEST
 
     public static void main(String[] args){
 
@@ -33,12 +32,14 @@ public class Play {
         //GRAPHIQUE
         JFrame parent = new JFrame();
         parent.setAlwaysOnTop(true);
-        //parent.setSize(400, 1000);
         JButton button1 = new JButton();
+        button1.setBackground(Color.white);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        parent.setLocation(dim.width/2-parent.getSize().width/2, dim.height/2-parent.getSize().height/2);
 
 
 
-        button1.setText("Lancer une partie");
+        button1.setText("<HTML>Bienvenue dans notre version (presque complète) du Jeu Mr Jack Pocket <P>"+"  Lancer une partie <P> <P> <P> Par Amandine, Solène et Safia");
         parent.add(button1);
         //parent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         parent.setContentPane(button1);
@@ -78,7 +79,7 @@ public class Play {
                     Jeu.joueurM.setName(player2.getName());
                     Jeu.joueurE.setName(player1.getName());
                     JOptionPane.showMessageDialog(null,
-                            player2.getName() + " vous jouez MrJack, et "
+                            Jeu.joueurM.getName() + " vous jouez MrJack, et "
                                     + player1.getName() + " vous jouez l'enqueteur",
                             "Joueurs",
                             JOptionPane.PLAIN_MESSAGE);
@@ -100,8 +101,11 @@ public class Play {
                 JOptionPane.showMessageDialog(null,
                         "Vous êtes " + Jeu.pioche.get(coupable),
                         "Mr Jack",
-                        JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.PLAIN_MESSAGE,
+                        new ImageIcon(new ImageIcon(getClass().getResource(String.format("/images/cartes_alibi/%s.png", Jeu.personnages.get(Jeu.pioche.get(coupable)).carte))).getImage().getScaledInstance(70,130, Image.SCALE_DEFAULT))
+                );
                 Jeu.joueurM.setCoupable(Jeu.personnages.get(Jeu.pioche.get(coupable)));
+                Jeu.pioche.remove(coupable);
 
                 MonJeu jeu = new MonJeu();
                 jeu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -116,110 +120,8 @@ public class Play {
 
             }
         });
+        //MrJackActionListener
 
+    }
+}
 
-
-        //Première étape
-        for (int tour = 0; tour<9; tour++){
-            Random random2 = new Random();
-            int actionR1 = random2.nextInt(2);
-            int actionR2 = random2.nextInt(2);
-            int actionR3 = random2.nextInt(2);
-            int actionR4 = random2.nextInt(2);
-
-
-            /*String[][] jetonsTour =
-                    new String[][]{Jeu.jeton1.quelleAction(actionR1), Jeu.jeton2.quelleAction(actionR2),
-                            Jeu.jeton4.quelleAction(actionR3),Jeu.jeton4.quelleAction(actionR4),};
-
-
-            String s = (String)JOptionPane.showInputDialog(null,
-                    "Quelle action souhaitez vous jouer",
-                    "Action Detective",
-                    JOptionPane.QUESTION_MESSAGE, null, jetonsTour, jetonsTour[0]);
-*/
-            //L'enqueteur commence, tours impairs*
-
-            /*
-            if (Jeu.getJetonsTemps(tour)[1] == 1){
-                interaction.texte.setText
-                        ("Enqueteur choisissez une action.");
-                action = scanner.next();
-                if (action == "jeton 1"){ Jeu.jeton1.Action(action1, //joueurE);}
-                if (action == "jeton 2"){ Jeu.jeton2.Action(action2, //joueurE);}
-                if (action == "jeton 3"){ Jeu.jeton3.Action(action3, //joueurE);}
-                if (action == "jeton 4"){ Jeu.jeton4.Action(action4, //joueurE);}
-
-                for(int j=0; j<3; j++) {
-                    interaction.texte.setText
-                            ("MrJack choisissez une action.");
-                    action = scanner.next();
-                    if (action == "jeton 1") {Jeu.jeton1.Action(action1, joueurM);}
-                    if (action == "jeton 2") {Jeu.jeton2.Action(action2, joueurM);}
-                    if (action == "jeton 3") {Jeu.jeton3.Action(action3, joueurM);}
-                    if (action == "jeton 4") {Jeu.jeton4.Action(action4, //joueurE);}
-                }
-                interaction.texte.setText
-                        ("Enqueteur choisissez une action.");
-                action = scanner.next();
-                if (action == "jeton 1"){ Jeu.jeton1.Action(action1, //joueurE);}
-                if (action == "jeton 2"){ Jeu.jeton2.Action(action2, //joueurE);}
-                if (action == "jeton 3"){ Jeu.jeton3.Action(action3, //joueurE);}
-                if (action == "jeton 4"){ Jeu.jeton4.Action(action4, //joueurE);}
-            }
-        //MrJack commence, tours pairs
-            else{if (Jeu.getJetonsTemps(tour)[1] == 0){
-                interaction.texte.setText
-                        ("Mrack choisissez une action.");
-                action = scanner.next();
-                if (action == "jeton 1"){ Jeu.jeton1.Action(1-action1, joueurM);}
-                if (action == "jeton 2"){ Jeu.jeton2.Action(1-action2, joueurM);}
-                if (action == "jeton 3"){ Jeu.jeton3.Action(1-action3, joueurM);}
-                if (action == "jeton 4"){ Jeu.jeton4.Action(1-action4, joueurM);}
-
-                for(int j=0; j<3; j++) {
-                    interaction.texte.setText
-                            ("Enqueteur choisissez une action.");
-                    action = scanner.next();
-                    if (action == "jeton 1") {Jeu.jeton1.Action(1-action1, //joueurE);}
-                    if (action == "jeton 2") {Jeu.jeton2.Action(1-action2, //joueurE);}
-                    if (action == "jeton 3") {Jeu.jeton3.Action(1-action3, //joueurE);}
-                    if (action == "jeton 4") {Jeu.jeton4.Action(1-action4, //joueurE);}
-                }
-                interaction.texte.setText
-                        ("MrJack choisissez une action.");
-                action = scanner.next();
-                if (action == "jeton 1"){ Jeu.jeton1.Action(1-action1, joueurM);}
-                if (action == "jeton 2"){ Jeu.jeton2.Action(1-action2, joueurM);}
-                if (action == "jeton 3"){ Jeu.jeton3.Action(1-action3, joueurM);}
-                if (action == "jeton 4"){ Jeu.jeton4.Action(1-action4, joueurM);}
-            }}
-        //Appel a témoins
-            if (joueurM.getCoupable().isVisible() == false){
-                interaction.texte.setText("Mister Jack n'est pas visible");
-                ArrayList<PersonnagePlateau> suspect = Jeu.SuspectsVisibles(//joueurE);
-                for (int p=0; p<suspect.size(); p++){
-                   Jeu.findPersonnage(suspect.get(p)).turn();
-                }
-                joueurM.setNbSabliers(joueurM.getNbSabliers()+1);
-            }
-            else{
-                interaction.texte.setText("Mister Jack est visible");
-                ArrayList<PersonnagePlateau> suspects = Jeu.SuspectsVisibles(//joueurE);
-                List<PersonnagePlateau> innocents = Jeu.innocents(suspects);
-                for (int i=0; i<innocents.size(); i++){
-                    Jeu.findPersonnage(innocents.get(i)).turn();
-                }
-            }
-            if (joueurM.getNbSabliers() == 6){
-                out.printf(joueurM.getName() + "a gagné en jouant MrJack");
-                break;
-            }
-            if (Jeu.innocents(Jeu.SuspectsVisibles(//joueurE)).size() == 8){
-                out.printf(//joueurE + "a gagné en jouant l'enqueteur");
-                break;
-            }*/
-
-        }
-        }
-        }

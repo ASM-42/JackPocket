@@ -10,6 +10,7 @@ import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 
@@ -68,67 +69,305 @@ public final class MrJackActionListener {
       int actionR2 = random2.nextInt(2);
       int actionR3 = random2.nextInt(2);
       int actionR4 = random2.nextInt(2);
-      String[] jetonsTourActions =
-              {Jeu.jetonsActionTour[0].getAction1()[actionR1], Jeu.jetonsActionTour[1].getAction1()[actionR2],
-                      Jeu.jetonsActionTour[2].getAction1()[actionR3],Jeu.jetonsActionTour[3].getAction1()[actionR4]};
-      String[] jetonsTourImage =
-              new String[]{Jeu.jetonsActionTour[0].getAction2()[actionR1], Jeu.jetonsActionTour[1].getAction2()[actionR2],
-                      Jeu.jetonsActionTour[2].getAction2()[actionR3],Jeu.jetonsActionTour[3].getAction2()[actionR4]};
 
-      for (int i=0; i<Jeu.jetonsActionTour.length; i++){
-        plateau.jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource(jetonsTourImage[i])).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT)));
+      List<String> actionsPourLeTour = List.of(Jeu.jetonsActionTour[0].getAction1(actionR1), Jeu.jetonsActionTour[1].getAction1(actionR2),
+              Jeu.jetonsActionTour[2].getAction1(actionR3), Jeu.jetonsActionTour[3].getAction1(actionR4));
+      List<String> imagesPourLeTour = List.of(Jeu.jetonsActionTour[0].getAction2(actionR1), Jeu.jetonsActionTour[1].getAction2(actionR2),
+              Jeu.jetonsActionTour[2].getAction2(actionR3), Jeu.jetonsActionTour[3].getAction2(actionR4));
+      ImageIcon[] boutonAction = new ImageIcon[4];
+      for (int i=0; i<actionsPourLeTour.size(); i++){
+        plateau.jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource(imagesPourLeTour.get(i))).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT)));
         plateau.jetAction[i].setBackground(Color.GREEN);
+        boutonAction[i] = new ImageIcon(new ImageIcon(getClass().getResource(imagesPourLeTour.get(i))).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
       }
-      //for (int i =0; i<jetonsTourActions.length; i++){ System.out.println(jetonsTourActions[i]);}
+      //Jeu.SuspectsVisibles(plateau);
+
+      int rc = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
+              "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
+              this.button.getIcon(),
+              boutonAction, boutonAction[0]);
+      String Action1E = actionsPourLeTour.get(rc);
+      switch (actionsPourLeTour.get(rc)){
+        case "Sherlock":
+          Jeu.jeton1.bougerSherlock(plateau);
+          break;
+        case "Carte Alibi":
+          Jeu.jeton1.piocherAlibi(Jeu.joueurE, plateau);
+          break;
+        case "Watson":
+          Jeu.jeton2.bougerWatson(plateau);
+          break;
+        case "Toby" :
+          Jeu.jeton2.bougerToby(plateau);
+          break;
+        case "Rotation":
+          Jeu.jeton3.rotationDistrict(plateau);
+          break;
+        case "Joker":
+          Jeu.jeton3.Joker(Jeu.joueurE, plateau);
+          break;
+        case "Echange":
+          Jeu.jeton4.echangeDistrict(plateau);
+          break;
+      }
+
+      plateau.jetAction[actionsPourLeTour.indexOf(Action1E)].setBackground(Color.RED);
+      boutonAction[rc] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
+//      Jeu.SuspectsVisibles(plateau);
+
+      int rc2 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
+              "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
+              this.button.getIcon(),
+              boutonAction, boutonAction[0]);
+
+      String Action2M = actionsPourLeTour.get(rc2);
+      switch (actionsPourLeTour.get(rc2)){
+        case "Sherlock":
+          Jeu.jeton1.bougerSherlock(plateau);
+          break;
+        case "Carte Alibi":
+          Jeu.jeton1.piocherAlibi(Jeu.joueurM, plateau);
+          break;
+        case "Watson":
+          Jeu.jeton2.bougerWatson(plateau);
+          break;
+        case "Toby" :
+          Jeu.jeton2.bougerToby(plateau);
+          break;
+        case "Rotation":
+          Jeu.jeton3.rotationDistrict(plateau);
+          break;
+        case "Joker":
+          Jeu.jeton3.Joker(Jeu.joueurM, plateau);
+          break;
+        case "Echange":
+          Jeu.jeton4.echangeDistrict(plateau);
+          break;
+      }
+
+      plateau.jetAction[actionsPourLeTour.indexOf(Action2M)].setBackground(Color.RED);
+      boutonAction[rc2] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
+  //    Jeu.SuspectsVisibles(plateau);
+
+      int rc3 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
+              "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
+              this.button.getIcon(),
+              boutonAction, boutonAction[0]);
+
+      String Action3M = actionsPourLeTour.get(rc3);
+      switch (actionsPourLeTour.get(rc3)){
+        case "Sherlock":
+          Jeu.jeton1.bougerSherlock(plateau);
+          break;
+        case "Carte Alibi":
+          Jeu.jeton1.piocherAlibi(Jeu.joueurM, plateau);
+          break;
+        case "Watson":
+          Jeu.jeton2.bougerWatson(plateau);
+          break;
+        case "Toby" :
+          Jeu.jeton2.bougerToby(plateau);
+          break;
+        case "Rotation":
+          Jeu.jeton3.rotationDistrict(plateau);
+          break;
+        case "Joker":
+          Jeu.jeton3.Joker(Jeu.joueurM, plateau);
+          break;
+        case "Echange":
+          Jeu.jeton4.echangeDistrict(plateau);
+          break;
+      }
+
+      plateau.jetAction[actionsPourLeTour.indexOf(Action3M)].setBackground(Color.RED);
+      boutonAction[rc3] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
+    //  Jeu.SuspectsVisibles(plateau);
+
+      int rc4 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
+              "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
+              this.button.getIcon(),
+              boutonAction, boutonAction[0]);
+
+      String Action4M = actionsPourLeTour.get(rc4);
+      switch (actionsPourLeTour.get(rc4)){
+        case "Sherlock":
+          Jeu.jeton1.bougerSherlock(plateau);
+          break;
+        case "Carte Alibi":
+          Jeu.jeton1.piocherAlibi(Jeu.joueurE, plateau);
+          break;
+        case "Watson":
+          Jeu.jeton2.bougerWatson(plateau);
+          break;
+        case "Toby" :
+          Jeu.jeton2.bougerToby(plateau);
+          break;
+        case "Rotation":
+          Jeu.jeton3.rotationDistrict(plateau);
+          break;
+        case "Joker":
+          Jeu.jeton3.Joker(Jeu.joueurE, plateau);
+          break;
+        case "Echange":
+          Jeu.jeton4.echangeDistrict(plateau);
+          break;
+      }
+
+      plateau.jetAction[actionsPourLeTour.indexOf(Action4M)].setBackground(Color.RED);
+      boutonAction[rc4] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
+      //Jeu.SuspectsVisibles(plateau);
+
+      Jeu.appelTemoins(plateau);
 
 
-      String Action1E = (String)JOptionPane.showInputDialog(null,
-              "Enqueteur quelle action souhaitez vous jouer",
-              "Action Detective",
-              JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
+      // TOUR PAIR
 
-      int j1E = Jeu.index(jetonsTourActions, Action1E);
-      Jeu.jetonsActionTour[j1E].faireAction(Action1E, Jeu.joueurE, plateau);
-      Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j1E);
-      jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j1E);
-      plateau.jetAction[j1E].setBackground(Color.RED);
-      //for (int z =0; z<jetonsTourActions.length; z++){ System.out.println(jetonsTourActions[z]);}
+      actionsPourLeTour = List.of(Jeu.jetonsActionTour[0].getAction1(1-actionR1), Jeu.jetonsActionTour[1].getAction1(1-actionR2),
+              Jeu.jetonsActionTour[2].getAction1(1-actionR3), Jeu.jetonsActionTour[3].getAction1(1-actionR4));
+      imagesPourLeTour = List.of(Jeu.jetonsActionTour[0].getAction2(1-actionR1), Jeu.jetonsActionTour[1].getAction2(1-actionR2),
+              Jeu.jetonsActionTour[2].getAction2(1-actionR3), Jeu.jetonsActionTour[3].getAction2(1-actionR4));
+      for (int i=0; i<actionsPourLeTour.size(); i++){
+        plateau.jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource(imagesPourLeTour.get(i))).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT)));
+        plateau.jetAction[i].setBackground(Color.GREEN);
+        boutonAction[i] = new ImageIcon(new ImageIcon(getClass().getResource(imagesPourLeTour.get(i))).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
+      }
+      Jeu.SuspectsVisibles(plateau);
+/*
+      int jpair = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
+              "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
+              this.button.getIcon(),
+              boutonAction, boutonAction[0]);
+      String Action1E = actionsPourLeTour.get(jpair);
+      switch (actionsPourLeTour.get(jpair)){
+        case "Sherlock":
+          Jeu.jeton1.bougerSherlock(plateau);
+          break;
+        case "Carte Alibi":
+          Jeu.jeton1.piocherAlibi(Jeu.joueurE, plateau);
+          break;
+        case "Watson":
+          Jeu.jeton2.bougerWatson(plateau);
+          break;
+        case "Toby" :
+          Jeu.jeton2.bougerToby(plateau);
+          break;
+        case "Rotation":
+          Jeu.jeton3.rotationDistrict(plateau);
+          break;
+        case "Joker":
+          Jeu.jeton3.Joker(Jeu.joueurE, plateau);
+          break;
+        case "Echange":
+          Jeu.jeton4.echangeDistrict(plateau);
+          break;
+      }
 
+      plateau.jetAction[actionsPourLeTour.indexOf(Action1E)].setBackground(Color.RED);
+      boutonAction[jpair] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
+      Jeu.SuspectsVisibles(plateau);
 
-      String Action2M= (String)JOptionPane.showInputDialog(null,
-              "MrJack quelle action souhaitez vous jouer",
-              "Action Detective",
-              JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
-      int j2M = Jeu.index(jetonsTourActions, Action2M);
-      Jeu.jetonsActionTour[j2M].faireAction(Action2M, Jeu.joueurM, plateau);
-      Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j2M);
-      jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j2M);
-      plateau.jetAction[j2M].setBackground(Color.RED);
-      //for (int k=0; k<jetonsTourActions.length; k++){ System.out.println(jetonsTourActions[k]);}
+      int rc2 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
+              "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
+              this.button.getIcon(),
+              boutonAction, boutonAction[0]);
 
+      String Action2M = actionsPourLeTour.get(rc2);
+      switch (actionsPourLeTour.get(rc2)){
+        case "Sherlock":
+          Jeu.jeton1.bougerSherlock(plateau);
+          break;
+        case "Carte Alibi":
+          Jeu.jeton1.piocherAlibi(Jeu.joueurM, plateau);
+          break;
+        case "Watson":
+          Jeu.jeton2.bougerWatson(plateau);
+          break;
+        case "Toby" :
+          Jeu.jeton2.bougerToby(plateau);
+          break;
+        case "Rotation":
+          Jeu.jeton3.rotationDistrict(plateau);
+          break;
+        case "Joker":
+          Jeu.jeton3.Joker(Jeu.joueurM, plateau);
+          break;
+        case "Echange":
+          Jeu.jeton4.echangeDistrict(plateau);
+          break;
+      }
 
+      plateau.jetAction[actionsPourLeTour.indexOf(Action2M)].setBackground(Color.RED);
+      boutonAction[rc2] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
+      Jeu.SuspectsVisibles(plateau);
 
-      String Action3M= (String)JOptionPane.showInputDialog(null,
-              "MrJack quelle action souhaitez vous jouer",
-              "Action Detective",
-              JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
-      int j3M = Jeu.index(jetonsTourActions, Action3M);
-      Jeu.jetonsActionTour[j3M].faireAction(Action3M, Jeu.joueurM, plateau);
-      Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j3M);
-      jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j3M);
-      plateau.jetAction[j3M].setBackground(Color.RED);
-      //for (int h =0; h<jetonsTourActions.length; h++){ System.out.println(jetonsTourActions[h]);}
+      int rc3 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
+              "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
+              this.button.getIcon(),
+              boutonAction, boutonAction[0]);
 
-      String Action4E= (String)JOptionPane.showInputDialog(null,
-              "Enqueteur quelle action souhaitez vous jouer",
-              "Action Detective",
-              JOptionPane.QUESTION_MESSAGE, null, jetonsTourActions, "Choisissez parmis les choix ci-dessous");
-      int j4E = Jeu.index(jetonsTourActions, Action4E
-      );
-      Jeu.jetonsActionTour[j4E].faireAction(Action4E, Jeu.joueurE, plateau);
-      Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j4E);
-      jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j4E);
-      plateau.jetAction[j4E].setBackground(Color.RED);
+      String Action3M = actionsPourLeTour.get(rc3);
+      switch (actionsPourLeTour.get(rc3)){
+        case "Sherlock":
+          Jeu.jeton1.bougerSherlock(plateau);
+          break;
+        case "Carte Alibi":
+          Jeu.jeton1.piocherAlibi(Jeu.joueurM, plateau);
+          break;
+        case "Watson":
+          Jeu.jeton2.bougerWatson(plateau);
+          break;
+        case "Toby" :
+          Jeu.jeton2.bougerToby(plateau);
+          break;
+        case "Rotation":
+          Jeu.jeton3.rotationDistrict(plateau);
+          break;
+        case "Joker":
+          Jeu.jeton3.Joker(Jeu.joueurM, plateau);
+          break;
+        case "Echange":
+          Jeu.jeton4.echangeDistrict(plateau);
+          break;
+      }
+
+      plateau.jetAction[actionsPourLeTour.indexOf(Action3M)].setBackground(Color.RED);
+      boutonAction[rc3] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
+      Jeu.SuspectsVisibles(plateau);
+
+      int rc4 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
+              "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
+              this.button.getIcon(),
+              boutonAction, boutonAction[0]);
+
+      String Action4M = actionsPourLeTour.get(rc4);
+      switch (actionsPourLeTour.get(rc4)){
+        case "Sherlock":
+          Jeu.jeton1.bougerSherlock(plateau);
+          break;
+        case "Carte Alibi":
+          Jeu.jeton1.piocherAlibi(Jeu.joueurE, plateau);
+          break;
+        case "Watson":
+          Jeu.jeton2.bougerWatson(plateau);
+          break;
+        case "Toby" :
+          Jeu.jeton2.bougerToby(plateau);
+          break;
+        case "Rotation":
+          Jeu.jeton3.rotationDistrict(plateau);
+          break;
+        case "Joker":
+          Jeu.jeton3.Joker(Jeu.joueurE, plateau);
+          break;
+        case "Echange":
+          Jeu.jeton4.echangeDistrict(plateau);
+          break;
+      }
+
+      plateau.jetAction[actionsPourLeTour.indexOf(Action4M)].setBackground(Color.RED);
+      boutonAction[rc4] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
+      Jeu.SuspectsVisibles(plateau);
+*/
 
 
     }

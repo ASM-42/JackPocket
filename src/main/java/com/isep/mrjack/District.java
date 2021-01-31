@@ -2,44 +2,39 @@ package com.isep.mrjack;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-//REFRACTOR TEST
-public class District extends Object {
+
+
+public class District {
     private String orientation; //"up" = personnages, "down" pas de personnage
-    private Object[] Gauche = {0, true, 'G'}; // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
-    private Object[] Haut = {0, true, 'H'};
-    private Object[] Droite = {0, true, 'D'};
-    private Object[] Bas = {1, true, 'B'};
+    private Object[] Gauche = {false, true, 'G'}; // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
+    private Object[] Haut = {false, true, 'H'};
+    private Object[] Droite = {false, true, 'D'};
+    private Object[] Bas = {false, true, 'B'};
     private ArrayList<Object[]> cotes;
-    private PersonnagePlateau personnage;
+    private final PersonnagePlateau personnage;
     private int indice;
     private int angle;
-    public String image;
+    private final String[] images;
+    public String imageActive;
 
-    public District(PersonnagePlateau personnage, String image) {
+    public District(PersonnagePlateau personnage, String[] images) {
         this.orientation = "up";
         this.personnage = personnage;
         this.angle = 0;
-        this.image = image;
+        this.images = images;
+        this.imageActive = this.images[0];
     }
-            /*
-    public District(String orientation, ArrayList<Object> gauche, ArrayList<Object> haut, ArrayList<Object> droite,
-                    ArrayList<Object> bas, ArrayList<ArrayList<Object>> cotes, PersonnagePlateau personnage, int indice) {
-        this.orientation = orientation;
-        Gauche = gauche;
-        Haut = haut;
-        Droite = droite;
-        Bas = bas;
-        this.cotes = cotes;
-        this.personnage = personnage;
-        this.indice = indice;
-    }
-*/
-    public void turn () {
-        if (orientation == "up");
+
+    public void turn (Plateau plateau) {
+        if (this.orientation.equals("up")){
             orientation = "down";
             personnage.setVisible(false);
             personnage.setStatut("innocent");
+            imageActive = images[1];
+            System.out.println(imageActive);
+            System.out.println(getClass().getResource(String.format("/images/district/%s.png", imageActive+"_"+angle)));
+            plateau.district[this.indice].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", this.imageActive+"_"+this.angle))));
+        }
     }
     public void swapQuartHoraire(){
         Object[] temp = Gauche;
@@ -48,10 +43,20 @@ public class District extends Object {
         Droite = Haut;
         Haut = temp;
         Haut[2]='H'; Gauche[2]='G'; Droite[2]='D'; Bas[2]='B';
-        if (angle == 260){ angle = 0;}
-        else{angle += 90;}
-        image = String.format("/images/district/%s.png", image+"_"+angle);
-
+        switch (this.angle) {
+            case 0:
+                this.angle = 90;
+                break;
+            case 90:
+                this.angle = 180;
+                break;
+            case 180:
+                this.angle = 270;
+                break;
+            case 270:
+                this.angle = 0;
+                break;
+        }
     }
 
     public void swapQuartAntihoraire(){
@@ -61,40 +66,23 @@ public class District extends Object {
         Droite = Bas;
         Bas = temp;
         Haut[2]='H'; Gauche[2]='G'; Droite[2]='D'; Bas[2]='B';
-        if (angle == 0){ angle = 260;}
-        if (angle == 260){ angle = 180;}
-        if (angle == 180){ angle = 90;}
-        if (angle == 90){ angle = 0;}
-        image = String.format("/images/district/%s.png", image+"_"+String.valueOf(angle));
+            switch (this.angle){
+                case 0:
+                    this.angle = 270;
+                    break;
+                case 270:
+                    this.angle = 180;
+                    break;
+                case 180:
+                    this.angle = 90;
+                    break;
+                case 90:
+                    this.angle = 0;
+                    break;
+            }
+
     }
 
-
-
-    /*
-    public com.isep.mrjack.District(String orientation, ArrayList<ArrayList<Integer>> cotés,
-                    ArrayList<Integer> Gauche, ArrayList<Integer> Haut, ArrayList<Integer> Droite,
-                    ArrayList<Integer> Bas) {
-        this.orientation = "up";
-        this.Gauche = Gauche;
-        Gauche.add(1); Gauche.add(1);
-        this.Haut = Haut;
-        Haut.add(0); Haut.add(0);
-        this.Droite = Droite;
-        Droite.add(0); Droite.add(0);
-        this.Bas = Bas;
-        Bas.add(0); Bas.add(0);
-        this.cotés = cotés;
-        cotés.add(Gauche); cotés.add(Haut); cotés.add(Droite); cotés.add(Bas);
-
-    }*/
-
-    public String getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(String orientation) {
-        this.orientation = orientation;
-    }
 
     public Object[] getGauche() {
         return Gauche;
@@ -140,10 +128,6 @@ public class District extends Object {
         return personnage;
     }
 
-    public void setPersonnage(PersonnagePlateau personnage) {
-        this.personnage = personnage;
-    }
-
     public void setIndice(int i) {
         if(i == 0){ Droite[1] = false; Bas[1] = false;}
         if(i == 1){ Droite[1] = false; Bas[1] = false; Gauche[1] = false;}
@@ -157,7 +141,15 @@ public class District extends Object {
         this.indice = i;
     }
 
-    public void setAngle(int angle) {
-        this.angle = angle;
+    public int getIndice() {
+        return indice;
+    }
+
+    public int getAngle() {
+        return angle;
+    }
+
+    public void setImages(String image) {
+        this.images[1] = image;
     }
 }

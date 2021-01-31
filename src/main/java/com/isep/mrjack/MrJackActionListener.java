@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-
+//déroulé de deux tours (pair puis impair)
 public final class MrJackActionListener {
 
   private MrJackActionListener() {
@@ -49,13 +49,13 @@ public final class MrJackActionListener {
   }
 
 
-
+  //déclaration des attributs
   private static class JetonTempsPair implements ActionListener {
     JButton button;
     Initialisation Jeu;
     Plateau plateau;
 
-
+    //constructeur des Jetons
     public JetonTempsPair(JButton button, Initialisation Jeu, Plateau plateau) {
       this.button = button;
       this.Jeu = Jeu;
@@ -72,8 +72,11 @@ public final class MrJackActionListener {
 
       List<String> actionsPourLeTour = List.of(Jeu.jetonsActionTour[0].getAction1(actionR1), Jeu.jetonsActionTour[1].getAction1(actionR2),
               Jeu.jetonsActionTour[2].getAction1(actionR3), Jeu.jetonsActionTour[3].getAction1(actionR4));
+      
       List<String> imagesPourLeTour = List.of(Jeu.jetonsActionTour[0].getAction2(actionR1), Jeu.jetonsActionTour[1].getAction2(actionR2),
               Jeu.jetonsActionTour[2].getAction2(actionR3), Jeu.jetonsActionTour[3].getAction2(actionR4));
+      
+      //liste de boutons pour choisir les actions
       ImageIcon[] boutonAction = new ImageIcon[4];
       for (int i=0; i<actionsPourLeTour.size(); i++){
         plateau.jetAction[i].setIcon(new ImageIcon(new ImageIcon(getClass().getResource(imagesPourLeTour.get(i))).getImage().getScaledInstance(50,50, Image.SCALE_DEFAULT)));

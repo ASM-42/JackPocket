@@ -22,5 +22,6 @@ public class MrJack extends Player {
 
     public void setCoupable(PersonnagePlateau coupable) {
         this.coupable = coupable;
+        coupable.setStatut("guilty");
     }
 }

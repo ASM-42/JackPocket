@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class District {
     private String orientation; //"up" = personnages, "down" pas de personnage
-    private Object[] Gauche = {0, true, 'G'}; // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
-    private Object[] Haut = {0, true, 'H'};
-    private Object[] Droite = {0, true, 'D'};
-    private Object[] Bas = {1, true, 'B'};
+    private Object[] Gauche = {false, true, 'G'}; // 0 vide, 1 mur   0 accessible, 1 non accessible    G lettre coté
+    private Object[] Haut = {false, true, 'H'};
+    private Object[] Droite = {false, true, 'D'};
+    private Object[] Bas = {false, true, 'B'};
     private ArrayList<Object[]> cotes;
     private final PersonnagePlateau personnage;
     private int indice;

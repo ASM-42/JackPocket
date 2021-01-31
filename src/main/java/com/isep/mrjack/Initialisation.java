@@ -4,42 +4,35 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 public class Initialisation {
 
 
-  public  int removeDuplicateElements(ArrayList<PersonnagePlateau> arr, int n){
-    if (n==0 || n==1){
-      return n;
-    }
-    ArrayList<PersonnagePlateau> temp = new ArrayList<>();
-    int j = 0;
-    for (int i=0; i<n-1; i++){
-      if (arr.get(i) != arr.get(i + 1)){
-        temp.set(j++, arr.get(i));
-      }
-    }
-    temp.set(j++, arr.get(n - 1));
-    for (int i=0; i<j; i++){
-      arr.set(i, temp.get(i));
-    }
-    return j;
+  public List<PersonnagePlateau> removeDuplicateElements(List<PersonnagePlateau> arr){
+    List<PersonnagePlateau> listWithDuplicates = arr;
+    List<PersonnagePlateau> listWithoutDuplicates = listWithDuplicates.stream()
+            .distinct()
+            .collect(Collectors.toList());
+    return listWithoutDuplicates;
   }
 
   //Détectives
-  public ArrayList<PersonnagePlateau> SuspectsVisibles(Enqueteur player, Plateau plateau) {
-    ArrayList<PersonnagePlateau> suspects = new ArrayList<>(player.getSherlock().getSuspectVisibles());
-    for (int w = 0; w < player.Waston.getSuspectVisibles().size(); w++) {
-      suspects.add(player.Waston.getSuspectVisibles().get(w));
+  public List<PersonnagePlateau> SuspectsVisibles( Plateau plateau) {
+    Sherlock.SuspectsVision(this); Watson.SuspectsVision(this); Toby.SuspectsVision(this);
+    List<PersonnagePlateau> suspects =  Sherlock.suspectVisibles;
+    for (int w = 0; w < Watson.suspectVisibles.size(); w++) {
+      suspects.add(Watson.suspectVisibles.get(w));
     }
-    for (int t = 0; t < player.Toby.getSuspectVisibles().size(); t++) {
-      suspects.add(player.Toby.getSuspectVisibles().get(t));
+    for (int t = 0; t < Toby.suspectVisibles.size(); t++) {
+      suspects.add(Toby.suspectVisibles.get(t));
     }
-    removeDuplicateElements(suspects, suspects.size());
-    for (int i = 0; i < suspects.size(); i++) {
-      findPersonnage(personnages.get(suspects.get(i))).turn(plateau);
-    }
+    suspects = removeDuplicateElements(suspects);
+    //if (suspects.size()>2){
+      for (int i=0; i<suspects.size(); i++){
+        plateau.district[this.districts.get(findPersonnage(suspects.get(i))).getIndice()].setBackground(Color.GREEN);
+      }
+    //}
     return suspects;
   }
 
@@ -51,6 +44,30 @@ public class Initialisation {
       }
     }
     return innocents;
+  }
+
+  public void appelTemoins(Plateau plateau){
+    if (!!joueurM.getCoupable().isVisible()){
+      JOptionPane.showMessageDialog(null,
+              "MrJack n'est pas visible",
+              "Appel à Témoins",
+              JOptionPane.PLAIN_MESSAGE);
+      joueurM.setNbSabliers(joueurM.getNbSabliers()+jetonT1[1]);
+      if (SuspectsVisibles(plateau).size() > 2){
+        for (int i = 0; i < SuspectsVisibles(plateau).size(); i++) {
+          findPersonnage(personnages.get(SuspectsVisibles(plateau).get(i))).turn(plateau);
+        }
+      }
+    }
+    else{
+      JOptionPane.showMessageDialog(null,
+              "MrJack est visible",
+              "Appel à Témoins",
+              JOptionPane.PLAIN_MESSAGE);
+      for (int i=0; i<innocents(SuspectsVisibles(plateau)).size(); i++){
+        findPersonnage(innocents(SuspectsVisibles(plateau)).get(i)).turn(plateau);
+      }
+    }
   }
 
   List<String> pioche = new LinkedList<>();
@@ -76,6 +93,11 @@ public class Initialisation {
     return arr;
   }
 
+  public ImageIcon[] removeElementImage(ImageIcon[] arr, int removedIdx) {
+    System.arraycopy(arr, removedIdx + 1, arr, removedIdx, arr.length - 1 - removedIdx);
+    return arr;
+  }
+
 
   //Création des Districts et du com.isep.mrjack.Plateau de Jeu
 
@@ -85,16 +107,7 @@ public class Initialisation {
   Map<String, District> districts = new HashMap<>(9);
 
 
-//  public void CreationPlateau() {
-//    ArrayList<District> Plateau = new ArrayList<>();
-//    Random random = new Random();
-//    for (int i = 0; i < 10; i++) {
-//      int indice = random.nextInt(All.size());
-//      Plateau.add(All.get(indice));
-//      All.get(indice).setIndice(i);
-//      All.remove(indice);
-//    }
-//  }
+
 
   public District findPersonnage(PersonnagePlateau personnage) {
       District d = null;
@@ -139,7 +152,7 @@ public class Initialisation {
   public Initialisation() {
     List<String> nomsPersonnages = List.of("Madame", "Jeremy Bert","John Pizzer", "Inspecteur Lestrade", "William Gull", "Joseph Lane",
             "John Smith", "Sergent Goodley", "Miss Stealthy");
-    List<String> imagesAlibi = List.of("Madame-alibi", "JohnPizer-alibi", "JeremyBert-alibi", "InspLestrade-alibi","WilliamGull-alibi","JosephLane-alibi",
+    List<String> imagesAlibi = List.of("Madame-alibi", "JeremyBert-alibi", "JohnPizer-alibi", "InspLestrade-alibi","WilliamGull-alibi","JosephLane-alibi",
             "JohnSmith-alibi", "SgtGoodley-alibi", "MissStealthy-alibi");
     int[] sabliers = {2, 1, 1, 0, 1, 1, 1, 0, 1};
     for (int i = 0; i < sabliers.length; i++) {
@@ -156,8 +169,11 @@ public class Initialisation {
       imagesPlateau.add(imagesD.get(i));
       District d = new District(personnages.get(nomPerso), new String[]{imagesD.get(i), "3_Chem"});
       d.setIndice(i);
-      if (i == 0){ d.swapQuartHoraire();}
-      if (i == 2){ d.swapQuartAntihoraire();}
+      if (i == 0){ d.swapQuartHoraire(); d.getGauche()[0] = true;}
+      else{
+        if (i == 2){ d.swapQuartAntihoraire(); d.getDroite()[0] = true;}
+        d.getBas()[0] = true;
+      }
       if (nomPerso == "J_Lane"){d.setImages("4_Chem");}
       this.districts.put(nomsDistricts.get(i), d);
     }

@@ -2,15 +2,15 @@ package com.isep.mrjack;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
+import java.util.List;
 
 public class PersonnageDetective {
     Initialisation jeu;
     private ArrayList<Object> positionDetective;// = new ArrayList<>(Arrays.asList(jeu.districts.get(2), jeu.districts.get(2).getDroite()));
     //  (ArrayList<com.isep.mrjack.District>) Arrays.asList(D1, D1.getGauche());
     //[com.isep.mrjack.District, Gauche/Droite...]
-    private ArrayList<PersonnagePlateau> suspectVisibles ;
+    public List<PersonnagePlateau> suspectVisibles = new LinkedList<PersonnagePlateau>();
     public int nbSabliers;
     public String image;
 
@@ -184,12 +184,125 @@ public class PersonnageDetective {
         }
     }
 
-    public ArrayList<PersonnagePlateau> SuspectsVision(ArrayList<Object> positionDetective){
-        District Dx = (District) positionDetective.get(0);
+
+    public List<PersonnagePlateau> SuspectsVision(Initialisation jeu){
+        int indice = jeu.districts.get(positionDetective.get(0)).getIndice();
+        String Dx = String.format("D%s", indice+1);
+        District district = jeu.districts.get(Dx);
         Object[] side = (Object[]) positionDetective.get(1);
-        int mur = (Integer) side[0];
-        while (mur != 1){
-            suspectVisibles.add(Dx.getPersonnage());}
+
+        if (side[2].equals('G')){
+            if ((boolean) jeu.districts.get(positionDetective.get(0)).getGauche()[0] == false){
+                suspectVisibles.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
+                if((boolean) jeu.districts.get(positionDetective.get(0)).getDroite()[0] == false) {
+                    indice+=1;
+                    if ((boolean) district.getGauche()[0] == false){
+                        suspectVisibles.add(district.getPersonnage());
+                        if ((boolean) district.getDroite()[0] == false){
+                            indice+=1;
+                            if ((boolean) district.getGauche()[0] == false){
+                                suspectVisibles.add(district.getPersonnage());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (side[2].equals('H')) {
+            if ((boolean) jeu.districts.get(positionDetective.get(0)).getHaut()[0] == false) {
+                suspectVisibles.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
+                if ((boolean) jeu.districts.get(positionDetective.get(0)).getBas()[0] == false) {
+                    indice += 3;
+                    if ((boolean) district.getHaut()[0] == false) {
+                        suspectVisibles.add(district.getPersonnage());
+                        if ((boolean) district.getBas()[0] == false) {
+                            indice += 3;
+                            if ((boolean) district.getHaut()[0] == false) {
+                                suspectVisibles.add(district.getPersonnage());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (side[2].equals('B')) {
+            if ((boolean) jeu.districts.get(positionDetective.get(0)).getBas()[0] == false) {
+                suspectVisibles.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
+                if ((boolean) jeu.districts.get(positionDetective.get(0)).getHaut()[0] == false) {
+                    indice -= 3;
+                    if ((boolean) district.getBas()[0] == false) {
+                        suspectVisibles.add(district.getPersonnage());
+                        if ((boolean) district.getHaut()[0] == false) {
+                            indice -=3;
+                            if ((boolean) district.getBas()[0] == false) {
+                                suspectVisibles.add(district.getPersonnage());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (side[2].equals('D')){
+            if ((boolean) jeu.districts.get(positionDetective.get(0)).getDroite()[0] == false){
+                suspectVisibles.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
+                if((boolean) jeu.districts.get(positionDetective.get(0)).getGauche()[0] == false) {
+                    indice-=1;
+                    if ((boolean) district.getDroite()[0] == false){
+                        suspectVisibles.add(district.getPersonnage());
+                        if ((boolean) district.getGauche()[0] == false){
+                            indice-=1;
+                            if ((boolean) district.getDroite()[0] == false){
+                                suspectVisibles.add(district.getPersonnage());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        /*
+        if (panel == 'H'){
+            for (int i=0; i<2; i++){
+                //Dx = jeu.districts.get(String.format("D%s", x));
+                if ((boolean) Dx.getHaut()[0] == false){
+                    this.suspectVisibles.add(Dx.getPersonnage());
+                }
+                Dx = jeu.districts.get(String.format("D%s", x+=3));
+                if ((boolean) Dx.getBas()[0] == true){ break; }
+            }
+        }
+        if (panel == 'G'){
+            for (int i=0; i<2; i++){
+                //Dx = jeu.districts.get(String.format("D%s", x));
+                if ((boolean) Dx.getGauche()[0] == false){
+                    this.suspectVisibles.add(Dx.getPersonnage());
+                }
+                Dx = jeu.districts.get(String.format("D%s", x+=1));
+                if ((boolean) Dx.getDroite()[0] == true){ break; }
+            }
+        }
+        if (panel == 'D'){
+            for (int i=0; i<2; i++){
+                //Dx = jeu.districts.get(String.format("D%s", x));
+                if ((boolean) Dx.getDroite()[0] == false){
+                    this.suspectVisibles.add(Dx.getPersonnage());
+                }
+                Dx = jeu.districts.get(String.format("D%s", x-=1));
+                if ((boolean) Dx.getGauche()[0] == true){ break; }
+            }
+        }
+        if (panel == 'B'){
+            for (int i=0; i<2; i++){
+                //Dx = jeu.districts.get(String.format("D%s", x));
+                if ((boolean) Dx.getBas()[0] == false){
+                    this.suspectVisibles.add(Dx.getPersonnage());
+                }
+                Dx = jeu.districts.get(String.format("D%s", x-=3));
+                if ((boolean) Dx.getHaut()[0] == true){ break; }
+            }
+        }*/
         return suspectVisibles;
     }
 
@@ -203,10 +316,6 @@ public class PersonnageDetective {
 
     public void setPositionDetective1(Object[] e) {
         this.positionDetective.set(1, e);
-    }
-
-    public ArrayList<PersonnagePlateau> getSuspectVisibles() {
-        return suspectVisibles;
     }
 
     public void setSuspectVisibles(ArrayList<PersonnagePlateau> suspectVisibles) {

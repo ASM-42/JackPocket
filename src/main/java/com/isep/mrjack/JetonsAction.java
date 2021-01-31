@@ -178,12 +178,6 @@ public class JetonsAction {
     public void Joker(Player player, Plateau plateau) {
         if (player.getRole() == 1) { //Detective
 
-            ImageIcon icon = new ImageIcon("About16.gif");
-            JButton button = new JButton();
-            //TextIcon text = new TextIcon(button, "Maybe");
-            //CompoundIcon compound =
-            //      new CompoundIcon(CompoundIcon.Axis.X_AXIS, button.getIconTextGap(), icon, text);
-
             ImageIcon[] buttons = {
                     new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Holmes.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),
                     new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Watson.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),

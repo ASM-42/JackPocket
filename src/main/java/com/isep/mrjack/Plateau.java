@@ -53,7 +53,7 @@ public class Plateau extends JPanel {
             if (i == 5) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/6.png"))); }
             if (i == 6) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/7.png"))); }
             if (i == 7) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/8.png"))); }
-            jetTemps[i].addActionListener(MrJackActionListener.createJetonTPair(jetTemps[i], Jeu, this));
+            if (i%2 == 0) {jetTemps[i].addActionListener(MrJackActionListener.createJetonTPair(jetTemps[i], Jeu, this));}
 
             surfaceGauche.add(jetTemps[i]);
         }

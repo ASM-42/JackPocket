@@ -8,7 +8,9 @@ public class PersonnagePlateau{
     public String carte;
     private boolean visible;
     private int sabliers;
-    public String statut; //coupable ou non
+    public String statut = "innocent"; //coupable ou non
+
+
 
     public PersonnagePlateau(String nomP, int sabliers, String imageAlibi) {
         this.nomP = nomP;
@@ -16,11 +18,6 @@ public class PersonnagePlateau{
         this.carte = imageAlibi;
     }
 
-
-    public PersonnagePlateau(int nbSabliers, boolean visible, String statut){
-        this.visible = visible;
-        this.statut = statut;
-    }
 
     public void setStatut(String statut) {
         this.statut = statut;

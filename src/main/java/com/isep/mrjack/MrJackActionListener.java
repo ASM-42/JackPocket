@@ -90,7 +90,8 @@ public final class MrJackActionListener {
       int j1E = Jeu.index(jetonsTourActions, Action1E);
       Jeu.jetonsActionTour[j1E].faireAction(Action1E, Jeu.joueurE, plateau);
       Jeu.jetonsActionTour = Jeu.removeElement(Jeu.jetonsActionTour, j1E);
-      jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j1E);
+      Jeu.removeElementString(jetonsTourActions, j1E);
+      //jetonsTourActions = Jeu.removeElementString(jetonsTourActions, j1E);
       plateau.jetAction[j1E].setBackground(Color.RED);
       //for (int z =0; z<jetonsTourActions.length; z++){ System.out.println(jetonsTourActions[z]);}
 

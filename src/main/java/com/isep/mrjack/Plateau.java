@@ -80,7 +80,7 @@ public class Plateau extends JPanel {
 
         for (int i = 0; i < detectiveVide2.length; i++) {
             detectiveVide2[i] = new JButton("");
-            detectiveVide2[i].setPreferredSize(new Dimension(40, 40));
+            detectiveVide2[i].setPreferredSize(new Dimension(40, 50));
             detectivePanel2.add(detectiveVide2[i]);
         }
         this.add(detectivePanel2, BorderLayout.PAGE_START);

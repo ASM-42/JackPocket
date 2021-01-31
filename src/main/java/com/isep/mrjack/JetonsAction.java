@@ -164,9 +164,7 @@ public class JetonsAction {
         plateau.district[jeu.districts.get(d2).getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", jeu.districts.get(d2).imageActive+"_"+jeu.districts.get(d2).getAngle()))));
     }
     public void Joker (Player player) {
-        String reponse1;
-        String reponse2;
-        Scanner scanner = new Scanner (System.in);
+
 /*
         if (player.getRole() == 1) //Detective
 

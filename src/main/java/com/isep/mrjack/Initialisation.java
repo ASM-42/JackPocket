@@ -70,7 +70,7 @@ public class Initialisation {
   List<String> imagesPlateau = new LinkedList<>();
   List<String> nomsDistricts;
 
-  Map<String, District> districts = new HashMap<>();
+  Map<String, District> districts = new HashMap<>(9);
 
 
 //  public void CreationPlateau() {
@@ -173,9 +173,9 @@ public class Initialisation {
 
 
 
-    Watson = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D3"), this.districts.get("D3").getBas())), "/images/jet_detec/Watson.png", this);
-    Toby = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D8"), this.districts.get("D8").getBas())), "/images/jet_detec/Tobby.png", this);
-    Sherlock = new PersonnageDetective(new ArrayList<Object>(Arrays.asList(this.districts.get("D1"), this.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png", this);
+    Watson = new PersonnageDetective(new ArrayList<Object>(Arrays.asList("D3", this.districts.get("D3").getDroite())), "/images/jet_detec/Watson.png", this);
+    Toby = new PersonnageDetective(new ArrayList<Object>(Arrays.asList("D8", this.districts.get("D8").getBas())), "/images/jet_detec/Tobby.png", this);
+    Sherlock = new PersonnageDetective(new ArrayList<Object>(Arrays.asList("D1", this.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png", this);
 
 
     joueurE = new Enqueteur("nameE", Watson, Toby, Sherlock);

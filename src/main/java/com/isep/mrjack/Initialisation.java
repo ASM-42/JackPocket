@@ -9,8 +9,26 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Initialisation {
 
 
+  public  int removeDuplicateElements(ArrayList<PersonnagePlateau> arr, int n){
+    if (n==0 || n==1){
+      return n;
+    }
+    ArrayList<PersonnagePlateau> temp = new ArrayList<>();
+    int j = 0;
+    for (int i=0; i<n-1; i++){
+      if (arr.get(i) != arr.get(i + 1)){
+        temp.set(j++, arr.get(i));
+      }
+    }
+    temp.set(j++, arr.get(n - 1));
+    for (int i=0; i<j; i++){
+      arr.set(i, temp.get(i));
+    }
+    return j;
+  }
+
   //Détectives
-  public ArrayList<PersonnagePlateau> SuspectsVisibles(Enqueteur player) {
+  public ArrayList<PersonnagePlateau> SuspectsVisibles(Enqueteur player, Plateau plateau) {
     ArrayList<PersonnagePlateau> suspects = new ArrayList<>(player.getSherlock().getSuspectVisibles());
     for (int w = 0; w < player.Waston.getSuspectVisibles().size(); w++) {
       suspects.add(player.Waston.getSuspectVisibles().get(w));
@@ -18,17 +36,22 @@ public class Initialisation {
     for (int t = 0; t < player.Toby.getSuspectVisibles().size(); t++) {
       suspects.add(player.Toby.getSuspectVisibles().get(t));
     }
+    removeDuplicateElements(suspects, suspects.size());
     for (int i = 0; i < suspects.size(); i++) {
-      for (int j = 0; j < suspects.size(); j++) {
-        if (suspects.get(i) == suspects.get(j)) {
-          suspects.remove(j);
-        }
-      }
+      findPersonnage(personnages.get(suspects.get(i))).turn(plateau);
     }
     return suspects;
   }
 
-
+  public List<PersonnagePlateau> innocents(List<PersonnagePlateau> suspects) {
+    List<PersonnagePlateau> innocents = new ArrayList<>();
+    for (PersonnagePlateau perso : personnages.values()) {
+      if (!suspects.contains(perso)) {
+        innocents.add(perso);
+      }
+    }
+    return innocents;
+  }
 
   List<String> pioche = new LinkedList<>();
   Map<String, PersonnagePlateau> personnages = new HashMap<>();
@@ -42,16 +65,6 @@ public class Initialisation {
     return 1;
   }
 
-
-  public List<PersonnagePlateau> innocents(List<PersonnagePlateau> suspects) {
-    List<PersonnagePlateau> innocents = new ArrayList<>();
-    for (PersonnagePlateau perso : personnages.values()) {
-      if (!suspects.contains(perso)) {
-        innocents.add(perso);
-      }
-    }
-    return innocents;
-  }
 
   public JetonsAction[] removeElement(JetonsAction[] arr, int removedIdx) {
     System.arraycopy(arr, removedIdx + 1, arr, removedIdx, arr.length - 1 - removedIdx);

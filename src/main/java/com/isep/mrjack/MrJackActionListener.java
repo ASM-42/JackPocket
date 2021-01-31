@@ -63,6 +63,7 @@ public final class MrJackActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
       Random random2 = new Random();
       int actionR1 = random2.nextInt(2);
       int actionR2 = random2.nextInt(2);
@@ -80,7 +81,7 @@ public final class MrJackActionListener {
         plateau.jetAction[i].setBackground(Color.GREEN);
       }
       //for (int i =0; i<jetonsTourActions.length; i++){ System.out.println(jetonsTourActions[i]);}
-
+      //Jeu.SuspectsVisibles(Jeu.joueurE, plateau);
 
       String Action1E = (String)JOptionPane.showInputDialog(null,
               "Enqueteur quelle action souhaitez vous jouer",

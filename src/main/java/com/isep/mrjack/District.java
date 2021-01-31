@@ -2,7 +2,7 @@ package com.isep.mrjack;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class District {
     private String orientation; //"up" = personnages, "down" pas de personnage
@@ -11,10 +11,10 @@ public class District {
     private Object[] Droite = {0, true, 'D'};
     private Object[] Bas = {1, true, 'B'};
     private ArrayList<Object[]> cotes;
-    private PersonnagePlateau personnage;
+    private final PersonnagePlateau personnage;
     private int indice;
     private int angle;
-    private String[] images;
+    private final String[] images;
     public String imageActive;
 
     public District(PersonnagePlateau personnage, String[] images) {
@@ -26,14 +26,13 @@ public class District {
     }
 
     public void turn (Plateau plateau) {
-        if (this.orientation == "up"){
+        if (this.orientation.equals("up")){
             orientation = "down";
             personnage.setVisible(false);
             personnage.setStatut("innocent");
             imageActive = images[1];
             System.out.println(imageActive);
             System.out.println(getClass().getResource(String.format("/images/district/%s.png", imageActive+"_"+angle)));
-
             plateau.district[this.indice].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", this.imageActive+"_"+this.angle))));
         }
     }
@@ -85,14 +84,6 @@ public class District {
     }
 
 
-    public String getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(String orientation) {
-        this.orientation = orientation;
-    }
-
     public Object[] getGauche() {
         return Gauche;
     }
@@ -137,10 +128,6 @@ public class District {
         return personnage;
     }
 
-    public void setPersonnage(PersonnagePlateau personnage) {
-        this.personnage = personnage;
-    }
-
     public void setIndice(int i) {
         if(i == 0){ Droite[1] = false; Bas[1] = false;}
         if(i == 1){ Droite[1] = false; Bas[1] = false; Gauche[1] = false;}
@@ -160,10 +147,6 @@ public class District {
 
     public int getAngle() {
         return angle;
-    }
-
-    public void setAngle(int angle) {
-        this.angle = angle;
     }
 
     public void setImages(String image) {

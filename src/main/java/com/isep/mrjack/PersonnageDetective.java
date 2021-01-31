@@ -186,6 +186,7 @@ public class PersonnageDetective {
 
 
     public List<PersonnagePlateau> SuspectsVision(Initialisation jeu){
+        List<PersonnagePlateau>suspectsNow = new LinkedList<>();
         int indice = jeu.districts.get(positionDetective.get(0)).getIndice();
         String Dx = String.format("D%s", indice+1);
         District district = jeu.districts.get(Dx);
@@ -193,15 +194,15 @@ public class PersonnageDetective {
 
         if (side[2].equals('G')){
             if ((boolean) jeu.districts.get(positionDetective.get(0)).getGauche()[0] == false){
-                suspectVisibles.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
+                suspectsNow.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
                 if((boolean) jeu.districts.get(positionDetective.get(0)).getDroite()[0] == false) {
                     indice+=1;
                     if ((boolean) district.getGauche()[0] == false){
-                        suspectVisibles.add(district.getPersonnage());
+                        suspectsNow.add(district.getPersonnage());
                         if ((boolean) district.getDroite()[0] == false){
                             indice+=1;
                             if ((boolean) district.getGauche()[0] == false){
-                                suspectVisibles.add(district.getPersonnage());
+                                suspectsNow.add(district.getPersonnage());
                             }
                         }
                     }
@@ -210,15 +211,15 @@ public class PersonnageDetective {
         }
         if (side[2].equals('H')) {
             if ((boolean) jeu.districts.get(positionDetective.get(0)).getHaut()[0] == false) {
-                suspectVisibles.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
+                suspectsNow.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
                 if ((boolean) jeu.districts.get(positionDetective.get(0)).getBas()[0] == false) {
                     indice += 3;
                     if ((boolean) district.getHaut()[0] == false) {
-                        suspectVisibles.add(district.getPersonnage());
+                        suspectsNow.add(district.getPersonnage());
                         if ((boolean) district.getBas()[0] == false) {
                             indice += 3;
                             if ((boolean) district.getHaut()[0] == false) {
-                                suspectVisibles.add(district.getPersonnage());
+                                suspectsNow.add(district.getPersonnage());
                             }
                         }
                     }
@@ -227,15 +228,15 @@ public class PersonnageDetective {
         }
         if (side[2].equals('B')) {
             if ((boolean) jeu.districts.get(positionDetective.get(0)).getBas()[0] == false) {
-                suspectVisibles.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
+                suspectsNow.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
                 if ((boolean) jeu.districts.get(positionDetective.get(0)).getHaut()[0] == false) {
                     indice -= 3;
                     if ((boolean) district.getBas()[0] == false) {
-                        suspectVisibles.add(district.getPersonnage());
+                        suspectsNow.add(district.getPersonnage());
                         if ((boolean) district.getHaut()[0] == false) {
                             indice -=3;
                             if ((boolean) district.getBas()[0] == false) {
-                                suspectVisibles.add(district.getPersonnage());
+                                suspectsNow.add(district.getPersonnage());
                             }
                         }
                     }
@@ -244,15 +245,15 @@ public class PersonnageDetective {
         }
         if (side[2].equals('D')){
             if ((boolean) jeu.districts.get(positionDetective.get(0)).getDroite()[0] == false){
-                suspectVisibles.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
+                suspectsNow.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
                 if((boolean) jeu.districts.get(positionDetective.get(0)).getGauche()[0] == false) {
                     indice-=1;
                     if ((boolean) district.getDroite()[0] == false){
-                        suspectVisibles.add(district.getPersonnage());
+                        suspectsNow.add(district.getPersonnage());
                         if ((boolean) district.getGauche()[0] == false){
                             indice-=1;
                             if ((boolean) district.getDroite()[0] == false){
-                                suspectVisibles.add(district.getPersonnage());
+                                suspectsNow.add(district.getPersonnage());
                             }
                         }
                     }
@@ -262,7 +263,7 @@ public class PersonnageDetective {
 
 
 
-        /*
+        /* Début récurrence
         if (panel == 'H'){
             for (int i=0; i<2; i++){
                 //Dx = jeu.districts.get(String.format("D%s", x));
@@ -303,7 +304,7 @@ public class PersonnageDetective {
                 if ((boolean) Dx.getHaut()[0] == true){ break; }
             }
         }*/
-        return suspectVisibles;
+        return suspectsNow;
     }
 
     public void setPositionDetective(ArrayList<Object> positionDetective) {

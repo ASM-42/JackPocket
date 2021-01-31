@@ -19,13 +19,12 @@ public class Initialisation {
 
   //Détectives
   public List<PersonnagePlateau> SuspectsVisibles( Plateau plateau) {
-    Sherlock.SuspectsVision(this); Watson.SuspectsVision(this); Toby.SuspectsVision(this);
-    List<PersonnagePlateau> suspects =  Sherlock.suspectVisibles;
-    for (int w = 0; w < Watson.suspectVisibles.size(); w++) {
-      suspects.add(Watson.suspectVisibles.get(w));
+    List<PersonnagePlateau> suspects =  Sherlock.SuspectsVision(this);
+    for (int w = 0; w < Watson.SuspectsVision(this).size(); w++) {
+      suspects.add(Watson.SuspectsVision(this).get(w));
     }
-    for (int t = 0; t < Toby.suspectVisibles.size(); t++) {
-      suspects.add(Toby.suspectVisibles.get(t));
+    for (int t = 0; t < Toby.SuspectsVision(this).size(); t++) {
+      suspects.add(Toby.SuspectsVision(this).get(t));
     }
    // suspects = removeDuplicateElements(suspects);
     //if (suspects.size()>2){
@@ -173,8 +172,8 @@ public class Initialisation {
       District d = new District(personnages.get(nomPerso), new String[]{imagesD.get(i), "3_Chem"});
       d.setIndice(i);
       if (i == 0){ d.swapQuartHoraire(); d.getGauche()[0] = true;}
+      if (i == 2){ d.swapQuartAntihoraire(); d.getDroite()[0] = true;}
       else{
-        if (i == 2){ d.swapQuartAntihoraire(); d.getDroite()[0] = true;}
         d.getBas()[0] = true;
       }
       if (nomPerso == "J_Lane"){d.setImages("4_Chem");}

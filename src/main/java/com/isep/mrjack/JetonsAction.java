@@ -5,6 +5,7 @@ import java.awt.*;
 
 
 public class JetonsAction {
+    //déclaration des attributs de DISTRICT
     Initialisation jeu;
     public String typeAction1;
     public String typeAction2;
@@ -14,6 +15,7 @@ public class JetonsAction {
     public String[] action2;
 
 
+    //constructeur des jetonsAction
     public JetonsAction(String[] action1, String[] action2, Initialisation jeu) {
         this.jeu = jeu;
         this.action1 = action1;
@@ -24,6 +26,8 @@ public class JetonsAction {
         this.image2 = action2[1];
     }
 
+    
+    //JetonAction pour piocher un Alibi
     public void piocherAlibi(Player joueur, Plateau plateau) {
         PersonnagePlateau carte = jeu.personnages.get(jeu.pioche.get(0));
         if (joueur.getRole() == 0) {
@@ -53,6 +57,7 @@ public class JetonsAction {
     }
 
 
+    //JetonAction pour bouger Sherlock de 1 ou 2 cases
     public void bougerSherlock(Plateau plateau) {
         Object[] options = {1, 2};
         int reponse1 = JOptionPane.showOptionDialog(plateau,
@@ -71,6 +76,7 @@ public class JetonsAction {
         }
     }
 
+    //JetonAction pour bouger Toby de 1 ou 2 cases
     public void bougerToby(Plateau plateau) {
         Object[] options = {1, 2};
         int reponse1 = JOptionPane.showOptionDialog(plateau,
@@ -88,7 +94,9 @@ public class JetonsAction {
             jeu.joueurE.getToby().MoveDetective2(plateau);
         }
     }
-
+    
+    
+    //JetonAction pour bouger Watson de 1 ou 2 cases
     public void bougerWatson(Plateau plateau) {
         Object[] options = {'1', '2'};
         char reponse1 = (char) JOptionPane.showOptionDialog(plateau,
@@ -107,20 +115,24 @@ public class JetonsAction {
         }
     }
 
-
+    //JetonAction pour faire une rotation de District dans un sens sens horaire ou anti-horaire
+    //et d'un demi tour ou d'un quart de tour
     public void rotationDistrict(Plateau plateau) {
+        // choix des districts à bouger
         Object[] options = {"D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"};
         String d1 = (String) JOptionPane.showInputDialog(null,
                 " Quel District souhaitez-vous tourner?",
                 "Rotation", JOptionPane.QUESTION_MESSAGE,
                 new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),
                 options, options[0]);
+        // choix du sens horaire ou anti-horaire
         Object[] options2 = {"Horaire", "Anti-Horaire"};
         String sens = (String) JOptionPane.showInputDialog(null,
                 "Dans quel sens (horaire ou anti-horaire) souhaitez vous le deplacer ?",
                 "Rotation " + d1, JOptionPane.QUESTION_MESSAGE,
                 new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),
                 options2, options2[0]);
+        // choix d'un quart de tour ou d'un demi tour
         Object[] options3 = {"Quart de Tour", "Demi Tour"};
         String choixSens = (String) JOptionPane.showInputDialog(null,
                 "Voulez - vous le déplacer d'un quart de tour ou d'un demi tour ?",
@@ -128,22 +140,28 @@ public class JetonsAction {
                 new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Rotation.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),
                 options3, options3[0]);
         District d = jeu.districts.get(d1);
+        //pour le choix du sens horaire
         if (sens.equals("Horaire")) {
+            //choix de quart de tour
             if (choixSens.equals("Quart de Tour")) {
                 d.swapQuartHoraire();
                 plateau.district[d.getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", d.imageActive + "_" + d.getAngle()))));
             }
+            //choix de demi tour
             if (choixSens.equals("Demi Tour")) {
                 d.swapQuartHoraire();
                 d.swapQuartHoraire();
                 plateau.district[d.getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", d.imageActive + "_" + d.getAngle()))));
             }
         }
+        //pour le choix du sens anti-horaire
         if (sens.equals("Anti-Horaire")) {
+            //choix de quart de tour
             if (choixSens.equals("Quart de Tour")) {
                 d.swapQuartAntihoraire();
                 plateau.district[d.getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", d.imageActive + "_" + d.getAngle()))));
             }
+            //choix de demi tour
             if (choixSens.equals("Demi Tour")) {
                 d.swapQuartAntihoraire();
                 d.swapQuartAntihoraire();
@@ -152,14 +170,18 @@ public class JetonsAction {
         }
     }
 
+    //JetonAction pour faire un échange de District
     public void echangeDistrict(Plateau plateau) {
+        //choix du premier district
         String[] options = {"D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"};
         String d1 = (String) JOptionPane.showInputDialog(null,
                 "Selectionnez le premier district que vous souhaitez déplacer :",
                 "Echange Districts", JOptionPane.QUESTION_MESSAGE,
                 new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Echange.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT))
                 , options, options[0]);
+        //on enlève ce premier district
         jeu.removeElementString(options, jeu.index(options, d1));
+        //choix du deuxième district
         String d2 = (String) JOptionPane.showInputDialog(null,
                 "Selectionnez le second district que vous souhaitez déplacer",
                 "Echange Districts", JOptionPane.QUESTION_MESSAGE,
@@ -174,15 +196,19 @@ public class JetonsAction {
         plateau.district[jeu.districts.get(d1).getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", jeu.districts.get(d1).imageActive + "_" + jeu.districts.get(d1).getAngle()))));
         plateau.district[jeu.districts.get(d2).getIndice()].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", jeu.districts.get(d2).imageActive + "_" + jeu.districts.get(d2).getAngle()))));
     }
-
+    
+    
+    //JetonAction "Joker" = déplacer soit Watson, soit Toby soit Holmes
     public void Joker(Player player, Plateau plateau) {
-        if (player.getRole() == 1) { //Detective
+        //Si le joueur est l'enqueteur
+        if (player.getRole() == 1) {
 
             ImageIcon[] buttons = {
                     new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Holmes.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),
                     new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Watson.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),
                     new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Tobby.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),
             };
+           
             int rc = JOptionPane.showOptionDialog(null, "Quel détective souhaitez vous déplacer?",
                     "Joker", JOptionPane.WARNING_MESSAGE, 0,
                     new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_action/Joker.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),
@@ -197,6 +223,7 @@ public class JetonsAction {
                 jeu.joueurE.getToby().MoveDetective1(plateau);
             }
         }
+        //Si le joueur est MrJack
         if (player.getRole() == 0) { //MrJack
             ImageIcon[] buttons = {
                     new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Holmes.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)),
@@ -220,6 +247,7 @@ public class JetonsAction {
         }
     }
 
+ 
     public void faireAction(String typeAction1, Player player, Plateau plateau) {
         if (typeAction1.equals("Rotation")) {
             rotationDistrict(plateau);
@@ -245,6 +273,7 @@ public class JetonsAction {
     }
 
 
+    // getters et setters
     public String getTypeAction1() {
         return typeAction1;
     }

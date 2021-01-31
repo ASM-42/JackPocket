@@ -30,11 +30,9 @@ public class Initialisation {
       suspects.add(Toby.SuspectsVision(this).get(t));
     }
    // suspects = removeDuplicateElements(suspects);
-    //if (suspects.size()>2){
       for (int i=0; i<suspects.size(); i++){
         plateau.district[findPersonnage(suspects.get(i)).getIndice()].setBackground(Color.GREEN);
       }
-    //}
     if (!!suspects.contains(this.joueurM.coupable)){
       this.joueurM.coupable.setVisible(false);
     }
@@ -52,26 +50,40 @@ public class Initialisation {
   }
 
   public void appelTemoins(Plateau plateau){
-    if (!!joueurM.getCoupable().isVisible()){
+    if (!!joueurM.getCoupable().isVisible()) {
       JOptionPane.showMessageDialog(null,
               "MrJack n'est pas visible",
               "Appel à Témoins",
               JOptionPane.PLAIN_MESSAGE);
-      joueurM.setNbSabliers(joueurM.getNbSabliers()+jetonT1[1]);
-      if (SuspectsVisibles(plateau).size() > 2){
-        for (int i = 0; i < SuspectsVisibles(plateau).size(); i++) {
+      joueurM.setNbSabliers(joueurM.getNbSabliers() + jetonT1[1]);
+
+      JOptionPane.showMessageDialog(null,
+              "La récupération de tout les personnages visible n'est pas parfaite. \n\n L'appel à Témoins est donc compromis. ",
+              "Appel à Témoins Compromis",
+              JOptionPane.ERROR_MESSAGE);
+      //Retourne et innocente les personnages visibles
+      /*
+                for (int i = 0; i < SuspectsVisibles(plateau).size(); i++) {
           findPersonnage(personnages.get(SuspectsVisibles(plateau).get(i))).turn(plateau);
-        }
+        }*/
       }
-    }
     else{
       JOptionPane.showMessageDialog(null,
               "MrJack est visible",
               "Appel à Témoins",
               JOptionPane.PLAIN_MESSAGE);
-      for (int i=0; i<innocents(SuspectsVisibles(plateau)).size(); i++){
+
+      JOptionPane.showMessageDialog(null,
+              "La récupération de tout les personnages visible n'est pas parfaite. \n\n L'appel à Témoins est donc compromis. ",
+              "Appel à Témoins Compromis",
+              JOptionPane.ERROR_MESSAGE);
+
+
+      //Retourne et innocente les personnages non visibles
+
+    /*  for (int i=0; i<innocents(SuspectsVisibles(plateau)).size(); i++){
         findPersonnage(innocents(SuspectsVisibles(plateau)).get(i)).turn(plateau);
-      }
+      }*/
     }
   }
 

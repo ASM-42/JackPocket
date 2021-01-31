@@ -37,12 +37,12 @@ public class Plateau extends JPanel {
     // *** CONSTRUIT L'AREA DU GAUCHE ***
     JPanel detectivePanel1 = new JPanel(new GridLayout(3, 1, 0, 0));
     JButton[] detectiveVide1 = new JButton[3];
+    JButton[] jetTemps = new JButton[8];                      //liste de 8 boutons qui correspondent aux 8 jetonsTemps
     private void panelGauche() {
         JPanel gauchePanel = new JPanel(new GridLayout());
 
         //panel pour les boutons jetonsTemps
         JPanel surfaceGauche = new JPanel(new GridLayout(8, 1, 0, 0));
-        JButton[] jetTemps = new JButton[8];                      //liste de 8 boutons qui correspondent aux 8 jetonsTemps
         for (int i = 0; i < jetTemps.length; i++) {
             jetTemps[i] = new JButton("");
             if (i == 0) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/1.png"))); }

@@ -28,10 +28,7 @@ public class Plateau extends JPanel {
             district[i] = new JButton("");
             plateauPanel.add(district[i]);
             district[i].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", Jeu.districts.get(Jeu.nomsDistricts.get(i)).imageActive+"_"+Jeu.districts.get(Jeu.nomsDistricts.get(i)).getAngle()))));
-            //district[i].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", Jeu.imagesPlateau.get(i)))));
-            district[i].addActionListener(MrJackActionListener.createReturnDistrictAL(district[i]));
         }
-
         this.add(plateauPanel, BorderLayout.CENTER);
     }
 
@@ -120,16 +117,9 @@ public class Plateau extends JPanel {
             surfaceDroite.add(jetAction[i]);
         }
 
-        //panel pour la pioche
-        JPanel piochePanel = new JPanel(new GridLayout(3, 1, 0, 0));
-        JButton Alibi = new JButton("Pioche Alibi");
-        //Alibi.setIcon( new ImageIcon(new ImageIcon("C:\\JackPocket\\src\\main\\resources\\images\\cartes_alibi\\alibi-carte.png").getImage().getScaledInstance(40,40,Image.SCALE_DEFAULT)));
-        piochePanel.add(Alibi);
-
         //rajouter les 3 panels créés au droitePanel
         droitePanel.add(detectivePanel3);
         droitePanel.add(surfaceDroite);
-        droitePanel.add(piochePanel);
         this.add(droitePanel, BorderLayout.LINE_END);
     }
 

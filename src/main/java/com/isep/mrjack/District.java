@@ -31,6 +31,9 @@ public class District {
             personnage.setVisible(false);
             personnage.setStatut("innocent");
             imageActive = images[1];
+            System.out.println(imageActive);
+            System.out.println(getClass().getResource(String.format("/images/district/%s.png", imageActive+"_"+angle)));
+
             plateau.district[this.indice].setIcon(new ImageIcon(getClass().getResource(String.format("/images/district/%s.png", this.imageActive+"_"+this.angle))));
         }
     }
@@ -161,5 +164,9 @@ public class District {
 
     public void setAngle(int angle) {
         this.angle = angle;
+    }
+
+    public void setImages(String image) {
+        this.images[1] = image;
     }
 }

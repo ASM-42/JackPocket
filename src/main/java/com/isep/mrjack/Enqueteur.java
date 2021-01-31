@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Enqueteur extends Player {
+    public static final int role = 1;
     public PersonnageDetective Waston;
             //= new PersonnageDetective(new ArrayList<>(Arrays.asList(jeu.districts.get("D3"), jeu.districts.get("D3").getBas())), "/images/jet_detec/Watson.png", jeu);
     public PersonnageDetective Toby;
@@ -16,6 +17,7 @@ public class Enqueteur extends Player {
         this.Waston = Watson;
         this.Toby = Toby;
         this.Sherlock = Sherlock;
+        //this.role = 1;
         //this.jeu = jeu;
     }
 
@@ -41,5 +43,10 @@ public class Enqueteur extends Player {
 
     public void setSherlock(PersonnageDetective sherlock) {
         Sherlock = sherlock;
+    }
+
+    //@Override
+    public int getRole() {
+        return role;
     }
 }

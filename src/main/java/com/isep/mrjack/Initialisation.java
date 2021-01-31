@@ -125,7 +125,7 @@ public class Initialisation {
   }
 */
   public Initialisation() {
-    List<String> nomsPersonnages = List.of("Madame", "John Pizer", "Jeremy Bert", "Inspecteur Lestrade", "William Gull", "Joseph Lane",
+    List<String> nomsPersonnages = List.of("Madame", "Jeremy Bert","John Pizzer", "Inspecteur Lestrade", "William Gull", "Joseph Lane",
             "John Smith", "Sergent Goodley", "Miss Stealthy");
     List<String> imagesAlibi = List.of("Madame-alibi", "JohnPizer-alibi", "JeremyBert-alibi", "InspLestrade-alibi","WilliamGull-alibi","JosephLane-alibi",
             "JohnSmith-alibi", "SgtGoodley-alibi", "MissStealthy-alibi");
@@ -140,14 +140,13 @@ public class Initialisation {
     List<String> imagesD = List.of("Madame", "J_Bert", "J_Pizzer", "I_Lestrada", "W_Gull", "J_Lane", "J_Smith", "S_Goodley", "M_Stealthy");
     nomsDistricts = List.of("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9");
     for (int i = 0; i < imagesD.size(); i++) {
-      ThreadLocalRandom rnd = ThreadLocalRandom.current();
-      int x = rnd.nextInt(nomsDistricts.size());
       String nomPerso = nomsPersonnages.get(i);
       imagesPlateau.add(imagesD.get(i));
-      District d = new District(personnages.get(nomPerso), new String[]{imagesD.get(i), "/images/districts/3_Chem/png"});
+      District d = new District(personnages.get(nomPerso), new String[]{imagesD.get(i), "3_Chem"});
       d.setIndice(i);
       if (i == 0){ d.swapQuartHoraire();}
       if (i == 2){ d.swapQuartAntihoraire();}
+      if (nomPerso == "J_Lane"){d.setImages("4_Chem");}
       this.districts.put(nomsDistricts.get(i), d);
     }
     //Collections.shuffle(nomsDistricts);

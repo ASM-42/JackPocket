@@ -17,7 +17,7 @@ public class Initialisation {
     return listWithoutDuplicates;
   }
 
-  //Détectives
+  //renvoie une liste de tous les personnages visibles donc encore coupables 
   public List<PersonnagePlateau> SuspectsVisibles( Plateau plateau) {
     for (int i=0; i<9; i++){
       plateau.district[i].setBackground(null);
@@ -38,7 +38,9 @@ public class Initialisation {
     }
     return suspects;
   }
-
+  
+  
+  //renvoie une liste de tous les personnages plus visibles donc innocents 
   public List<PersonnagePlateau> innocents(List<PersonnagePlateau> suspects) {
     List<PersonnagePlateau> innocents = new ArrayList<>();
     for (PersonnagePlateau perso : personnages.values()) {
@@ -49,6 +51,7 @@ public class Initialisation {
     return innocents;
   }
 
+  //faire l'appel à témoin
   public void appelTemoins(Plateau plateau){
     if (!!joueurM.getCoupable().isVisible()) {
       JOptionPane.showMessageDialog(null,
@@ -183,13 +186,14 @@ public class Initialisation {
     //Collections.shuffle(nomsDistricts);
     //Collections.shuffle(imagesPlateau);
 
-
+    //initialisation des jetons actions
     jeton1 = new JetonsAction(new String[]{"Sherlock","Carte Alibi"}, new String[]{"/images/jet_action/BougerSherlock.png", "/images/jet_action/PiocheAlibi.png"}, this);
     jeton2 = new JetonsAction(new String[]{"Watson", "Toby"}, new String[]{"/images/jet_action/BougerWatson.png", "/images/jet_action/BougerToby.png"}, this);
     jeton3 = new JetonsAction(new String[]{"Rotation", "Joker"}, new String[]{"/images/jet_action/Rotation.png", "/images/jet_action/Joker.png"}, this);
     jeton4 = new JetonsAction(new String[]{"Rotation", "Echange"}, new String[]{"/images/jet_action/Rotation.png", "/images/jet_action/Echange.png"}, this);
     jetonsActionTour = new JetonsAction[] {jeton1, jeton2, jeton3, jeton4};
 
+    //initialisation des jetons actions
     jetonT1 = new int[]{1, 1};
     jetonT2 = new int[]{2, 0};
     jetonT3 = new int[]{3, 1};
@@ -200,15 +204,17 @@ public class Initialisation {
     jetonT8 = new int[]{8, 0};
     jetonsTemps = new int[][]{jetonT1, jetonT2, jetonT3, jetonT4, jetonT5, jetonT6, jetonT7, jetonT8};
 
+    
+    //initialisation du joueur Mrjack
     joueurM = new MrJack("nameM", this.personnages.get(pioche.get(0)));
 
 
-
+    //initialisation des trois détectives
     Watson = new PersonnageDetective(new ArrayList<Object>(Arrays.asList("D3", this.districts.get("D3").getDroite())), "/images/jet_detec/Watson.png", this);
     Toby = new PersonnageDetective(new ArrayList<Object>(Arrays.asList("D8", this.districts.get("D8").getBas())), "/images/jet_detec/Tobby.png", this);
     Sherlock = new PersonnageDetective(new ArrayList<Object>(Arrays.asList("D1", this.districts.get("D1").getGauche())), "/images/jet_detec/Holmes.png", this);
 
-
+    //initialisation du joueur Enqueteur
     joueurE = new Enqueteur("nameE", Watson, Toby, Sherlock);
 
 

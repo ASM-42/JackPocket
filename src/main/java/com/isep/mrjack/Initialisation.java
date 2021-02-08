@@ -56,34 +56,20 @@ public class Initialisation {
               "Appel à Témoins",
               JOptionPane.PLAIN_MESSAGE);
       joueurM.setNbSabliers(joueurM.getNbSabliers() + jetonT1[1]);
-
-      JOptionPane.showMessageDialog(null,
-              "La récupération de tout les personnages visible n'est pas parfaite. \n\n L'appel à Témoins est donc compromis. ",
-              "Appel à Témoins Compromis",
-              JOptionPane.ERROR_MESSAGE);
       //Retourne et innocente les personnages visibles
-      /*
                 for (int i = 0; i < SuspectsVisibles(plateau).size(); i++) {
           findPersonnage(personnages.get(SuspectsVisibles(plateau).get(i))).turn(plateau);
-        }*/
+        }
       }
     else{
       JOptionPane.showMessageDialog(null,
               "MrJack est visible",
               "Appel à Témoins",
               JOptionPane.PLAIN_MESSAGE);
-
-      JOptionPane.showMessageDialog(null,
-              "La récupération de tout les personnages visible n'est pas parfaite. \n\n L'appel à Témoins est donc compromis. ",
-              "Appel à Témoins Compromis",
-              JOptionPane.ERROR_MESSAGE);
-
-
       //Retourne et innocente les personnages non visibles
-
-    /*  for (int i=0; i<innocents(SuspectsVisibles(plateau)).size(); i++){
+      for (int i=0; i<innocents(SuspectsVisibles(plateau)).size(); i++){
         findPersonnage(innocents(SuspectsVisibles(plateau)).get(i)).turn(plateau);
-      }*/
+      }
     }
   }
 
@@ -187,8 +173,8 @@ public class Initialisation {
       District d = new District(personnages.get(nomPerso), new String[]{imagesD.get(i), "3_Chem"});
       d.setIndice(i);
       if (i == 0){ d.swapQuartHoraire(); d.getGauche()[0] = true;}
-      if (i == 2){ d.swapQuartAntihoraire(); d.getDroite()[0] = true;}
       else{
+        if (i == 2){ d.swapQuartAntihoraire(); d.getDroite()[0] = true;}
         d.getBas()[0] = true;
       }
       if (nomPerso == "J_Lane"){d.setImages("4_Chem");}

@@ -36,10 +36,10 @@ public class District {
     }
     public void swapQuartHoraire(){
         boolean temp1 = (boolean) Gauche[0]; boolean temp2 = (boolean) Gauche[1];
-        Gauche[0] = Haut[0]; Gauche[1] = Haut[1];
-        Haut[0] = Droite[0]; Haut[1] = Droite[1];
-        Droite[0] = Bas[0]; Droite[1] = Bas[1];
-        Bas[0] = temp1; Bas[1] = temp2;
+        Gauche[0] = Bas[0]; Gauche[1] = Bas[1];
+        Bas[0] = Droite[0]; Bas[1] = Droite[1];
+        Droite[0] = Haut[0]; Droite[1] = Haut[1];
+        Haut[0] = temp1; Haut[1] = temp2;
         Haut[2]='H'; Gauche[2]='G'; Droite[2]='D'; Bas[2]='B';
         switch (this.angle){
             case 0:
@@ -59,10 +59,10 @@ public class District {
 
     public void swapQuartAntihoraire(){
         boolean temp1 = (boolean) Gauche[0]; boolean temp2 = (boolean) Gauche[1];
-        Gauche[0] = Bas [0]; Gauche[1] = Bas [1];
-        Bas[0] = Droite[0]; Bas[1] = Droite[1];
-        Droite[0] = Haut[0]; Droite[1] = Haut[1];
-        Haut[0] = temp1; Haut[0] = temp2;
+        Gauche[0] = Haut [0]; Gauche[1] = Haut [1];
+        Haut[0] = Droite[0]; Haut[1] = Droite[1];
+        Droite[0] = Bas[0]; Droite[1] = Bas[1];
+        Bas[0] = temp1; Bas[0] = temp2;
         Haut[2]='H'; Gauche[2]='G'; Droite[2]='D'; Bas[2]='B';
         switch (this.angle) {
                 case 0:

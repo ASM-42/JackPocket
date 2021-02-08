@@ -188,8 +188,6 @@ public class PersonnageDetective {
     public List<PersonnagePlateau> SuspectsVision(Initialisation jeu){
         List<PersonnagePlateau>suspectsNow = new LinkedList<>();
         int indice = jeu.districts.get(positionDetective.get(0)).getIndice();
-        String Dx = String.format("D%s", indice+1);
-        District district = jeu.districts.get(Dx);
         Object[] side = (Object[]) positionDetective.get(1);
 
         if (side[2].equals('G')){
@@ -197,10 +195,14 @@ public class PersonnageDetective {
                 suspectsNow.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
                 if((boolean) jeu.districts.get(positionDetective.get(0)).getDroite()[0] == false) {
                     indice+=1;
+                    String Dx = String.format("D%s", indice+1);
+                    District district = jeu.districts.get(Dx);
                     if ((boolean) district.getGauche()[0] == false){
                         suspectsNow.add(district.getPersonnage());
                         if ((boolean) district.getDroite()[0] == false){
                             indice+=1;
+                            Dx = String.format("D%s", indice+1);
+                            district = jeu.districts.get(Dx);
                             if ((boolean) district.getGauche()[0] == false){
                                 suspectsNow.add(district.getPersonnage());
                             }
@@ -214,10 +216,14 @@ public class PersonnageDetective {
                 suspectsNow.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
                 if ((boolean) jeu.districts.get(positionDetective.get(0)).getBas()[0] == false) {
                     indice += 3;
+                    String Dx = String.format("D%s", indice+1);
+                    District district = jeu.districts.get(Dx);
                     if ((boolean) district.getHaut()[0] == false) {
                         suspectsNow.add(district.getPersonnage());
                         if ((boolean) district.getBas()[0] == false) {
-                            indice += 3;
+                            indice +=3;
+                            Dx = String.format("D%s", indice+1);
+                            district = jeu.districts.get(Dx);
                             if ((boolean) district.getHaut()[0] == false) {
                                 suspectsNow.add(district.getPersonnage());
                             }
@@ -231,10 +237,14 @@ public class PersonnageDetective {
                 suspectsNow.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
                 if ((boolean) jeu.districts.get(positionDetective.get(0)).getHaut()[0] == false) {
                     indice -= 3;
+                    String Dx = String.format("D%s", indice+1);
+                    District district = jeu.districts.get(Dx);
                     if ((boolean) district.getBas()[0] == false) {
                         suspectsNow.add(district.getPersonnage());
                         if ((boolean) district.getHaut()[0] == false) {
                             indice -=3;
+                            Dx = String.format("D%s", indice+1);
+                            district = jeu.districts.get(Dx);
                             if ((boolean) district.getBas()[0] == false) {
                                 suspectsNow.add(district.getPersonnage());
                             }
@@ -248,10 +258,14 @@ public class PersonnageDetective {
                 suspectsNow.add(jeu.districts.get(positionDetective.get(0)).getPersonnage());
                 if((boolean) jeu.districts.get(positionDetective.get(0)).getGauche()[0] == false) {
                     indice-=1;
+                    String Dx = String.format("D%s", indice+1);
+                    District district = jeu.districts.get(Dx);
                     if ((boolean) district.getDroite()[0] == false){
                         suspectsNow.add(district.getPersonnage());
                         if ((boolean) district.getGauche()[0] == false){
                             indice-=1;
+                            Dx = String.format("D%s", indice+1);
+                            district = jeu.districts.get(Dx);
                             if ((boolean) district.getDroite()[0] == false){
                                 suspectsNow.add(district.getPersonnage());
                             }
@@ -260,9 +274,9 @@ public class PersonnageDetective {
                 }
             }
         }
-
-
-
+        for (int i=0; i<suspectsNow.size(); i++){
+            suspectsNow.get(i).setVisible(true);
+        }
         /* Début récurrence
         if (panel == 'H'){
             for (int i=0; i<2; i++){

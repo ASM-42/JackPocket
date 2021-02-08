@@ -45,15 +45,21 @@ public class Plateau extends JPanel {
         JPanel surfaceGauche = new JPanel(new GridLayout(8, 1, 0, 0));
         for (int i = 0; i < jetTemps.length; i++) {
             jetTemps[i] = new JButton("");
-            if (i == 0) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/1.png"))); }
+            if (i == 0) {
+                jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/1.png")));
+                jetTemps[i].addActionListener(MrJackActionListener.createJetonT1(jetTemps[i], Jeu, this));}
             if (i == 1) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/2.png"))); }
-            if (i == 2) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/3.png"))); }
+            if (i == 2) {
+                jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/3.png")));
+                jetTemps[i].addActionListener(MrJackActionListener.createJetonT2(jetTemps[i], Jeu, this));}
             if (i == 3) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/4.png"))); }
-            if (i == 4) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/5.png"))); }
+            if (i == 4) {
+                jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/5.png")));
+            }
             if (i == 5) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/6.png"))); }
             if (i == 6) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/7.png"))); }
             if (i == 7) { jetTemps[i].setIcon(new ImageIcon(getClass().getResource("/images/jet_temps/8.png"))); }
-            if (i%2 == 0) {jetTemps[i].addActionListener(MrJackActionListener.createJetonTPair(jetTemps[i], Jeu, this));}
+
 
             surfaceGauche.add(jetTemps[i]);
         }

@@ -33,9 +33,9 @@ public class Initialisation {
       for (int i=0; i<suspects.size(); i++){
         plateau.district[findPersonnage(suspects.get(i)).getIndice()].setBackground(Color.GREEN);
       }
-    if (!!suspects.contains(this.joueurM.coupable)){
+   /*if (!!suspects.contains(this.joueurM.coupable)){
       this.joueurM.coupable.setVisible(false);
-    }
+    }*/
     return suspects;
   }
   

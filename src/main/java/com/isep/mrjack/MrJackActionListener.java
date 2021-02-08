@@ -87,6 +87,8 @@ public final class MrJackActionListener {
       }
       Jeu.SuspectsVisibles(plateau);
 
+
+
       int rc = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
               this.button.getIcon(),
@@ -130,6 +132,10 @@ public final class MrJackActionListener {
               this.button.getIcon(),
               boutonAction, boutonAction[0]);
 
+      for (int i=0; i<Jeu.SuspectsVisibles(plateau).size(); i++){
+        Jeu.SuspectsVisibles(plateau).get(i).setVisible(false);
+      }
+
       String Action2M = actionsPourLeTour.get(rc2);
       switch (actionsPourLeTour.get(rc2)){
         case "Sherlock":
@@ -164,6 +170,11 @@ public final class MrJackActionListener {
                 "Mr Jack",
                 JOptionPane.PLAIN_MESSAGE);
       }
+
+      for (int i=0; i<Jeu.SuspectsVisibles(plateau).size(); i++){
+        Jeu.SuspectsVisibles(plateau).get(i).setVisible(false);
+      }
+
       int rc3 = JOptionPane.showOptionDialog(null, "MrJack quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
               this.button.getIcon(),
@@ -194,6 +205,7 @@ public final class MrJackActionListener {
           break;
       }
 
+
       plateau.jetAction[actionsPourLeTour.indexOf(Action3M)].setBackground(Color.RED);
       boutonAction[rc3] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
       Jeu.SuspectsVisibles(plateau);
@@ -202,6 +214,9 @@ public final class MrJackActionListener {
                 "Mr Jack à gagné!",
                 "Mr Jack",
                 JOptionPane.PLAIN_MESSAGE);
+      }
+      for (int i=0; i<Jeu.SuspectsVisibles(plateau).size(); i++){
+        Jeu.SuspectsVisibles(plateau).get(i).setVisible(false);
       }
       int rc4 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
@@ -233,6 +248,7 @@ public final class MrJackActionListener {
           break;
       }
 
+
       plateau.jetAction[actionsPourLeTour.indexOf(Action4E)].setBackground(Color.RED);
       boutonAction[rc4] = new ImageIcon(new ImageIcon(getClass().getResource("/images/jet_detec/Aucun.png")).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
       Jeu.SuspectsVisibles(plateau);
@@ -251,9 +267,11 @@ public final class MrJackActionListener {
               "Second Tour",
               "Second Tour",
               JOptionPane.ERROR_MESSAGE);
+
       for (int i=0; i<Jeu.SuspectsVisibles(plateau).size(); i++){
         Jeu.SuspectsVisibles(plateau).get(i).setVisible(false);
       }
+
       actionsPourLeTour = List.of(Jeu.jetonsActionTour[0].getAction1(1-actionR1), Jeu.jetonsActionTour[1].getAction1(1-actionR2),
               Jeu.jetonsActionTour[2].getAction1(1-actionR3), Jeu.jetonsActionTour[3].getAction1(1-actionR4));
       imagesPourLeTour = List.of(Jeu.jetonsActionTour[0].getAction2(1-actionR1), Jeu.jetonsActionTour[1].getAction2(1-actionR2),
@@ -264,6 +282,10 @@ public final class MrJackActionListener {
         boutonAction[i] = new ImageIcon(new ImageIcon(getClass().getResource(imagesPourLeTour.get(i))).getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
       }
       Jeu.SuspectsVisibles(plateau);
+
+      for (int i=0; i<Jeu.personnages.size(); i++){
+        Jeu.personnages.get(i).setVisible(false);
+      }
 
       int jpair = JOptionPane.showOptionDialog(null, "MrJack quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.WARNING_MESSAGE, 0,
@@ -303,6 +325,11 @@ public final class MrJackActionListener {
                 "Mr Jack",
                 JOptionPane.PLAIN_MESSAGE);
       }
+
+      for (int i=0; i<Jeu.SuspectsVisibles(plateau).size(); i++){
+        Jeu.SuspectsVisibles(plateau).get(i).setVisible(false);
+      }
+
       int jpair2 = JOptionPane.showOptionDialog(null, "Enqueteur quelle action souhaitez vous jouer",
               "Action Enqueteur", JOptionPane.PLAIN_MESSAGE, 0,
               plateau.jetTemps[1].getIcon(),

@@ -216,6 +216,7 @@ public class JetonsAction {
             if (rc == 0) {
                 jeu.joueurE.getSherlock().MoveDetective1(plateau);
             }
+
             if (rc == 1) {
                 jeu.joueurE.getWaston().MoveDetective1(plateau);
             }
